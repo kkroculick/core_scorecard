@@ -1,0 +1,374 @@
+<wm-page data-ng-controller="MainPageController" name="page1">
+    <wm-header name="header1" content="header"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel name="left_panel1" content="leftnav" columnwidth="2">
+            <wm-view name="view1"></wm-view>
+        </wm-left-panel>
+        <wm-page-content name="page_content1" columnwidth="10" overflow="auto">
+            <wm-grid show="false" name="gridScorecards" readonlygrid="true" dataset="bind:Variables.Core_scorecardScorecardWebformData.dataSet" on-rowclick="grid2Rowclick($event, $data)" gridcaption="Scorecard" gridfirstrowselect="false">
+                <wm-grid-column type="integer" readonly="true" caption="Id" binding="id" primary-key="true" generator="identity" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="false"></wm-grid-column>
+                <wm-grid-column type="string" readonly="false" caption="Project Description" binding="projectDescription" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="string" readonly="false" caption="Project Name" binding="projectName" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="double" readonly="false" caption="Smart Spend Score" binding="smartSpendScore" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="double" readonly="false" caption="Smart Spend Weight" binding="smartSpendWeight" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="double" readonly="false" caption="Total Smart Spend" binding="totalSmartSpend" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+            </wm-grid>
+
+            <wm-composite name="composite1"></wm-composite>
+            <wm-form title="New Scorecard" class="panel-default" name="form1" overflow="visible" layout="One Column" novalidate="false">
+                <wm-layoutgrid name="layoutgrid2">
+                    <wm-gridrow name="gridrow42_1">
+                        <wm-gridcolumn name="gridcolumn42" columnwidth="4">
+                            <wm-label caption="ID" name="label1"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn43" columnwidth="4">
+                            <wm-text tabindex="1" readonly="true" name="txtID" width="80" placeholder="" scopedatavalue="scorecard.id"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow44">
+                        <wm-gridcolumn name="gridcolumn87_2" columnwidth="4">
+                            <wm-label caption="Ownership" name="label42" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn88_2" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow43_1">
+                        <wm-gridcolumn name="gridcolumn45" columnwidth="4">
+                            <wm-label caption="Project Name *" name="label2" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn46" columnwidth="4">
+                            <wm-text name="txtProjectName" scopedatavalue="scorecard.projectName"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow44_1">
+                        <wm-gridcolumn name="gridcolumn48" columnwidth="4">
+                            <wm-label caption="Project Description *" name="label3" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn49" columnwidth="4">
+                            <wm-text name="txtProjectDesc" scopedatavalue="scorecard.projectDesc"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow45_1">
+                        <wm-gridcolumn name="gridcolumn51" columnwidth="4">
+                            <wm-label caption="Portfolio Architect *" name="label4" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn52" columnwidth="4">
+                            <wm-select name="selectPFA" dataset="bind:Variables.Core_scorecardGetEmpByPFA.dataSet" scopedatavalue="scorecard.pfa" datafield="full_name" displayfield="full_name"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow46_1">
+                        <wm-gridcolumn name="gridcolumn54" columnwidth="4">
+                            <wm-label caption="Lead Architect *" name="label5" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn55" columnwidth="4">
+                            <wm-select name="selectLTA" dataset="bind:Variables.Core_scorecardGetEmpByLTA.dataSet" scopedatavalue="scorecard.lta" datafield="full_name" displayfield="full_name"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow47_1">
+                        <wm-gridcolumn name="gridcolumn57" columnwidth="4">
+                            <wm-label caption="End to End *" name="label6" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn58" columnwidth="4">
+                            <wm-select name="selectE2E" dataset="Yes, No" scopedatavalue="scorecard.e2e"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow45">
+                        <wm-gridcolumn name="gridcolumn89_2" columnwidth="4">
+                            <wm-label caption="Project Impact &amp; Scope" name="label43" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn90" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow48_1">
+                        <wm-gridcolumn name="gridcolumn60" columnwidth="4">
+                            <wm-label caption="AIM Applications Impacted *" name="label7" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn61" columnwidth="4">
+                            <wm-textarea name="taAIMImpacted" scopedatavalue="scorecard.aimImpact"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow49_1">
+                        <wm-gridcolumn name="gridcolumn63" columnwidth="4">
+                            <wm-label caption="Total Number of Platforms *" name="label8" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn64" columnwidth="4">
+                            <wm-text name="txtTotalPlatforms" width="100" placeholder="Enter number" scopedatavalue="scorecard.numPlatforms"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow51_1">
+                        <wm-gridcolumn name="gridcolumn69" columnwidth="4">
+                            <wm-label caption="Cost of Project ($) *" name="label9" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn70" columnwidth="4">
+                            <wm-currency name="txtCostProject" scopedatavalue="scorecard.projectCost"></wm-currency>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow50_1">
+                        <wm-gridcolumn name="gridcolumn66" columnwidth="4">
+                            <wm-label caption="Impact of SQP-based on Architecture Support ($) *" name="label10" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn67" columnwidth="4">
+                            <wm-currency name="txtImpactSQP" scopedatavalue="scorecard.impactSQP"></wm-currency>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow52_1">
+                        <wm-gridcolumn name="gridcolumn72" columnwidth="4">
+                            <wm-label caption="Company Platforms Impacted *" name="label11" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn73" columnwidth="4">
+                            <wm-textarea name="taCompanyPlatformImpact" scopedatavalue="scorecard.companyPlatforms"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow53_1">
+                        <wm-gridcolumn name="gridcolumn74" columnwidth="4">
+                            <wm-label caption="Number of Platforms with Blueprints *" name="label12" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn75" columnwidth="4">
+                            <wm-text name="txtNumberPlatformBlueprints" width="100" placeholder="Enter number" scopedatavalue="scorecard.numPlatformsBP"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow54_1">
+                        <wm-gridcolumn name="gridcolumn76" columnwidth="4">
+                            <wm-label caption="Architecture Impact by Portfolio (%) *" name="label13" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn77" columnwidth="4">
+                            <wm-text name="txtPercentageImpact" width="100" placeholder="Enter number" scopedatavalue="scorecard.archImpactPercent"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow55_1">
+                        <wm-gridcolumn name="gridcolumn78" columnwidth="4">
+                            <wm-label caption="Impact *" name="label14" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn79" columnwidth="4">
+                            <wm-select name="selectGating" dataset="Light,Medium,Heavy" scopedatavalue="scorecard.gateSizing"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow56_1">
+                        <wm-gridcolumn name="gridcolumn80" columnwidth="4">
+                            <wm-label caption="Strategies" name="label19" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn81" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow57_1">
+                        <wm-gridcolumn name="gridcolumn82" columnwidth="4">
+                            <wm-label caption="Number of Strategic Initiatives with Platform Strategy *" name="label15" color="#f50505" textalign="left"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn83" columnwidth="4">
+                            <wm-text readonly="false" name="txtTotalNumberStrategicInit" placeholder="Enter Number" scopedatavalue="scorecard.numStrat"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow59_1">
+                        <wm-gridcolumn name="gridcolumn86" columnwidth="4">
+                            <wm-label caption="Net after Blueprint and Technical Debt" name="label16"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn87" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicInitBpTd" placeholder="" scopedatavalue="scorecard.stratBpTd"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow58_1">
+                        <wm-gridcolumn name="gridcolumn84" columnwidth="4">
+                            <wm-label caption="Score" name="label17"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn85" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicInitScore" placeholder="" scopedatavalue="scorecard.stratScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow60">
+                        <wm-gridcolumn name="gridcolumn88" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label18"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn89" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicInitWght" width="80" placeholder="" scopedatavalue="scorecard.stratWeight" datavalue="5"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow61">
+                        <wm-gridcolumn name="gridcolumn80_1" columnwidth="4">
+                            <wm-label caption="Opportunities" name="label20" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn81_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow62">
+                        <wm-gridcolumn name="gridcolumn82_1" columnwidth="4">
+                            <wm-label caption="Number of Strategic Opportunities for Project *" name="label21" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn83_1" columnwidth="4">
+                            <wm-text name="txtTotalNumberStrategicOpps" placeholder="Enter number" scopedatavalue="scorecard.opps"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow63">
+                        <wm-gridcolumn name="gridcolumn84_1" columnwidth="4">
+                            <wm-label caption="Net after Blueprint and Technical Debt" name="label22"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn85_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicOppBpTd" placeholder="" scopedatavalue="scorecard.oppsBpTd"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow64">
+                        <wm-gridcolumn name="gridcolumn86_1" columnwidth="4">
+                            <wm-label caption="Score" name="label23"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn87_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicOppScore" placeholder="" scopedatavalue="scorecard.oppsScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow65">
+                        <wm-gridcolumn name="gridcolumn88_1" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label24"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn89_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicOppWght" width="80" placeholder="" scopedatavalue="scorecard.oppsWeight" datavalue="90"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow66">
+                        <wm-gridcolumn name="gridcolumn90_1" columnwidth="4">
+                            <wm-label caption="Initiatives" name="label25" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn91_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow67">
+                        <wm-gridcolumn name="gridcolumn92_1" columnwidth="4">
+                            <wm-label caption="Number of Implemented Initiatives *" name="label26" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn93_1" columnwidth="4">
+                            <wm-text name="txtTotalNumberStratImpl" placeholder="Enter number" scopedatavalue="scorecard.impl"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow68">
+                        <wm-gridcolumn name="gridcolumn94_1" columnwidth="4">
+                            <wm-label caption="Score" name="label27"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn95_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStratImplScore" placeholder="" scopedatavalue="scorecard.implScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow69">
+                        <wm-gridcolumn name="gridcolumn96_1" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label29"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn97_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStratImplWght" width="80" placeholder="" scopedatavalue="scorecard.implWeight" datavalue="90"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow70">
+                        <wm-gridcolumn name="gridcolumn98_1" columnwidth="4">
+                            <wm-label caption="Tech Debt" name="label31" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn99_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow71">
+                        <wm-gridcolumn name="gridcolumn100_1" columnwidth="4">
+                            <wm-label caption="Number of Components Resulting in Technical Debt *" name="label30" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn101_1" columnwidth="4">
+                            <wm-text name="txtComponentsTechDebt" placeholder="Enter Number" scopedatavalue="scorecard.techDebt"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow72">
+                        <wm-gridcolumn name="gridcolumn102_1" columnwidth="4">
+                            <wm-label caption="Score" name="label32"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn103_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtComponentsTechDebtScore" placeholder="" scopedatavalue="scorecard.techDebtScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow73">
+                        <wm-gridcolumn name="gridcolumn104_1" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label33"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn105_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtComponentsTechDebtWght" width="80" placeholder="" scopedatavalue="scorecard.techDebtWeight" datavalue="90"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow74">
+                        <wm-gridcolumn name="gridcolumn106_1" columnwidth="4">
+                            <wm-label caption="AET Investment Status" name="label33_1" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn107_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow75">
+                        <wm-gridcolumn name="gridcolumn108_1" columnwidth="4">
+                            <wm-label caption="AET Application Investment Status *" name="label37" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn109_1" columnwidth="4">
+                            <wm-select name="selectAETAppInvestment" dataset="Invest, None" scopedatavalue="scorecard.aetInvest"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow76">
+                        <wm-gridcolumn name="gridcolumn110" columnwidth="4">
+                            <wm-label caption="Score" name="label35"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn111" columnwidth="4">
+                            <wm-text readonly="true" name="txtAETAppInvestScore" placeholder="" scopedatavalue="scorecard.aetInvestScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow77">
+                        <wm-gridcolumn name="gridcolumn112" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label36"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn113" columnwidth="4">
+                            <wm-text readonly="true" name="txtAETAppInvestWght" width="80" placeholder="" scopedatavalue="scorecard.aetInvestWeight" datavalue="5"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow78">
+                        <wm-gridcolumn name="gridcolumn114" columnwidth="4">
+                            <wm-label caption="Comments" name="label37_1" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn115" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow79">
+                        <wm-gridcolumn name="gridcolumn116" columnwidth="4"></wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn117" columnwidth="4">
+                            <wm-textarea name="txtComments" placeholder="Comments" scopedatavalue="scorecard.comments"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow79_1">
+                        <wm-gridcolumn name="gridcolumn175" columnwidth="4">
+                            <wm-label caption="Score" name="label77" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn176" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow80">
+                        <wm-gridcolumn name="gridcolumn118" columnwidth="4">
+                            <wm-label caption="Smart Spend Score" name="label38"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn119" columnwidth="4">
+                            <wm-text readonly="true" name="txtSmartSpendScore" placeholder="" scopedatavalue="scorecard.smartSpendScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow81">
+                        <wm-gridcolumn name="gridcolumn120" columnwidth="4">
+                            <wm-label caption="Smart Spend Weight" name="label39"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn121" columnwidth="4">
+                            <wm-text readonly="true" name="txtSmartSpendWght" placeholder="" scopedatavalue="scorecard.smartSpendWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow82">
+                        <wm-gridcolumn name="gridcolumn122" columnwidth="4">
+                            <wm-label caption="Total Smart Spend" name="label40"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn123" columnwidth="4">
+                            <wm-text readonly="true" name="txtSmartSpendTotal" placeholder="" scopedatavalue="scorecard.totalSmartSpend"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow83">
+                        <wm-gridcolumn name="gridcolumn124" columnwidth="4">
+                            <wm-button class="btn-primary" type="button" caption="Calculate" name="buttonCalc" borderstyle="solid" on-click="buttonCalcClick($event, $scope)" fontweight="bold" iconclass="glyphicon glyphicon-ok"></wm-button>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn125" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-buttongroup class="form-action col-md-12" name="buttongroup1" horizontalalign="right">
+                    <wm-button class="btn-secondary" type="reset" caption="Reset" name="button1"></wm-button>
+                    <wm-button class="btn-warning" type="button" caption="Cancel" name="btnCancel" on-click="btnCancelClick($event, $scope)"></wm-button>
+                    <wm-button class="btn-primary" type="button" caption="Save" name="btnSave" on-click="btnSaveClick($event, $scope)"></wm-button>
+                </wm-buttongroup>
+            </wm-form>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer name="footer1" content="footer"></wm-footer>
+    <wm-view class="dialog-view" show="false" name="viewSuccess">
+        <wm-alertdialog title="Success" name="alertDialogSuccess" iconclass="glyphicon glyphicon-ok" alerttype="success" message="Scorecard saved successfully!"></wm-alertdialog>
+    </wm-view>
+    <wm-view class="dialog-view" show="false" name="viewWarning">
+        <wm-alertdialog name="alertDialogWarning" message="Please fill in the required fields."></wm-alertdialog>
+    </wm-view>
+</wm-page>

@@ -1,0 +1,2181 @@
+{
+	"liveReadScorecard": {
+		"name": "liveReadScorecard",
+		"type": "ScorecardWebform",
+		"isList": false,
+		"owner": "Page",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard_webform",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number"
+					},
+					{
+						"name": "aetInvestmentStatus",
+						"type": "string"
+					},
+					{
+						"name": "aetInvestmentStatusScore",
+						"type": "number"
+					},
+					{
+						"name": "aetInvestmentStatusWeight",
+						"type": "number"
+					},
+					{
+						"name": "aimApplicationsImpacted",
+						"type": "string"
+					},
+					{
+						"name": "companyPlatformsImpacted",
+						"type": "string"
+					},
+					{
+						"name": "endToEnd",
+						"type": "string"
+					},
+					{
+						"name": "gatingScorecardSizing",
+						"type": "string"
+					},
+					{
+						"name": "leadTechnicalArchitect",
+						"type": "string"
+					},
+					{
+						"name": "numberComponentTechnicalDebt",
+						"type": "number"
+					},
+					{
+						"name": "numberComponentTechnicalDebtScore",
+						"type": "number"
+					},
+					{
+						"name": "numberComponentTechnicalDebtWeight",
+						"type": "number"
+					},
+					{
+						"name": "numberImplementedInitiatives",
+						"type": "number"
+					},
+					{
+						"name": "numberImplementedInitiativesScore",
+						"type": "number"
+					},
+					{
+						"name": "numberImplementedInitiativesWeight",
+						"type": "number"
+					},
+					{
+						"name": "numberPlatforms",
+						"type": "number"
+					},
+					{
+						"name": "numberPlatformsBlueprints",
+						"type": "number"
+					},
+					{
+						"name": "numberStategicInitiativesBpTd",
+						"type": "number"
+					},
+					{
+						"name": "numberStategicInitiativesScore",
+						"type": "number"
+					},
+					{
+						"name": "numberStategicInitiativesWeight",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicInitiatives",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunities",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunitiesBpTd",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunitiesScore",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunitiesWeight",
+						"type": "number"
+					},
+					{
+						"name": "percentagePortfolioArchitecureImpact",
+						"type": "number"
+					},
+					{
+						"name": "portfolioArchitect",
+						"type": "string"
+					},
+					{
+						"name": "projectComments",
+						"type": "string"
+					},
+					{
+						"name": "projectCost",
+						"type": "number"
+					},
+					{
+						"name": "projectDescription",
+						"type": "string"
+					},
+					{
+						"name": "projectName",
+						"type": "string"
+					},
+					{
+						"name": "smartSpendScore",
+						"type": "number"
+					},
+					{
+						"name": "smartSpendWeight",
+						"type": "number"
+					},
+					{
+						"name": "sqpImpactCost",
+						"type": "number"
+					},
+					{
+						"name": "totalSmartSpend",
+						"type": "number"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "read",
+		"startUpdate": true,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"orderBy": "id",
+		"filterFields": {},
+		"category": "wm.LiveVariable",
+		"_id": "wm-liveReadScorecard-wm.LiveVariable-1440303167132",
+		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+		"tableName": "scorecard_webform",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatus",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aet_investment_status",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 20,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aimApplicationsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aim_applications_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "companyPlatformsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "company_platforms_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "endToEnd",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "end_to_end",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 10,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "gatingScorecardSizing",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "gating_scorecard_sizing",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "leadTechnicalArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "lead_technical_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebt",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatforms",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatformsBlueprints",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms_blueprints",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunities",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "percentagePortfolioArchitecureImpact",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "percentage_portfolio_architecure_impact",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "portfolioArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "portfolio_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectComments",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_comments",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "project_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectDescription",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_description",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "sqpImpactCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "sqp_impact_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "totalSmartSpend",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "total_smart_spend",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "employeeId",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "employee_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "ScorecardWebform",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"tableType": "TABLE"
+		},
+		"bindCount": 1,
+		"properties": [
+			"scorecard_webform_1"
+		],
+		"relatedTables": [
+			{
+				"columnName": "employee",
+				"relationName": "scorecard_webform_1",
+				"type": "Employee",
+				"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+				"watchOn": "Core_scorecardEmployeeData"
+			}
+		]
+	},
+	"liveInsertScorecard": {
+		"name": "liveInsertScorecard",
+		"type": "ScorecardWebform",
+		"isList": false,
+		"owner": "Page",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard_webform",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"value": "bind:Widgets.txtID.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatus",
+						"type": "string",
+						"value": "bind:Widgets.selectAETAppInvestment.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusScore",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestScore.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestWght.datavalue"
+					},
+					{
+						"name": "aimApplicationsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taAIMImpacted.datavalue"
+					},
+					{
+						"name": "companyPlatformsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taCompanyPlatformImpact.datavalue"
+					},
+					{
+						"name": "endToEnd",
+						"type": "string",
+						"value": "bind:Widgets.selectE2E.datavalue"
+					},
+					{
+						"name": "gatingScorecardSizing",
+						"type": "string",
+						"value": "bind:Widgets.selectImpact.datavalue"
+					},
+					{
+						"name": "leadTechnicalArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectLTA.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebt",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebt.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtScore",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtScore.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtWght.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberImplementedSI.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplScore.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplWght.datavalue"
+					},
+					{
+						"name": "numberPlatforms",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalPlatforms.datavalue"
+					},
+					{
+						"name": "numberPlatformsBlueprints",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberPlatformBlueprints.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitBpTd.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitScore.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitWght.datavalue"
+					},
+					{
+						"name": "numberStrategicInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInit.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunities",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberStrategicOpps.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppBpTd.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppScore.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppWght.datavalue"
+					},
+					{
+						"name": "percentagePortfolioArchitecureImpact",
+						"type": "number",
+						"value": "bind:Widgets.txtPercentageImpact.datavalue"
+					},
+					{
+						"name": "portfolioArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectPA.datavalue"
+					},
+					{
+						"name": "projectComments",
+						"type": "string",
+						"value": "bind:Widgets.txtComments.datavalue"
+					},
+					{
+						"name": "projectCost",
+						"type": "number",
+						"value": "bind:Widgets.txtCostProject.datavalue"
+					},
+					{
+						"name": "projectDescription",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectDesc.datavalue"
+					},
+					{
+						"name": "projectName",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectName.datavalue"
+					},
+					{
+						"name": "smartSpendScore",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendScore.datavalue"
+					},
+					{
+						"name": "smartSpendWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendWght.datavalue"
+					},
+					{
+						"name": "sqpImpactCost",
+						"type": "number",
+						"value": "bind:Widgets.txtImpactSQP.datavalue"
+					},
+					{
+						"name": "totalSmartSpend",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendTotal.datavalue"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "insert",
+		"startUpdate": false,
+		"autoUpdate": false,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"onSuccess": "Javascript",
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"filterFields": {},
+		"inputFields": {},
+		"category": "wm.LiveVariable",
+		"_id": "wm-liveInsertScorecard-liveVariable1-wm.LiveVariable-1440306405270",
+		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+		"tableName": "scorecard_webform",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatus",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aet_investment_status",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 20,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aimApplicationsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aim_applications_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "companyPlatformsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "company_platforms_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "endToEnd",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "end_to_end",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 10,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "gatingScorecardSizing",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "gating_scorecard_sizing",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "leadTechnicalArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "lead_technical_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebt",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatforms",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatformsBlueprints",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms_blueprints",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunities",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "percentagePortfolioArchitecureImpact",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "percentage_portfolio_architecure_impact",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "portfolioArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "portfolio_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectComments",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_comments",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "project_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectDescription",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_description",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "sqpImpactCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "sqp_impact_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "totalSmartSpend",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "total_smart_spend",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "employeeId",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "employee_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "ScorecardWebform",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"tableType": "TABLE"
+		},
+		"properties": [
+			"scorecard_webform_1"
+		],
+		"relatedTables": [
+			{
+				"columnName": "employee",
+				"relationName": "scorecard_webform_1",
+				"type": "Employee",
+				"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+				"watchOn": "Core_scorecardEmployeeData"
+			}
+		]
+	},
+	"liveUpdateScorecard": {
+		"name": "liveUpdateScorecard",
+		"type": "ScorecardWebform",
+		"isList": false,
+		"owner": "Page",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard_webform",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"value": "bind:Widgets.txtID.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatus",
+						"type": "string",
+						"value": "bind:Widgets.selectAETAppInvestment.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusScore",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestScore.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestWght.datavalue"
+					},
+					{
+						"name": "aimApplicationsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taAIMImpacted.datavalue"
+					},
+					{
+						"name": "companyPlatformsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taCompanyPlatformImpact.datavalue"
+					},
+					{
+						"name": "endToEnd",
+						"type": "string",
+						"value": "bind:Widgets.selectE2E.datavalue"
+					},
+					{
+						"name": "gatingScorecardSizing",
+						"type": "string",
+						"value": "bind:Widgets.selectImpact.datavalue"
+					},
+					{
+						"name": "leadTechnicalArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectLTA.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebt",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebt.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtScore",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtScore.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtWght.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberImplementedSI.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplScore.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplWght.datavalue"
+					},
+					{
+						"name": "numberPlatforms",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalPlatforms.datavalue"
+					},
+					{
+						"name": "numberPlatformsBlueprints",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberPlatformBlueprints.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitBpTd.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitScore.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitWght.datavalue"
+					},
+					{
+						"name": "numberStrategicInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInit.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunities",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberStrategicOpps.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppBpTd.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppScore.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppWght.datavalue"
+					},
+					{
+						"name": "percentagePortfolioArchitecureImpact",
+						"type": "number",
+						"value": "bind:Widgets.txtPercentageImpact.datavalue"
+					},
+					{
+						"name": "portfolioArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectPA.datavalue"
+					},
+					{
+						"name": "projectComments",
+						"type": "string",
+						"value": "bind:Widgets.txtComments.datavalue"
+					},
+					{
+						"name": "projectCost",
+						"type": "number",
+						"value": "bind:Widgets.txtCostProject.datavalue"
+					},
+					{
+						"name": "projectDescription",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectDesc.datavalue"
+					},
+					{
+						"name": "projectName",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectName.datavalue"
+					},
+					{
+						"name": "smartSpendScore",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendScore.datavalue"
+					},
+					{
+						"name": "smartSpendWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendWght.datavalue"
+					},
+					{
+						"name": "sqpImpactCost",
+						"type": "number",
+						"value": "bind:Widgets.txtImpactSQP.datavalue"
+					},
+					{
+						"name": "totalSmartSpend",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendTotal.datavalue"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "update",
+		"startUpdate": false,
+		"autoUpdate": false,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"onSuccess": "Javascript",
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"filterFields": {},
+		"inputFields": {},
+		"category": "wm.LiveVariable",
+		"_id": "wm-liveUpdateScorecard-wm.LiveVariable-1440308623677",
+		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+		"tableName": "scorecard_webform",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatus",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aet_investment_status",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 20,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aimApplicationsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aim_applications_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "companyPlatformsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "company_platforms_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "endToEnd",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "end_to_end",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 10,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "gatingScorecardSizing",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "gating_scorecard_sizing",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "leadTechnicalArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "lead_technical_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebt",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatforms",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatformsBlueprints",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms_blueprints",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunities",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "percentagePortfolioArchitecureImpact",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "percentage_portfolio_architecure_impact",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "portfolioArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "portfolio_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectComments",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_comments",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "project_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectDescription",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_description",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "sqpImpactCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "sqp_impact_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "totalSmartSpend",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "total_smart_spend",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "employeeId",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "employee_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "ScorecardWebform",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"tableType": "TABLE"
+		},
+		"properties": [
+			"scorecard_webform_1"
+		],
+		"relatedTables": [
+			{
+				"columnName": "employee",
+				"relationName": "scorecard_webform_1",
+				"type": "Employee",
+				"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+				"watchOn": "Core_scorecardEmployeeData"
+			}
+		]
+	}
+}

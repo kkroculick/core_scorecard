@@ -1,0 +1,636 @@
+<style id="Page.css">
+
+</style>
+<script id="Page.js">
+Application.$controller("PagePageController", ["$scope", function($scope) {
+    "use strict";
+
+    /* perform any action with the variables inside this block(on-page-load) */
+    $scope.onPageVariablesReady = function() {
+        /*
+         * variables can be accessed through '$scope.Variables' property here
+         * e.g. $scope.Variables.staticVariable1.getData()
+         */
+    };
+
+    /* perform any action with widgets inside this block */
+    $scope.onPageReady = function() {
+        /*
+         * widgets can be accessed through '$scope.Widgets' property here
+         * e.g. $scope.Widgets.byId(), $scope.Widgets.byName()or access widgets by $scope.Widgets.widgetName
+         */
+        $scope.setDefaults();
+    };
+
+
+    $scope.setDefaults = function() {
+
+        //set default weights
+        if (!$scope.Widgets.txtTotalNumberStrategicInitWght.datavalue) {
+            $scope.Widgets.txtTotalNumberStrategicInitWght.datavalue = 5;
+        }
+
+        if (!$scope.Widgets.txtTotalNumberStrategicOppWghtdatavalue) {
+            $scope.Widgets.txtTotalNumberStrategicOppWght.datavalue = 90;
+
+        }
+        if (!$scope.Widgets.txtTotalNumberStratImplWght.datavalue) {
+            $scope.Widgets.txtTotalNumberStratImplWght.datavalue = 90;
+
+        }
+        if (!$scope.Widgets.txtComponentsTechDebtWght.datavalue) {
+            $scope.Widgets.txtComponentsTechDebtWght.datavalue = 90;
+
+        }
+        if (!$scope.Widgets.txtAETAppInvestWght.datavalue) {
+            $scope.Widgets.txtAETAppInvestWght.datavalue = 5;
+        }
+
+    };
+
+    $scope.getInvest = function() {
+        if ($scope.Widgets.selectAETAppInvestment.datavalue === "Invest") {
+            return 100;
+        } else {
+            return 0;
+        }
+
+    };
+
+    $scope.clearControls = function() {
+        // alert("clear")
+        $scope.Widgets.txtTotalNumberStrategicInitScore.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStrategicInitBpTd.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStrategicOppScore.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStrategicOppBpTd.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStratImplScore.datavalue = 0;
+        $scope.Widgets.txtComponentsTechDebtScore.datavalue = 0;
+        $scope.Widgets.txtAETAppInvestScore.datavalue = 0;
+        $scope.Widgets.txtSmartSpendWght.datavalue = 0;
+        $scope.Widgets.txtSmartSpendScore.datavalue = 0;
+        $scope.Widgets.txtSmartSpendTotal.datavalue = 0;
+
+    };
+
+    $scope.calculateScore = function() {
+        try {
+            //clear old values
+            $scope.clearControls();
+
+            //get data
+            var numStrategicInit = parseFloat($scope.Widgets.txtTotalNumberStrategicInit.datavalue);
+
+            var numStrategicOpps = parseFloat($scope.Widgets.txtTotalNumberStrategicOpps.datavalue);
+            var numImplementedSI = parseFloat($scope.Widgets.txtTotalNumberStratImpl.datavalue);
+            var numCompTechDebt = parseFloat($scope.Widgets.txtComponentsTechDebt.datavalue);
+            var appInvestmentStatus = parseFloat($scope.Widgets.selectAETAppInvestment.datavalue);
+            var numPlatformBP = parseFloat($scope.Widgets.txtNumberPlatformBlueprints.datavalue);
+            var numTotalPlatforms = parseFloat($scope.Widgets.txtTotalPlatforms.datavalue);
+            var wghtStrategicInit = parseFloat($scope.Widgets.txtTotalNumberStrategicInitWght.datavalue);
+            var wghtStrategicOpps = parseFloat($scope.Widgets.txtTotalNumberStrategicOppWght.datavalue);
+            var wghtImplementedSI = parseFloat($scope.Widgets.txtTotalNumberStratImplWght.datavalue);
+            var wghtCompTechDebt = parseFloat($scope.Widgets.txtComponentsTechDebtWght.datavalue);
+            var wghtAppInvest = parseFloat($scope.Widgets.txtAETAppInvestWght.datavalue);
+
+            //calculations
+            var netStrategicInitBpTd = (numStrategicInit - numImplementedSI) + numCompTechDebt;
+            var netStrategicOppsBpTd = numStrategicOpps + numCompTechDebt;
+            var scoreStrategicInit = (((numStrategicInit - netStrategicInitBpTd) / numStrategicInit) * (numPlatformBP / numTotalPlatforms) * 100).toFixed(2);
+            var scoreStrategicOpps = ((numImplementedSI / netStrategicOppsBpTd) * 100).toFixed(2);
+            var scoreImplementedSI = ((numImplementedSI / netStrategicOppsBpTd) * 100).toFixed(2);
+            var scoreCompTechDebt = ((numImplementedSI / netStrategicOppsBpTd) * 100).toFixed(2);
+            var scoreAppInvest = $scope.getInvest();
+
+            //set controls with calculated values
+            $scope.Widgets.txtTotalNumberStrategicInitBpTd.datavalue = netStrategicInitBpTd;
+            $scope.Widgets.txtTotalNumberStrategicInitWght.datavalue = wghtStrategicInit;
+            $scope.Widgets.txtTotalNumberStrategicInitScore.datavalue = scoreStrategicInit;
+            $scope.Widgets.txtTotalNumberStrategicOpps.datavalue = numStrategicOpps;
+            $scope.Widgets.txtTotalNumberStrategicOppBpTd.datavalue = netStrategicOppsBpTd;
+
+            $scope.Widgets.txtTotalNumberStrategicOppScore.datavalue = scoreStrategicOpps;
+            $scope.Widgets.txtTotalNumberStrategicOppWght.datavalue = wghtStrategicOpps;
+            $scope.Widgets.txtTotalNumberStratImpl.datavalue = numImplementedSI;
+            $scope.Widgets.txtTotalNumberStratImplScore.datavalue = scoreImplementedSI;
+            $scope.Widgets.txtTotalNumberStratImplWght.datavalue = wghtImplementedSI;
+            $scope.Widgets.txtComponentsTechDebt.datavalue = numCompTechDebt;
+            $scope.Widgets.txtComponentsTechDebtScore.datavalue = scoreCompTechDebt;
+            $scope.Widgets.txtComponentsTechDebtWght.datavalue = wghtCompTechDebt;
+            $scope.Widgets.txtAETAppInvestScore.datavalue = scoreAppInvest;
+            $scope.Widgets.txtAETAppInvestWght.datavalue = wghtAppInvest;
+
+            //set totals
+            var totInit = parseFloat(scoreStrategicInit * (wghtStrategicInit / 100));
+            var totOpps = parseFloat(scoreStrategicOpps * (wghtStrategicOpps / 100));
+            var totApp = parseFloat(scoreAppInvest * (wghtAppInvest / 100));
+            var totalSmartScore = totInit + totOpps + totApp;
+
+            $scope.Widgets.txtSmartSpendScore.datavalue = (parseFloat(totalSmartScore)).toFixed(2);
+            console.log($scope.Widgets.txtSmartSpendScore.datavalue);
+
+            var totalSmartWeight = wghtStrategicInit + wghtStrategicOpps + wghtAppInvest;
+            $scope.Widgets.txtSmartSpendWght.datavalue = (parseFloat(totalSmartWeight)).toFixed(2);
+            console.log($scope.Widgets.txtSmartSpendWght.datavalue);
+
+            var totalSQP = $scope.Widgets.txtImpactSQP.datavalue;
+            var totalSmartSpendCost = totalSmartScore * totalSQP;
+            $scope.Widgets.txtSmartSpendTotal.datavalue = (parseFloat(totalSmartSpendCost)).toFixed(2);
+
+
+        } catch (e) {
+            alert(e);
+        }
+    };
+
+    $scope.btnSaveClick = function($event, $isolateScope) {
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('id, $scope.scorecard.id');
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectName', $scope.scorecard.projectName);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectDescription', $scope.scorecard.projectDesc);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('portfolioArchitect', $scope.scorecard.pfa);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('leadTechnicalArchitect', $scope.scorecard.lta);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('endToEnd', $scope.scorecard.e2e);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('aimApplicationsImpacted', $scope.scorecard.aimImpact);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatforms', $scope.scorecard.numPlatforms);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectCost', $scope.scorecard.projectCost);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('sqpImpactCost', $scope.scorecard.impactSQP);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('companyPlatformsImpacted', $scope.scorecard.companyPlatforms);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatformsBlueprints', $scope.scorecard.numPlatformsBP);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('percentagePortfolioArchitectureImpact', $scope.scorecard.archImpactPercent);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('gatingScorecardSizing', $scope.scorecard.gateSizing);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiatives', $scope.scorecard.numStrat);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesBpTd', $scope.scorecard.stratBpTD);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesScore', $scope.scorecard.stratScore);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesWeight', $scope.scorecard.stratWeight);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunities', $scope.scorecard.opps);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesBpTd', $scope.scorecard.oppsBpTd);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesScore', $scope.scorecard.oppsScore);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesWeight', $scope.scorecard.oppsWeight);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiatives', $scope.scorecard.impl);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesScore', $scope.scorecard.implScore);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesWeight', $scope.scorecard.implWeight);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebt', $scope.scorecard.techDebt);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtScore', $scope.scorecard.techDebtScore);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebWeight', $scope.scorecard.techDebtWeight);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatus', $scope.scorecard.aetInvest);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusScore', $scope.scorecard.aetInvestScore);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusWeight', $scope.scorecard.aetInvestWeight);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectComments', $scope.scorecard.comments);
+
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendScore', $scope.scorecard.smartSpendScore);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendWeight', $scope.scorecard.smartSpendWeight);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('totalSmartSpend', $scope.scorecard.totalSmartSpend);
+        try {
+            if (!$scope.scorecard.id) {
+                $scope.Variables.Core_scorecardScorecardWebformData.insertRecord();
+            } else {
+                $scope.Variables.Core_scorecardScorecardWebformData.updateRecord();
+            }
+
+        } catch (e) {
+            alert(e);
+        }
+
+    };
+
+
+    $scope.button4Click = function($event, $isolateScope) {
+        /*$scope.Variables.Core_scorecardScorecardWebformData.setInput('id', '9')
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectName', $scope.scorecard.projectName);
+        $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectDescription', $scope.scorecard.projectDesc);
+        $scope.Variables.Core_scorecardScorecardWebformData.updateRecord();*/
+
+        $scope.calculateScore();
+
+
+    };
+
+
+    $scope.grid2Rowclick = function($event, $data) {
+        //  $scope.Widgets.txtProjectName.datavalue = $
+
+        console.log($data);
+        $scope.Widgets.txtID.datavalue = $data.id;
+        $scope.Widgets.txtProjectName.datavalue = $data.projectName;
+        $scope.Widgets.txtProjectDesc.datavalue = $data.projectDescription;
+        $scope.Widgets.selectPFA.datavalue = $data.portfolioArchitect;
+        $scope.Widgets.selectLTA.datavalue = $data.leadTechnicalArchitect;
+        $scope.Widgets.selectE2E.datavalue = $data.endToEnd;
+        $scope.Widgets.taAIMImpacted.datavalue = $data.aimApplicationsImpacted;
+
+        $scope.Widgets.txtTotalPlatforms.datavalue = $data.numberPlatforms;
+        $scope.Widgets.txtCostProject.datavalue = $data.projectCost;
+        $scope.Widgets.txtImpactSQP.datavalue = $data.sqpImpactCost;
+        $scope.Widgets.taCompanyPlatformImpact.datavalue = $data.companyPlatformsImpacted;
+        $scope.Widgets.txtNumberPlatformBlueprints.datavalue = $data.numberPlatformsBlueprints;
+
+        $scope.Widgets.txtPercentageImpact.datavalue = $data.percentagePortfolioArchitecureImpact;
+        $scope.Widgets.selectGating.datavalue = $data.gatingScorecardSizing;
+
+        $scope.Widgets.txtTotalNumberStrategicInit.datavalue = $data.numberStrategicInitiatives;
+        $scope.Widgets.txtTotalNumberStrategicInitBpTd.datavalue = $data.numberStategicInitiativesBpTd;
+        $scope.Widgets.txtTotalNumberStrategicInitScore.datavalue = $data.numberStategicInitiativesScore;
+        $scope.Widgets.txtTotalNumberStrategicInitWght.datavalue = $data.numberStategicInitiativesWeight;
+
+
+        $scope.Widgets.txtTotalNumberStrategicOpps.datavalue = $data.numberStrategicOpportunities;
+        $scope.Widgets.txtTotalNumberStrategicOppBpTd.datavalue = $data.numberStrategicOpportunitiesBpTd;
+        $scope.Widgets.txtTotalNumberStrategicOppScore.datavalue = $data.numberStrategicOpportunitiesScore;
+        $scope.Widgets.txtTotalNumberStrategicOppWght.datavalue = $data.numberStrategicOpportunitiesWeight;
+
+        $scope.Widgets.txtTotalNumberStratImpl.datavalue = $data.numberImplementedInitiatives;
+        $scope.Widgets.txtTotalNumberStratImplScore.datavalue = $data.numberImplementedInitiativesScore;
+        $scope.Widgets.txtTotalNumberStratImplWght.datavalue = $data.numberImplementedInitiativesWeight;
+
+
+
+        $scope.Widgets.txtComponentsTechDebt.datavalue = $data.numberComponentTechnicalDebt;
+        $scope.Widgets.txtComponentsTechDebtScore.datavalue = $data.numberComponentTechnicalDebtScore;
+        $scope.Widgets.txtComponentsTechDebtWght.datavalue = $data.numberComponentTechnicalDebtWeight;
+
+        $scope.Widgets.selectAETAppInvestment.datavalue = $data.aetInvestmentStatus;
+        $scope.Widgets.txtAETAppInvestScore.datavalue = $data.aetInvestmentStatusScore;
+        $scope.Widgets.txtAETAppInvestWght.datavalue = $data.aetInvestmentStatusWeight;
+
+        $scope.Widgets.txtComments.datavalue = $data.projectComments;
+
+        $scope.Widgets.txtSmartSpendScore.datavalue = $data.smartSpendScore;
+        $scope.Widgets.txtSmartSpendWght.datavalue = $data.smartSpendWeight;
+        $scope.Widgets.txtSmartSpendTotal.datavalue = $data.totalSmartSpend;
+
+
+
+
+    };
+
+}]);
+
+
+
+
+Application.$controller("grid2Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+</script>
+<script id="Page.variables.json">
+var _PagePage_Variables_ ={}
+</script>
+<script id="Page.html" type="text/ng-template">
+<wm-page data-ng-controller="PagePageController" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-grid readonlygrid="true" name="grid2" dataset="bind:Variables.Core_scorecardScorecardWebformData.dataSet" on-rowclick="grid2Rowclick($event, $data)">
+                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="false"></wm-grid-column>
+                <wm-grid-column binding="projectDescription" caption="Project Description" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column binding="projectName" caption="Project Name" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column binding="smartSpendScore" caption="Smart Spend Score" type="double" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column binding="smartSpendWeight" caption="Smart Spend Weight" type="double" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column binding="totalSmartSpend" caption="Total Smart Spend" type="double" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+            </wm-grid>
+            <wm-form title="Form" class="panel-default" name="form1" layout="One Column" overflow="visible">
+                <wm-layoutgrid name="layoutgrid2">
+                    <wm-gridrow name="gridrow42_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn42">
+                            <wm-label caption="ID" name="label1"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn43">
+                            <wm-text tabindex="1" placeholder="" name="txtID" scopedatavalue="scorecard.id" readonly="true" width="80"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow43_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn45">
+                            <wm-label name="label2" caption="Project Name"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn46">
+                            <wm-text name="txtProjectName" scopedatavalue="scorecard.projectName"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow44_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn48">
+                            <wm-label name="label3" caption="Project Description"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn49">
+                            <wm-text name="txtProjectDesc" scopedatavalue="scorecard.projectDesc"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow45_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn51">
+                            <wm-label name="label4" caption="Portfolio Architect"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn52">
+                            <wm-select name="selectPFA" dataset="bind:Variables.Core_scorecardGetEmpByPFA.dataSet" datafield="full_name" displayfield="full_name" scopedatavalue="scorecard.pfa"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow46_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn54">
+                            <wm-label name="label5" caption="Lead Architect"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn55">
+                            <wm-container class="col-md-9" name="container5">
+                                <wm-select name="selectLTA" dataset="bind:Variables.Core_scorecardGetEmpByLTA.dataSet" datafield="full_name" displayfield="full_name" scopedatavalue="scorecard.lta"></wm-select>
+                            </wm-container>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow47_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn57">
+                            <wm-label name="label6" caption="End to End"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn58">
+                            <wm-select name="selectE2E" dataset="Yes, No" scopedatavalue="scorecard.e2e"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow48_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn60">
+                            <wm-label name="label7" caption="AIM Applications Impacted *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn61">
+                            <wm-textarea name="taAIMImpacted" scopedatavalue="scorecard.aimImpact"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow49_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn63">
+                            <wm-label name="label8" caption="Total Number of Platforms"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn64">
+                            <wm-text name="txtTotalPlatforms" scopedatavalue="scorecard.numPlatforms"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow51_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn69">
+                            <wm-label name="label9" caption="Cost of Project ($) *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn70">
+                            <wm-currency name="txtCostProject" scopedatavalue="scorecard.projectCost"></wm-currency>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow50_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn66">
+                            <wm-label name="label10" caption="Impact of SQP-based on Architecture Support ($) *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn67">
+                            <wm-currency name="txtImpactSQP" scopedatavalue="scorecard.impactSQP"></wm-currency>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow52_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn72">
+                            <wm-label name="label11" caption="Company Platforms Impacted *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn73">
+                            <wm-textarea name="taCompanyPlatformImpact" scopedatavalue="scorecard.companyPlatforms"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow53_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn74">
+                            <wm-label name="label12" caption="Number of Platforms with Blueprints *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn75">
+                            <wm-text name="txtNumberPlatformBlueprints" scopedatavalue="scorecard.numPlatformsBP"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow54_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn76">
+                            <wm-label name="label13" caption="Architecture Impact by Portfolio (%) *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn77">
+                            <wm-text name="txtPercentageImpact" scopedatavalue="scorecard.archImpactPercent"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow55_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn78">
+                            <wm-label name="label14" caption="Impact *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn79">
+                            <wm-select name="selectGating" scopedatavalue="scorecard.gateSizing" dataset="Light,Medium,Heavy"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow56_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn80">
+                            <wm-label name="label19" caption="Strategies" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn81"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow57_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn82">
+                            <wm-label name="label15" caption="Number of Strategic Initiatives with Platform Strategy *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn83">
+                            <wm-text name="txtTotalNumberStrategicInit" scopedatavalue="scorecard.numStrat"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow59_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn86">
+                            <wm-label name="label16" caption="Net after Blueprint and Technical Debt"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn87">
+                            <wm-text name="txtTotalNumberStrategicInitBpTd" scopedatavalue="scorecard.stratBpTD"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow58_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn84">
+                            <wm-label name="label17" caption="Score"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn85">
+                            <wm-text name="txtTotalNumberStrategicInitScore" scopedatavalue="scorecard.stratScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow60">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn88">
+                            <wm-label name="label18" caption="Weight (Percent %)"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn89">
+                            <wm-text name="txtTotalNumberStrategicInitWght" scopedatavalue="scorecard.stratWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow61">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn80_1">
+                            <wm-label caption="Opportunities" fontweight="bold" fontsize="20" name="label20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn81_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow62">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn82_1">
+                            <wm-label name="label21" caption="Number of Strategic Opportunities for Project *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn83_1">
+                            <wm-text name="txtTotalNumberStrategicOpps" scopedatavalue="scorecard.opps"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow63">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn84_1">
+                            <wm-label name="label22" caption="Net after Blueprint and Technical Debt"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn85_1">
+                            <wm-text name="txtTotalNumberStrategicOppBpTd" scopedatavalue="scorecard.oppsBpTd"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow64">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn86_1">
+                            <wm-label name="label23" caption="Score"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn87_1">
+                            <wm-text name="txtTotalNumberStrategicOppScore" scopedatavalue="scorecard.oppsScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow65">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn88_1">
+                            <wm-label name="label24" caption="Weight (Percent %)"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn89_1">
+                            <wm-text name="txtTotalNumberStrategicOppWght" scopedatavalue="scorecard.oppsWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow66">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn90_1">
+                            <wm-label caption="Initiatives" fontweight="bold" fontsize="20" name="label25"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn91_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow67">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn92_1">
+                            <wm-label name="label26" caption="Number of Implemented Initiatives *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn93_1">
+                            <wm-text name="txtTotalNumberStratImpl" scopedatavalue="scorecard.impl"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow68">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn94_1">
+                            <wm-label name="label27" caption="Score"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn95_1">
+                            <wm-text name="txtTotalNumberStratImplScore" scopedatavalue="scorecard.implScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow69">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn96_1">
+                            <wm-label name="label29" caption="Weight (Percent %)"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn97_1">
+                            <wm-text name="txtTotalNumberStratImplWght" scopedatavalue="scorecard.implWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow70">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn98_1">
+                            <wm-label caption="Tech Debt" fontweight="bold" fontsize="20" name="label31"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn99_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow71">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn100_1">
+                            <wm-label name="label30" caption="Number of Components Resulting in Technical Debt *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn101_1">
+                            <wm-text name="txtComponentsTechDebt" scopedatavalue="scorecard.techDebt"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow72">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn102_1">
+                            <wm-label name="label32" caption="Score"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn103_1">
+                            <wm-text name="txtComponentsTechDebtScore" scopedatavalue="scorecard.techDebtScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow73">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn104_1">
+                            <wm-label name="label33" caption="Weight (Percent %)"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn105_1">
+                            <wm-text name="txtComponentsTechDebtWght" scopedatavalue="scorecard.techDebtWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow74">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn106_1">
+                            <wm-label caption="AET Investment Status" fontweight="bold" fontsize="20" name="label33_1"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn107_1"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow75">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn108_1">
+                            <wm-label name="label37" caption="AET Application Investment Status *"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn109_1">
+                            <wm-select name="selectAETAppInvestment" scopedatavalue="scorecard.aetInvest" dataset="Invest, None"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow76">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn110">
+                            <wm-label name="label35" caption="Score"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn111">
+                            <wm-text name="txtAETAppInvestScore" scopedatavalue="scorecard.aetInvestScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow77">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn112">
+                            <wm-label name="label36" caption="Weight (Percent %)"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn113">
+                            <wm-text name="txtAETAppInvestWght" scopedatavalue="scorecard.aetInvestWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow78">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn114">
+                            <wm-label caption="Comments" fontweight="bold" fontsize="20" name="label37_1"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn115"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow79">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn116"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn117">
+                            <wm-textarea placeholder="Comments" name="txtComments" scopedatavalue="scorecard.comments"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow80">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn118">
+                            <wm-label name="label38" caption="Smart Spend Score"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn119">
+                            <wm-text name="txtSmartSpendScore" scopedatavalue="scorecard.smartSpendScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow81">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn120">
+                            <wm-label name="label39" caption="Smart Spend Weight"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn121">
+                            <wm-text name="txtSmartSpendWght" scopedatavalue="scorecard.smartSpendWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow82">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn122">
+                            <wm-label name="label40" caption="Total Smart Spend"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn123">
+                            <wm-text name="txtSmartSpendTotal" scopedatavalue="scorecard.totalSmartSpend"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow83">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn124">
+                            <wm-button caption="Calculate" type="button" iconclass="glyphicon glyphicon-ok" fontweight="bold" borderstyle="solid" class="btn-primary" on-click="button4Click($event, $scope)" name="button4"></wm-button>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn125"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-buttongroup horizontalalign="right" class="form-action col-md-12" name="buttongroup1">
+                    <wm-button caption="Reset" type="reset" class="btn-secondary" name="button1"></wm-button>
+                    <wm-button caption="Cancel" type="button" class="btn-warning" name="button2"></wm-button>
+                    <wm-button caption="Save" type="button" class="btn-primary" name="btnSave" on-click="btnSaveClick($event, $scope)"></wm-button>
+                </wm-buttongroup>
+            </wm-form>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
+</script>

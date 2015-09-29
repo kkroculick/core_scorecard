@@ -1,0 +1,3039 @@
+<style id="Main.css">
+
+</style>
+<script id="Main.js">
+Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "DialogService", function($scope, $timeout, $route, DialogService) {
+    "use strict";
+
+    /* perform any action with the variables inside this block(on-page-load) */
+    $scope.onPageVariablesReady = function() {
+        /*
+         * variables can be accessed through '$scope.Variables' property here
+         * e.g. $scope.Variables.staticVariable1.getData()
+         $scope.setDefaults();
+
+         */
+    };
+
+    /* perform any action with widgets inside this block */
+    $scope.onPageReady = function() {
+        /*
+         * widgets can be accessed through '$scope.Widgets' property here
+         * e.g. $scope.Widgets.byId(), $scope.Widgets.byName()or access widgets by $scope.Widgets.widgetName*/
+
+        $scope.setDefaultWeights();
+        //$scope.Variables.navigationVariableScorecard.navigate();
+
+    };
+
+
+    $scope.setDefaultWeights = function() {
+
+        //set default weights
+        if (!$scope.Widgets.txtTotalNumberStrategicInitWght.datavalue) {
+            $scope.Widgets.txtTotalNumberStrategicInitWght.datavalue = 5;
+        }
+
+        if (!$scope.Widgets.txtTotalNumberStrategicOppWghtdatavalue) {
+            $scope.Widgets.txtTotalNumberStrategicOppWght.datavalue = 90;
+
+        }
+        if (!$scope.Widgets.txtTotalNumberStratImplWght.datavalue) {
+            $scope.Widgets.txtTotalNumberStratImplWght.datavalue = 90;
+
+        }
+        if (!$scope.Widgets.txtComponentsTechDebtWght.datavalue) {
+            $scope.Widgets.txtComponentsTechDebtWght.datavalue = 90;
+
+        }
+        if (!$scope.Widgets.txtAETAppInvestWght.datavalue) {
+            $scope.Widgets.txtAETAppInvestWght.datavalue = 5;
+        }
+
+    };
+
+
+
+    $scope.getInvest = function() {
+        if ($scope.Widgets.selectAETAppInvestment.datavalue === "Invest") {
+            return 100;
+        } else {
+            return 0;
+        }
+
+    };
+
+    $scope.clearControls = function() {
+        // alert("clear")
+        //set values for weight
+        $scope.setDefaultWeights();
+
+        $scope.Widgets.txtTotalNumberStrategicInitScore.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStrategicInitBpTd.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStrategicOppScore.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStrategicOppBpTd.datavalue = 0;
+        $scope.Widgets.txtTotalNumberStratImplScore.datavalue = 0;
+        $scope.Widgets.txtComponentsTechDebtScore.datavalue = 0;
+        $scope.Widgets.txtAETAppInvestScore.datavalue = 0;
+        $scope.Widgets.txtSmartSpendWght.datavalue = 0;
+        $scope.Widgets.txtSmartSpendScore.datavalue = 0;
+        $scope.Widgets.txtSmartSpendTotal.datavalue = 0;
+
+    };
+
+
+    //check for mandatory values
+    $scope.checkValues = function() {
+        if (!$scope.Widgets.txtTotalNumberStrategicInit.datavalue) {
+            return true;
+        }
+        if (!$scope.Widgets.txtTotalNumberStrategicOpps.datavalue) {
+            return true;
+        }
+        if (!$scope.Widgets.txtTotalNumberStratImpl.datavalue) {
+            return true;
+        }
+        if (!$scope.Widgets.txtComponentsTechDebt.datavalue) {
+            return true;
+        }
+        if (!$scope.Widgets.selectAETAppInvestment.datavalue) {
+            return true;
+        }
+
+        //txtTotalPlatforms 
+
+        //txtNumberPlatformBlueprints
+
+
+        var platformBlueprints = parseFloat($scope.Widgets.txtNumberPlatformBlueprints.datavalue);
+        var totalPlatforms = parseFloat($scope.Widgets.txtTotalPlatforms.datavalue);
+        //alert(platformsBlueprints);
+        //alert(totalPlatforms);
+        if (platformBlueprints > totalPlatforms) {
+            alert("Number of Platforms with Blueprints cannot be greater than the Total Number of Platforms");
+            //TODO add dialog
+            return;
+        }
+
+    };
+
+    $scope.calculateScore = function() {
+        try {
+
+            //check
+            if ($scope.checkValues() === true) {
+
+                DialogService.showDialog('alertDialogWarning');
+                $scope.highlightRequired("#98FB98");
+                //
+                return;
+            }
+
+            //clear old values
+            var numStrategicInit = parseFloat($scope.Widgets.txtTotalNumberStrategicInit.datavalue);
+
+            var numStrategicOpps = parseFloat($scope.Widgets.txtTotalNumberStrategicOpps.datavalue);
+            var numImplementedSI = parseFloat($scope.Widgets.txtTotalNumberStratImpl.datavalue);
+            var numCompTechDebt = parseFloat($scope.Widgets.txtComponentsTechDebt.datavalue);
+            var appInvestmentStatus = parseFloat($scope.Widgets.selectAETAppInvestment.datavalue);
+            var numPlatformBP = parseFloat($scope.Widgets.txtNumberPlatformBlueprints.datavalue);
+            var numTotalPlatforms = parseFloat($scope.Widgets.txtTotalPlatforms.datavalue);
+            var wghtStrategicInit = parseFloat($scope.Widgets.txtTotalNumberStrategicInitWght.datavalue);
+            var wghtStrategicOpps = parseFloat($scope.Widgets.txtTotalNumberStrategicOppWght.datavalue);
+            var wghtImplementedSI = parseFloat($scope.Widgets.txtTotalNumberStratImplWght.datavalue);
+            var wghtCompTechDebt = parseFloat($scope.Widgets.txtComponentsTechDebtWght.datavalue);
+            var wghtAppInvest = parseFloat($scope.Widgets.txtAETAppInvestWght.datavalue);
+
+            //calculations
+            var netStrategicInitBpTd = (numStrategicInit - numImplementedSI) + numCompTechDebt;
+            var netStrategicOppsBpTd = numStrategicOpps + numCompTechDebt;
+            var scoreStrategicInit = (((numStrategicInit - netStrategicInitBpTd) / numStrategicInit) * (numPlatformBP / numTotalPlatforms) * 100).toFixed(2);
+
+            var scoreStrategicOpps = ((numImplementedSI / netStrategicOppsBpTd) * 100).toFixed(2);
+            var scoreImplementedSI = ((numImplementedSI / netStrategicOppsBpTd) * 100).toFixed(2);
+            var scoreCompTechDebt = ((numImplementedSI / netStrategicOppsBpTd) * 100).toFixed(2);
+            var scoreAppInvest = $scope.getInvest();
+
+            //set controls with calculated values
+            $scope.Widgets.txtTotalNumberStrategicInitBpTd.datavalue = netStrategicInitBpTd;
+            $scope.Widgets.txtTotalNumberStrategicInitWght.datavalue = wghtStrategicInit;
+            $scope.Widgets.txtTotalNumberStrategicInitScore.datavalue = scoreStrategicInit;
+            $scope.Widgets.txtTotalNumberStrategicOpps.datavalue = numStrategicOpps;
+            $scope.Widgets.txtTotalNumberStrategicOppBpTd.datavalue = netStrategicOppsBpTd;
+
+            $scope.Widgets.txtTotalNumberStrategicOppScore.datavalue = scoreStrategicOpps;
+            $scope.Widgets.txtTotalNumberStrategicOppWght.datavalue = wghtStrategicOpps;
+            $scope.Widgets.txtTotalNumberStratImpl.datavalue = numImplementedSI;
+            $scope.Widgets.txtTotalNumberStratImplScore.datavalue = scoreImplementedSI;
+            $scope.Widgets.txtTotalNumberStratImplWght.datavalue = wghtImplementedSI;
+            $scope.Widgets.txtComponentsTechDebt.datavalue = numCompTechDebt;
+            $scope.Widgets.txtComponentsTechDebtScore.datavalue = scoreCompTechDebt;
+            $scope.Widgets.txtComponentsTechDebtWght.datavalue = wghtCompTechDebt;
+            $scope.Widgets.txtAETAppInvestScore.datavalue = scoreAppInvest;
+            $scope.Widgets.txtAETAppInvestWght.datavalue = wghtAppInvest;
+
+            //set totals
+            var totInit = parseFloat(scoreStrategicInit * (wghtStrategicInit / 100));
+            var totOpps = parseFloat(scoreStrategicOpps * (wghtStrategicOpps / 100));
+            var totApp = parseFloat(scoreAppInvest * (wghtAppInvest / 100));
+            var totalSmartScore = totInit + totOpps + totApp;
+
+            $scope.Widgets.txtSmartSpendScore.datavalue = (parseFloat(totalSmartScore)).toFixed(2);
+            //console.log($scope.Widgets.txtSmartSpendScore.datavalue);
+
+            var totalSmartWeight = wghtStrategicInit + wghtStrategicOpps + wghtAppInvest;
+            $scope.Widgets.txtSmartSpendWght.datavalue = (parseFloat(totalSmartWeight)).toFixed(2);
+            //console.log($scope.Widgets.txtSmartSpendWght.datavalue);
+
+            var totalSQP = $scope.Widgets.txtImpactSQP.datavalue;
+            var totalSmartSpendCost = totalSQP * (totalSmartScore / 100)
+
+
+            $scope.Widgets.txtSmartSpendTotal.datavalue = (parseFloat(totalSmartSpendCost)).toFixed(2);
+
+
+
+        } catch (e) {
+            alert(e);
+        }
+    };
+
+
+
+
+    $scope.grid2Rowclick = function($event, $data) {
+        //  $scope.Widgets.txtProjectName.datavalue = $
+
+
+        $scope.Widgets.txtID.datavalue = $data.id;
+        $scope.Widgets.txtProjectName.datavalue = $data.projectName;
+        $scope.Widgets.txtProjectDesc.datavalue = $data.projectDescription;
+        $scope.Widgets.selectPFA.datavalue = $data.portfolioArchitect;
+        $scope.Widgets.selectLTA.datavalue = $data.leadTechnicalArchitect;
+        $scope.Widgets.selectE2E.datavalue = $data.endToEnd;
+        $scope.Widgets.taAIMImpacted.datavalue = $data.aimApplicationsImpacted;
+
+        $scope.Widgets.txtTotalPlatforms.datavalue = $data.numberPlatforms;
+        $scope.Widgets.txtCostProject.datavalue = $data.projectCost;
+        $scope.Widgets.txtImpactSQP.datavalue = $data.sqpImpactCost;
+        $scope.Widgets.taCompanyPlatformImpact.datavalue = $data.companyPlatformsImpacted;
+        $scope.Widgets.txtNumberPlatformBlueprints.datavalue = $data.numberPlatformsBlueprints;
+
+        $scope.Widgets.txtPercentageImpact.datavalue = $data.percentagePortfolioArchitecureImpact;
+        $scope.Widgets.selectGating.datavalue = $data.gatingScorecardSizing;
+
+        $scope.Widgets.txtTotalNumberStrategicInit.datavalue = $data.numberStrategicInitiatives;
+        $scope.Widgets.txtTotalNumberStrategicInitBpTd.datavalue = $data.numberStrategicInitiativesBpTd;
+        $scope.Widgets.txtTotalNumberStrategicInitScore.datavalue = $data.numberStrategicInitiativesScore;
+        $scope.Widgets.txtTotalNumberStrategicInitWght.datavalue = $data.numberStrategicInitiativesWeight;
+
+
+        $scope.Widgets.txtTotalNumberStrategicOpps.datavalue = $data.numberStrategicOpportunities;
+        $scope.Widgets.txtTotalNumberStrategicOppBpTd.datavalue = $data.numberStrategicOpportunitiesBpTd;
+        $scope.Widgets.txtTotalNumberStrategicOppScore.datavalue = $data.numberStrategicOpportunitiesScore;
+        $scope.Widgets.txtTotalNumberStrategicOppWght.datavalue = $data.numberStrategicOpportunitiesWeight;
+
+        $scope.Widgets.txtTotalNumberStratImpl.datavalue = $data.numberImplementedInitiatives;
+        $scope.Widgets.txtTotalNumberStratImplScore.datavalue = $data.numberImplementedInitiativesScore;
+        $scope.Widgets.txtTotalNumberStratImplWght.datavalue = $data.numberImplementedInitiativesWeight;
+
+
+        $scope.Widgets.txtComponentsTechDebt.datavalue = $data.numberComponentTechnicalDebt;
+        $scope.Widgets.txtComponentsTechDebtScore.datavalue = $data.numberComponentTechnicalDebtScore;
+        $scope.Widgets.txtComponentsTechDebtWght.datavalue = $data.numberComponentTechnicalDebtWeight;
+
+        $scope.Widgets.selectAETAppInvestment.datavalue = $data.aetInvestmentStatus;
+        $scope.Widgets.txtAETAppInvestScore.datavalue = $data.aetInvestmentStatusScore;
+        $scope.Widgets.txtAETAppInvestWght.datavalue = $data.aetInvestmentStatusWeight;
+
+        $scope.Widgets.txtComments.datavalue = $data.projectComments;
+
+        $scope.Widgets.txtSmartSpendScore.datavalue = $data.smartSpendScore;
+        $scope.Widgets.txtSmartSpendWght.datavalue = $data.smartSpendWeight;
+        $scope.Widgets.txtSmartSpendTotal.datavalue = $data.totalSmartSpend;
+
+
+
+
+    };
+
+    $scope.buttonCalcClick = function($event, $isolateScope) {
+        $scope.calculateScore();
+    };
+
+
+
+    $scope.btnSaveClick = function($event, $isolateScope) {
+        try {
+            if ($scope.checkValues() === true) {
+
+                DialogService.showDialog('alertDialogWarning');
+                $scope.highlightRequired("#98FB98");
+                //
+                return;
+            } else {
+                $scope.calculateScore();
+            }
+
+            //check for all values
+
+
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('id', $scope.scorecard.id);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectName', $scope.scorecard.projectName);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectDescription', $scope.scorecard.projectDesc);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('portfolioArchitect', $scope.scorecard.pfa);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('leadTechnicalArchitect', $scope.scorecard.lta);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('endToEnd', $scope.scorecard.e2e);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aimApplicationsImpacted', $scope.scorecard.aimImpact);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatforms', $scope.scorecard.numPlatforms);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectCost', $scope.scorecard.projectCost);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('sqpImpactCost', $scope.scorecard.impactSQP);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('companyPlatformsImpacted', $scope.scorecard.companyPlatforms);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatformsBlueprints', $scope.scorecard.numPlatformsBP);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('percentagePortfolioArchitecureImpact', $scope.scorecard.archImpactPercent);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('gatingScorecardSizing', $scope.scorecard.gateSizing);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiatives', $scope.scorecard.numStrat);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesBpTd', $scope.scorecard.stratBpTd);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesScore', $scope.scorecard.stratScore);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesWeight', $scope.scorecard.stratWeight);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunities', $scope.scorecard.opps);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesBpTd', $scope.scorecard.oppsBpTd);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesScore', $scope.scorecard.oppsScore);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesWeight', $scope.scorecard.oppsWeight);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiatives', $scope.scorecard.impl);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesScore', $scope.scorecard.implScore);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesWeight', $scope.scorecard.implWeight);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebt', $scope.scorecard.techDebt);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtScore', $scope.scorecard.techDebtScore);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtWeight', $scope.scorecard.techDebtWeight);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatus', $scope.scorecard.aetInvest);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusScore', $scope.scorecard.aetInvestScore);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusWeight', $scope.scorecard.aetInvestWeight);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectComments', $scope.scorecard.comments);
+
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendScore', $scope.scorecard.smartSpendScore);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendWeight', $scope.scorecard.smartSpendWeight);
+            $scope.Variables.Core_scorecardScorecardWebformData.setInput('totalSmartSpend', $scope.scorecard.totalSmartSpend);
+
+            //no id? create new record
+            if (!$scope.scorecard.id) {
+
+                $scope.Variables.Core_scorecardScorecardWebformData.insertRecord();
+            } else {
+                $scope.Variables.Core_scorecardScorecardWebformData.updateRecord();
+            }
+
+            DialogService.showDialog('alertDialogSuccess');
+            //$scope.highlightRequired("#98FB98");
+            //
+            $scope.reloadRoute();
+
+        } catch (e) {
+            alert(e);
+        }
+    };
+
+
+
+
+    //not used
+    $scope.liveInsertScorecardonSuccess = function(variable, data) {
+        $scope.Variables.liveReadScorecard.update({}, function() {
+            $timeout(function() {
+
+                $scope.Widgets.gridScorecard.highlightRow(data);
+
+            });
+        });
+    };
+    //not used
+    $scope.liveUpdateScorecardonSuccess = function(variable, data) {
+        $scope.Variables.liveReadScorecard.update({}, function() {
+            $timeout(function() {
+                $scope.Widgets.gridScorecard.highlightRow(data);
+            });
+        });
+    };
+
+
+
+    //helper functions*******************************************************************************************************
+
+    $scope.reloadRoute = function() {
+        $route.reload();
+    };
+
+    $scope.highlightRequired = function(color) {
+
+        var selectColor = !color ? "#5EFB6E" : color;
+        //var selectColor = color;
+
+        $scope.Widgets.txtProjectName.backgroundcolor = selectColor;
+        $scope.Widgets.txtProjectDesc.backgroundcolor = selectColor;
+        $scope.Widgets.selectPFA.backgroundcolor = selectColor;
+        $scope.Widgets.selectLTA.backgroundcolor = selectColor;
+        $scope.Widgets.selectE2E.backgroundcolor = selectColor;
+
+        $scope.Widgets.taAIMImpacted.backgroundcolor = selectColor;
+        $scope.Widgets.txtTotalPlatforms.backgroundcolor = selectColor;
+        $scope.Widgets.txtCostProject.backgroundcolor = selectColor;
+        $scope.Widgets.txtImpactSQP.backgroundcolor = selectColor;
+        $scope.Widgets.taCompanyPlatformImpact.backgroundcolor = selectColor;
+        $scope.Widgets.txtNumberPlatformBlueprints.backgroundcolor = selectColor;
+        $scope.Widgets.txtPercentageImpact.backgroundcolor = selectColor;
+        $scope.Widgets.selectGating.backgroundcolor = selectColor;
+
+        $scope.Widgets.txtTotalNumberStrategicInit.backgroundcolor = selectColor;
+        $scope.Widgets.txtTotalNumberStrategicOpps.backgroundcolor = selectColor;
+        $scope.Widgets.txtTotalNumberStratImpl.backgroundcolor = selectColor;
+        $scope.Widgets.txtComponentsTechDebt.backgroundcolor = selectColor;
+
+        $scope.Widgets.selectAETAppInvestment.backgroundcolor = selectColor;
+
+    };
+
+
+    $scope.toCamelCase = function(string) {
+
+        return string.toLowerCase().replace(/(_|-)([a-z])/g, $scope.toUpperCase);
+    };
+
+    $scope.toUpperCase = function(string) {
+        return string[1].toUpperCase();
+    };
+
+
+    $scope.tryParseJSON = function(jsonString) {
+        try {
+            var o = JSON.parse(jsonString);
+            // Handle non-exception-throwing cases:
+            // Neither JSON.parse(false) or JSON.parse(1234) throw errors, hence the type-checking,
+            // but... JSON.parse(null) returns 'null', and typeof null === "object", 
+            // so we must check for that, too.
+            if (o && typeof o === "object" && o !== null) {
+                return o;
+            }
+        } catch (e) {}
+
+        return false;
+    };
+
+
+    //controllers 
+
+    $scope.btnCancelClick = function($event, $isolateScope) {
+        $scope.reloadRoute();
+    };
+
+
+    $scope.cbShowGRidClick = function($event, $isolateScope) {
+
+    };
+
+}]);
+
+//******************************************************************************************************************************
+
+
+Application.$controller("gridScorecardController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("alertDialogSuccessController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("alertDialogWarningController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridScorecardsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridScorecardsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+</script>
+<script id="Main.variables.json">
+var _MainPage_Variables_ ={
+	"liveReadScorecard": {
+		"name": "liveReadScorecard",
+		"type": "ScorecardWebform",
+		"isList": false,
+		"owner": "Page",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard_webform",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number"
+					},
+					{
+						"name": "aetInvestmentStatus",
+						"type": "string"
+					},
+					{
+						"name": "aetInvestmentStatusScore",
+						"type": "number"
+					},
+					{
+						"name": "aetInvestmentStatusWeight",
+						"type": "number"
+					},
+					{
+						"name": "aimApplicationsImpacted",
+						"type": "string"
+					},
+					{
+						"name": "companyPlatformsImpacted",
+						"type": "string"
+					},
+					{
+						"name": "endToEnd",
+						"type": "string"
+					},
+					{
+						"name": "gatingScorecardSizing",
+						"type": "string"
+					},
+					{
+						"name": "leadTechnicalArchitect",
+						"type": "string"
+					},
+					{
+						"name": "numberComponentTechnicalDebt",
+						"type": "number"
+					},
+					{
+						"name": "numberComponentTechnicalDebtScore",
+						"type": "number"
+					},
+					{
+						"name": "numberComponentTechnicalDebtWeight",
+						"type": "number"
+					},
+					{
+						"name": "numberImplementedInitiatives",
+						"type": "number"
+					},
+					{
+						"name": "numberImplementedInitiativesScore",
+						"type": "number"
+					},
+					{
+						"name": "numberImplementedInitiativesWeight",
+						"type": "number"
+					},
+					{
+						"name": "numberPlatforms",
+						"type": "number"
+					},
+					{
+						"name": "numberPlatformsBlueprints",
+						"type": "number"
+					},
+					{
+						"name": "numberStategicInitiativesBpTd",
+						"type": "number"
+					},
+					{
+						"name": "numberStategicInitiativesScore",
+						"type": "number"
+					},
+					{
+						"name": "numberStategicInitiativesWeight",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicInitiatives",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunities",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunitiesBpTd",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunitiesScore",
+						"type": "number"
+					},
+					{
+						"name": "numberStrategicOpportunitiesWeight",
+						"type": "number"
+					},
+					{
+						"name": "percentagePortfolioArchitecureImpact",
+						"type": "number"
+					},
+					{
+						"name": "portfolioArchitect",
+						"type": "string"
+					},
+					{
+						"name": "projectComments",
+						"type": "string"
+					},
+					{
+						"name": "projectCost",
+						"type": "number"
+					},
+					{
+						"name": "projectDescription",
+						"type": "string"
+					},
+					{
+						"name": "projectName",
+						"type": "string"
+					},
+					{
+						"name": "smartSpendScore",
+						"type": "number"
+					},
+					{
+						"name": "smartSpendWeight",
+						"type": "number"
+					},
+					{
+						"name": "sqpImpactCost",
+						"type": "number"
+					},
+					{
+						"name": "totalSmartSpend",
+						"type": "number"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "read",
+		"startUpdate": true,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"orderBy": "id",
+		"filterFields": {},
+		"category": "wm.LiveVariable",
+		"_id": "wm-liveReadScorecard-wm.LiveVariable-1440303167132",
+		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+		"tableName": "scorecard_webform",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatus",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aet_investment_status",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 20,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aimApplicationsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aim_applications_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "companyPlatformsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "company_platforms_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "endToEnd",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "end_to_end",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 10,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "gatingScorecardSizing",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "gating_scorecard_sizing",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "leadTechnicalArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "lead_technical_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebt",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatforms",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatformsBlueprints",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms_blueprints",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunities",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "percentagePortfolioArchitecureImpact",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "percentage_portfolio_architecure_impact",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "portfolioArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "portfolio_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectComments",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_comments",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "project_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectDescription",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_description",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "sqpImpactCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "sqp_impact_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "totalSmartSpend",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "total_smart_spend",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "employeeId",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "employee_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "ScorecardWebform",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"tableType": "TABLE"
+		},
+		"bindCount": 1,
+		"properties": [
+			"scorecard_webform_1"
+		],
+		"relatedTables": [
+			{
+				"columnName": "employee",
+				"relationName": "scorecard_webform_1",
+				"type": "Employee",
+				"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+				"watchOn": "Core_scorecardEmployeeData"
+			}
+		]
+	},
+	"liveInsertScorecard": {
+		"name": "liveInsertScorecard",
+		"type": "ScorecardWebform",
+		"isList": false,
+		"owner": "Page",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard_webform",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"value": "bind:Widgets.txtID.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatus",
+						"type": "string",
+						"value": "bind:Widgets.selectAETAppInvestment.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusScore",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestScore.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestWght.datavalue"
+					},
+					{
+						"name": "aimApplicationsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taAIMImpacted.datavalue"
+					},
+					{
+						"name": "companyPlatformsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taCompanyPlatformImpact.datavalue"
+					},
+					{
+						"name": "endToEnd",
+						"type": "string",
+						"value": "bind:Widgets.selectE2E.datavalue"
+					},
+					{
+						"name": "gatingScorecardSizing",
+						"type": "string",
+						"value": "bind:Widgets.selectImpact.datavalue"
+					},
+					{
+						"name": "leadTechnicalArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectLTA.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebt",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebt.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtScore",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtScore.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtWght.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberImplementedSI.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplScore.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplWght.datavalue"
+					},
+					{
+						"name": "numberPlatforms",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalPlatforms.datavalue"
+					},
+					{
+						"name": "numberPlatformsBlueprints",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberPlatformBlueprints.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitBpTd.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitScore.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitWght.datavalue"
+					},
+					{
+						"name": "numberStrategicInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInit.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunities",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberStrategicOpps.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppBpTd.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppScore.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppWght.datavalue"
+					},
+					{
+						"name": "percentagePortfolioArchitecureImpact",
+						"type": "number",
+						"value": "bind:Widgets.txtPercentageImpact.datavalue"
+					},
+					{
+						"name": "portfolioArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectPA.datavalue"
+					},
+					{
+						"name": "projectComments",
+						"type": "string",
+						"value": "bind:Widgets.txtComments.datavalue"
+					},
+					{
+						"name": "projectCost",
+						"type": "number",
+						"value": "bind:Widgets.txtCostProject.datavalue"
+					},
+					{
+						"name": "projectDescription",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectDesc.datavalue"
+					},
+					{
+						"name": "projectName",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectName.datavalue"
+					},
+					{
+						"name": "smartSpendScore",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendScore.datavalue"
+					},
+					{
+						"name": "smartSpendWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendWght.datavalue"
+					},
+					{
+						"name": "sqpImpactCost",
+						"type": "number",
+						"value": "bind:Widgets.txtImpactSQP.datavalue"
+					},
+					{
+						"name": "totalSmartSpend",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendTotal.datavalue"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "insert",
+		"startUpdate": false,
+		"autoUpdate": false,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"onSuccess": "Javascript",
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"filterFields": {},
+		"inputFields": {},
+		"category": "wm.LiveVariable",
+		"_id": "wm-liveInsertScorecard-liveVariable1-wm.LiveVariable-1440306405270",
+		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+		"tableName": "scorecard_webform",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatus",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aet_investment_status",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 20,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aimApplicationsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aim_applications_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "companyPlatformsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "company_platforms_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "endToEnd",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "end_to_end",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 10,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "gatingScorecardSizing",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "gating_scorecard_sizing",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "leadTechnicalArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "lead_technical_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebt",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatforms",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatformsBlueprints",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms_blueprints",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunities",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "percentagePortfolioArchitecureImpact",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "percentage_portfolio_architecure_impact",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "portfolioArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "portfolio_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectComments",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_comments",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "project_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectDescription",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_description",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "sqpImpactCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "sqp_impact_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "totalSmartSpend",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "total_smart_spend",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "employeeId",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "employee_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "ScorecardWebform",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"tableType": "TABLE"
+		},
+		"properties": [
+			"scorecard_webform_1"
+		],
+		"relatedTables": [
+			{
+				"columnName": "employee",
+				"relationName": "scorecard_webform_1",
+				"type": "Employee",
+				"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+				"watchOn": "Core_scorecardEmployeeData"
+			}
+		]
+	},
+	"liveUpdateScorecard": {
+		"name": "liveUpdateScorecard",
+		"type": "ScorecardWebform",
+		"isList": false,
+		"owner": "Page",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard_webform",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"value": "bind:Widgets.txtID.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatus",
+						"type": "string",
+						"value": "bind:Widgets.selectAETAppInvestment.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusScore",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestScore.datavalue"
+					},
+					{
+						"name": "aetInvestmentStatusWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtAETAppInvestWght.datavalue"
+					},
+					{
+						"name": "aimApplicationsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taAIMImpacted.datavalue"
+					},
+					{
+						"name": "companyPlatformsImpacted",
+						"type": "string",
+						"value": "bind:Widgets.taCompanyPlatformImpact.datavalue"
+					},
+					{
+						"name": "endToEnd",
+						"type": "string",
+						"value": "bind:Widgets.selectE2E.datavalue"
+					},
+					{
+						"name": "gatingScorecardSizing",
+						"type": "string",
+						"value": "bind:Widgets.selectImpact.datavalue"
+					},
+					{
+						"name": "leadTechnicalArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectLTA.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebt",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebt.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtScore",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtScore.datavalue"
+					},
+					{
+						"name": "numberComponentTechnicalDebtWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtComponentsTechDebtWght.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberImplementedSI.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplScore.datavalue"
+					},
+					{
+						"name": "numberImplementedInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStratImplWght.datavalue"
+					},
+					{
+						"name": "numberPlatforms",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalPlatforms.datavalue"
+					},
+					{
+						"name": "numberPlatformsBlueprints",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberPlatformBlueprints.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitBpTd.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitScore.datavalue"
+					},
+					{
+						"name": "numberStategicInitiativesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInitWght.datavalue"
+					},
+					{
+						"name": "numberStrategicInitiatives",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicInit.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunities",
+						"type": "number",
+						"value": "bind:Widgets.txtNumberStrategicOpps.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesBpTd",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppBpTd.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesScore",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppScore.datavalue"
+					},
+					{
+						"name": "numberStrategicOpportunitiesWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtTotalNumberStrategicOppWght.datavalue"
+					},
+					{
+						"name": "percentagePortfolioArchitecureImpact",
+						"type": "number",
+						"value": "bind:Widgets.txtPercentageImpact.datavalue"
+					},
+					{
+						"name": "portfolioArchitect",
+						"type": "string",
+						"value": "bind:Widgets.selectPA.datavalue"
+					},
+					{
+						"name": "projectComments",
+						"type": "string",
+						"value": "bind:Widgets.txtComments.datavalue"
+					},
+					{
+						"name": "projectCost",
+						"type": "number",
+						"value": "bind:Widgets.txtCostProject.datavalue"
+					},
+					{
+						"name": "projectDescription",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectDesc.datavalue"
+					},
+					{
+						"name": "projectName",
+						"type": "string",
+						"value": "bind:Widgets.txtProjectName.datavalue"
+					},
+					{
+						"name": "smartSpendScore",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendScore.datavalue"
+					},
+					{
+						"name": "smartSpendWeight",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendWght.datavalue"
+					},
+					{
+						"name": "sqpImpactCost",
+						"type": "number",
+						"value": "bind:Widgets.txtImpactSQP.datavalue"
+					},
+					{
+						"name": "totalSmartSpend",
+						"type": "number",
+						"value": "bind:Widgets.txtSmartSpendTotal.datavalue"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "update",
+		"startUpdate": false,
+		"autoUpdate": false,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"onSuccess": "Javascript",
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"filterFields": {},
+		"inputFields": {},
+		"category": "wm.LiveVariable",
+		"_id": "wm-liveUpdateScorecard-wm.LiveVariable-1440308623677",
+		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+		"tableName": "scorecard_webform",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatus",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aet_investment_status",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 20,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aetInvestmentStatusWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "aet_investment_status_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "aimApplicationsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "aim_applications_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "companyPlatformsImpacted",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "company_platforms_impacted",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "endToEnd",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "end_to_end",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 10,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "gatingScorecardSizing",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "gating_scorecard_sizing",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "leadTechnicalArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "lead_technical_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebt",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberComponentTechnicalDebtWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_component_technical_debt_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberImplementedInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_implemented_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatforms",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberPlatformsBlueprints",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_platforms_blueprints",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiativesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicInitiatives",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_initiatives",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunities",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesBpTd",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_bp_td",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "numberStrategicOpportunitiesWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "number_strategic_opportunities_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "percentagePortfolioArchitecureImpact",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "percentage_portfolio_architecure_impact",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "portfolioArchitect",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "portfolio_architect",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectComments",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_comments",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "project_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectDescription",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_description",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "projectName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "project_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendScore",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_score",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "smartSpendWeight",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "smart_spend_weight",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "sqpImpactCost",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "sqp_impact_cost",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "totalSmartSpend",
+					"type": "double",
+					"hibernateType": "double",
+					"fullyQualifiedType": "double",
+					"columnName": "total_smart_spend",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 17,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "employeeId",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "employee_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "ScorecardWebform",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"tableType": "TABLE"
+		},
+		"properties": [
+			"scorecard_webform_1"
+		],
+		"relatedTables": [
+			{
+				"columnName": "employee",
+				"relationName": "scorecard_webform_1",
+				"type": "Employee",
+				"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
+				"watchOn": "Core_scorecardEmployeeData"
+			}
+		]
+	}
+}
+</script>
+<script id="Main.html" type="text/ng-template">
+<wm-page data-ng-controller="MainPageController" name="page1">
+    <wm-header name="header1" content="header"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel name="left_panel1" content="leftnav" columnwidth="2">
+            <wm-view name="view1"></wm-view>
+        </wm-left-panel>
+        <wm-page-content name="page_content1" columnwidth="10" overflow="auto">
+            <wm-grid show="false" name="gridScorecards" readonlygrid="true" dataset="bind:Variables.Core_scorecardScorecardWebformData.dataSet" on-rowclick="grid2Rowclick($event, $data)" gridcaption="Scorecard" gridfirstrowselect="false">
+                <wm-grid-column type="integer" readonly="true" caption="Id" binding="id" primary-key="true" generator="identity" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="false"></wm-grid-column>
+                <wm-grid-column type="string" readonly="false" caption="Project Description" binding="projectDescription" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="string" readonly="false" caption="Project Name" binding="projectName" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="double" readonly="false" caption="Smart Spend Score" binding="smartSpendScore" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="double" readonly="false" caption="Smart Spend Weight" binding="smartSpendWeight" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                <wm-grid-column type="double" readonly="false" caption="Total Smart Spend" binding="totalSmartSpend" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+            </wm-grid>
+
+            <wm-composite name="composite1"></wm-composite>
+            <wm-form title="New Scorecard" class="panel-default" name="form1" overflow="visible" layout="One Column" novalidate="false">
+                <wm-layoutgrid name="layoutgrid2">
+                    <wm-gridrow name="gridrow42_1">
+                        <wm-gridcolumn name="gridcolumn42" columnwidth="4">
+                            <wm-label caption="ID" name="label1"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn43" columnwidth="4">
+                            <wm-text tabindex="1" readonly="true" name="txtID" width="80" placeholder="" scopedatavalue="scorecard.id"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow44">
+                        <wm-gridcolumn name="gridcolumn87_2" columnwidth="4">
+                            <wm-label caption="Ownership" name="label42" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn88_2" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow43_1">
+                        <wm-gridcolumn name="gridcolumn45" columnwidth="4">
+                            <wm-label caption="Project Name *" name="label2" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn46" columnwidth="4">
+                            <wm-text name="txtProjectName" scopedatavalue="scorecard.projectName"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow44_1">
+                        <wm-gridcolumn name="gridcolumn48" columnwidth="4">
+                            <wm-label caption="Project Description *" name="label3" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn49" columnwidth="4">
+                            <wm-text name="txtProjectDesc" scopedatavalue="scorecard.projectDesc"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow45_1">
+                        <wm-gridcolumn name="gridcolumn51" columnwidth="4">
+                            <wm-label caption="Portfolio Architect *" name="label4" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn52" columnwidth="4">
+                            <wm-select name="selectPFA" dataset="bind:Variables.Core_scorecardGetEmpByPFA.dataSet" scopedatavalue="scorecard.pfa" datafield="full_name" displayfield="full_name"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow46_1">
+                        <wm-gridcolumn name="gridcolumn54" columnwidth="4">
+                            <wm-label caption="Lead Architect *" name="label5" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn55" columnwidth="4">
+                            <wm-select name="selectLTA" dataset="bind:Variables.Core_scorecardGetEmpByLTA.dataSet" scopedatavalue="scorecard.lta" datafield="full_name" displayfield="full_name"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow47_1">
+                        <wm-gridcolumn name="gridcolumn57" columnwidth="4">
+                            <wm-label caption="End to End *" name="label6" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn58" columnwidth="4">
+                            <wm-select name="selectE2E" dataset="Yes, No" scopedatavalue="scorecard.e2e"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow45">
+                        <wm-gridcolumn name="gridcolumn89_2" columnwidth="4">
+                            <wm-label caption="Project Impact &amp; Scope" name="label43" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn90" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow48_1">
+                        <wm-gridcolumn name="gridcolumn60" columnwidth="4">
+                            <wm-label caption="AIM Applications Impacted *" name="label7" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn61" columnwidth="4">
+                            <wm-textarea name="taAIMImpacted" scopedatavalue="scorecard.aimImpact"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow49_1">
+                        <wm-gridcolumn name="gridcolumn63" columnwidth="4">
+                            <wm-label caption="Total Number of Platforms *" name="label8" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn64" columnwidth="4">
+                            <wm-text name="txtTotalPlatforms" width="100" placeholder="Enter number" scopedatavalue="scorecard.numPlatforms"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow51_1">
+                        <wm-gridcolumn name="gridcolumn69" columnwidth="4">
+                            <wm-label caption="Cost of Project ($) *" name="label9" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn70" columnwidth="4">
+                            <wm-currency name="txtCostProject" scopedatavalue="scorecard.projectCost"></wm-currency>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow50_1">
+                        <wm-gridcolumn name="gridcolumn66" columnwidth="4">
+                            <wm-label caption="Impact of SQP-based on Architecture Support ($) *" name="label10" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn67" columnwidth="4">
+                            <wm-currency name="txtImpactSQP" scopedatavalue="scorecard.impactSQP"></wm-currency>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow52_1">
+                        <wm-gridcolumn name="gridcolumn72" columnwidth="4">
+                            <wm-label caption="Company Platforms Impacted *" name="label11" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn73" columnwidth="4">
+                            <wm-textarea name="taCompanyPlatformImpact" scopedatavalue="scorecard.companyPlatforms"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow53_1">
+                        <wm-gridcolumn name="gridcolumn74" columnwidth="4">
+                            <wm-label caption="Number of Platforms with Blueprints *" name="label12" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn75" columnwidth="4">
+                            <wm-text name="txtNumberPlatformBlueprints" width="100" placeholder="Enter number" scopedatavalue="scorecard.numPlatformsBP"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow54_1">
+                        <wm-gridcolumn name="gridcolumn76" columnwidth="4">
+                            <wm-label caption="Architecture Impact by Portfolio (%) *" name="label13" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn77" columnwidth="4">
+                            <wm-text name="txtPercentageImpact" width="100" placeholder="Enter number" scopedatavalue="scorecard.archImpactPercent"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow55_1">
+                        <wm-gridcolumn name="gridcolumn78" columnwidth="4">
+                            <wm-label caption="Impact *" name="label14" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn79" columnwidth="4">
+                            <wm-select name="selectGating" dataset="Light,Medium,Heavy" scopedatavalue="scorecard.gateSizing"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow56_1">
+                        <wm-gridcolumn name="gridcolumn80" columnwidth="4">
+                            <wm-label caption="Strategies" name="label19" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn81" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow57_1">
+                        <wm-gridcolumn name="gridcolumn82" columnwidth="4">
+                            <wm-label caption="Number of Strategic Initiatives with Platform Strategy *" name="label15" color="#f50505" textalign="left"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn83" columnwidth="4">
+                            <wm-text readonly="false" name="txtTotalNumberStrategicInit" placeholder="Enter Number" scopedatavalue="scorecard.numStrat"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow59_1">
+                        <wm-gridcolumn name="gridcolumn86" columnwidth="4">
+                            <wm-label caption="Net after Blueprint and Technical Debt" name="label16"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn87" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicInitBpTd" placeholder="" scopedatavalue="scorecard.stratBpTd"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow58_1">
+                        <wm-gridcolumn name="gridcolumn84" columnwidth="4">
+                            <wm-label caption="Score" name="label17"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn85" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicInitScore" placeholder="" scopedatavalue="scorecard.stratScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow60">
+                        <wm-gridcolumn name="gridcolumn88" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label18"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn89" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicInitWght" width="80" placeholder="" scopedatavalue="scorecard.stratWeight" datavalue="5"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow61">
+                        <wm-gridcolumn name="gridcolumn80_1" columnwidth="4">
+                            <wm-label caption="Opportunities" name="label20" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn81_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow62">
+                        <wm-gridcolumn name="gridcolumn82_1" columnwidth="4">
+                            <wm-label caption="Number of Strategic Opportunities for Project *" name="label21" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn83_1" columnwidth="4">
+                            <wm-text name="txtTotalNumberStrategicOpps" placeholder="Enter number" scopedatavalue="scorecard.opps"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow63">
+                        <wm-gridcolumn name="gridcolumn84_1" columnwidth="4">
+                            <wm-label caption="Net after Blueprint and Technical Debt" name="label22"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn85_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicOppBpTd" placeholder="" scopedatavalue="scorecard.oppsBpTd"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow64">
+                        <wm-gridcolumn name="gridcolumn86_1" columnwidth="4">
+                            <wm-label caption="Score" name="label23"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn87_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicOppScore" placeholder="" scopedatavalue="scorecard.oppsScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow65">
+                        <wm-gridcolumn name="gridcolumn88_1" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label24"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn89_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStrategicOppWght" width="80" placeholder="" scopedatavalue="scorecard.oppsWeight" datavalue="90"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow66">
+                        <wm-gridcolumn name="gridcolumn90_1" columnwidth="4">
+                            <wm-label caption="Initiatives" name="label25" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn91_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow67">
+                        <wm-gridcolumn name="gridcolumn92_1" columnwidth="4">
+                            <wm-label caption="Number of Implemented Initiatives *" name="label26" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn93_1" columnwidth="4">
+                            <wm-text name="txtTotalNumberStratImpl" placeholder="Enter number" scopedatavalue="scorecard.impl"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow68">
+                        <wm-gridcolumn name="gridcolumn94_1" columnwidth="4">
+                            <wm-label caption="Score" name="label27"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn95_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStratImplScore" placeholder="" scopedatavalue="scorecard.implScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow69">
+                        <wm-gridcolumn name="gridcolumn96_1" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label29"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn97_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtTotalNumberStratImplWght" width="80" placeholder="" scopedatavalue="scorecard.implWeight" datavalue="90"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow70">
+                        <wm-gridcolumn name="gridcolumn98_1" columnwidth="4">
+                            <wm-label caption="Tech Debt" name="label31" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn99_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow71">
+                        <wm-gridcolumn name="gridcolumn100_1" columnwidth="4">
+                            <wm-label caption="Number of Components Resulting in Technical Debt *" name="label30" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn101_1" columnwidth="4">
+                            <wm-text name="txtComponentsTechDebt" placeholder="Enter Number" scopedatavalue="scorecard.techDebt"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow72">
+                        <wm-gridcolumn name="gridcolumn102_1" columnwidth="4">
+                            <wm-label caption="Score" name="label32"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn103_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtComponentsTechDebtScore" placeholder="" scopedatavalue="scorecard.techDebtScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow73">
+                        <wm-gridcolumn name="gridcolumn104_1" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label33"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn105_1" columnwidth="4">
+                            <wm-text readonly="true" name="txtComponentsTechDebtWght" width="80" placeholder="" scopedatavalue="scorecard.techDebtWeight" datavalue="90"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow74">
+                        <wm-gridcolumn name="gridcolumn106_1" columnwidth="4">
+                            <wm-label caption="AET Investment Status" name="label33_1" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn107_1" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow75">
+                        <wm-gridcolumn name="gridcolumn108_1" columnwidth="4">
+                            <wm-label caption="AET Application Investment Status *" name="label37" color="#f50505"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn109_1" columnwidth="4">
+                            <wm-select name="selectAETAppInvestment" dataset="Invest, None" scopedatavalue="scorecard.aetInvest"></wm-select>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow76">
+                        <wm-gridcolumn name="gridcolumn110" columnwidth="4">
+                            <wm-label caption="Score" name="label35"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn111" columnwidth="4">
+                            <wm-text readonly="true" name="txtAETAppInvestScore" placeholder="" scopedatavalue="scorecard.aetInvestScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow77">
+                        <wm-gridcolumn name="gridcolumn112" columnwidth="4">
+                            <wm-label caption="Weight (Percent %)" name="label36"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn113" columnwidth="4">
+                            <wm-text readonly="true" name="txtAETAppInvestWght" width="80" placeholder="" scopedatavalue="scorecard.aetInvestWeight" datavalue="5"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow78">
+                        <wm-gridcolumn name="gridcolumn114" columnwidth="4">
+                            <wm-label caption="Comments" name="label37_1" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn115" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow79">
+                        <wm-gridcolumn name="gridcolumn116" columnwidth="4"></wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn117" columnwidth="4">
+                            <wm-textarea name="txtComments" placeholder="Comments" scopedatavalue="scorecard.comments"></wm-textarea>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow79_1">
+                        <wm-gridcolumn name="gridcolumn175" columnwidth="4">
+                            <wm-label caption="Score" name="label77" fontweight="bold" fontsize="20"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn176" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow80">
+                        <wm-gridcolumn name="gridcolumn118" columnwidth="4">
+                            <wm-label caption="Smart Spend Score" name="label38"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn119" columnwidth="4">
+                            <wm-text readonly="true" name="txtSmartSpendScore" placeholder="" scopedatavalue="scorecard.smartSpendScore"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow81">
+                        <wm-gridcolumn name="gridcolumn120" columnwidth="4">
+                            <wm-label caption="Smart Spend Weight" name="label39"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn121" columnwidth="4">
+                            <wm-text readonly="true" name="txtSmartSpendWght" placeholder="" scopedatavalue="scorecard.smartSpendWeight"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow82">
+                        <wm-gridcolumn name="gridcolumn122" columnwidth="4">
+                            <wm-label caption="Total Smart Spend" name="label40"></wm-label>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn123" columnwidth="4">
+                            <wm-text readonly="true" name="txtSmartSpendTotal" placeholder="" scopedatavalue="scorecard.totalSmartSpend"></wm-text>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow83">
+                        <wm-gridcolumn name="gridcolumn124" columnwidth="4">
+                            <wm-button class="btn-primary" type="button" caption="Calculate" name="buttonCalc" borderstyle="solid" on-click="buttonCalcClick($event, $scope)" fontweight="bold" iconclass="glyphicon glyphicon-ok"></wm-button>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn name="gridcolumn125" columnwidth="4"></wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+                <wm-buttongroup class="form-action col-md-12" name="buttongroup1" horizontalalign="right">
+                    <wm-button class="btn-secondary" type="reset" caption="Reset" name="button1"></wm-button>
+                    <wm-button class="btn-warning" type="button" caption="Cancel" name="btnCancel" on-click="btnCancelClick($event, $scope)"></wm-button>
+                    <wm-button class="btn-primary" type="button" caption="Save" name="btnSave" on-click="btnSaveClick($event, $scope)"></wm-button>
+                </wm-buttongroup>
+            </wm-form>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer name="footer1" content="footer"></wm-footer>
+    <wm-view class="dialog-view" show="false" name="viewSuccess">
+        <wm-alertdialog title="Success" name="alertDialogSuccess" iconclass="glyphicon glyphicon-ok" alerttype="success" message="Scorecard saved successfully!"></wm-alertdialog>
+    </wm-view>
+    <wm-view class="dialog-view" show="false" name="viewWarning">
+        <wm-alertdialog name="alertDialogWarning" message="Please fill in the required fields."></wm-alertdialog>
+    </wm-view>
+</wm-page>
+</script>

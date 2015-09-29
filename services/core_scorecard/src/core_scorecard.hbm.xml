@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class entity-name="com.core_scorecard.core_scorecard.Employee" table="employee" schema="public">
+        <id name="id" type="integer">
+            <column name="id" length="255" not-null="true" precision="19"/>
+            <generator class="identity"/>
+        </id>
+        <property name="endToEnd" type="boolean">
+            <column name="end_to_end" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" length="50" not-null="false" precision="19"/>
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="50" not-null="false" precision="19"/>
+        </property>
+        <property name="fullName" type="string">
+            <column name="full_name" length="100" not-null="false" precision="19"/>
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="50" not-null="false" precision="19"/>
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" length="50" not-null="false" precision="19"/>
+        </property>
+    </class>
+    <class entity-name="com.core_scorecard.core_scorecard.ScorecardWebform" table="scorecard_webform" schema="public">
+        <id name="id" type="integer">
+            <column name="id" length="255" not-null="true" precision="19"/>
+            <generator class="identity"/>
+        </id>
+        <property name="aetInvestmentStatus" type="string">
+            <column name="aet_investment_status" length="20" not-null="false" precision="19"/>
+        </property>
+        <property name="aetInvestmentStatusScore" type="double">
+            <column name="aet_investment_status_score" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="aetInvestmentStatusWeight" type="double">
+            <column name="aet_investment_status_weight" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="aimApplicationsImpacted" type="string">
+            <column name="aim_applications_impacted" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="companyPlatformsImpacted" type="string">
+            <column name="company_platforms_impacted" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="endToEnd" type="string">
+            <column name="end_to_end" length="10" not-null="false" precision="19"/>
+        </property>
+        <property name="gatingScorecardSizing" type="string">
+            <column name="gating_scorecard_sizing" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="leadTechnicalArchitect" type="string">
+            <column name="lead_technical_architect" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="numberComponentTechnicalDebt" type="double">
+            <column name="number_component_technical_debt" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberComponentTechnicalDebtScore" type="double">
+            <column name="number_component_technical_debt_score" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberComponentTechnicalDebtWeight" type="double">
+            <column name="number_component_technical_debt_weight" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberImplementedInitiatives" type="double">
+            <column name="number_implemented_initiatives" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberImplementedInitiativesScore" type="double">
+            <column name="number_implemented_initiatives_score" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberImplementedInitiativesWeight" type="double">
+            <column name="number_implemented_initiatives_weight" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberPlatforms" type="double">
+            <column name="number_platforms" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberPlatformsBlueprints" type="double">
+            <column name="number_platforms_blueprints" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicInitiativesBpTd" type="double">
+            <column name="number_strategic_initiatives_bp_td" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicInitiativesScore" type="double">
+            <column name="number_strategic_initiatives_score" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicInitiativesWeight" type="double">
+            <column name="number_strategic_initiatives_weight" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicInitiatives" type="double">
+            <column name="number_strategic_initiatives" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicOpportunities" type="double">
+            <column name="number_strategic_opportunities" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicOpportunitiesBpTd" type="double">
+            <column name="number_strategic_opportunities_bp_td" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicOpportunitiesScore" type="double">
+            <column name="number_strategic_opportunities_score" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="numberStrategicOpportunitiesWeight" type="double">
+            <column name="number_strategic_opportunities_weight" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="percentagePortfolioArchitecureImpact" type="double">
+            <column name="percentage_portfolio_architecure_impact" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="portfolioArchitect" type="string">
+            <column name="portfolio_architect" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="projectComments" type="string">
+            <column name="project_comments" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="projectCost" type="double">
+            <column name="project_cost" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="projectDescription" type="string">
+            <column name="project_description" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="projectName" type="string">
+            <column name="project_name" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="smartSpendScore" type="double">
+            <column name="smart_spend_score" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="smartSpendWeight" type="double">
+            <column name="smart_spend_weight" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="sqpImpactCost" type="double">
+            <column name="sqp_impact_cost" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="totalSmartSpend" type="double">
+            <column name="total_smart_spend" length="255" not-null="false" precision="17"/>
+        </property>
+        <property name="employeeId" type="integer">
+            <column name="employee_id" length="255" not-null="false" precision="19"/>
+        </property>
+    </class>
+</hibernate-mapping>

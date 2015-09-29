@@ -1,0 +1,15 @@
+{
+	"serviceType": "JSON-RPC",
+	"methods": [{
+		"name": "getEmpByLTA",
+		"operationType": "nativequery",
+		"parameters": null,
+		"returnType": "core_scorecardgetEmpByLTArtnType"
+	}, {
+		"name": "getEmpByPFA",
+		"operationType": "nativequery",
+		"parameters": null,
+		"returnType": "core_scorecardgetEmpByPFArtnType"
+	}],
+	"serviceURL": "core_scorecard.json"
+}

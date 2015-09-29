@@ -1,0 +1,16 @@
+<wm-partial data-ng-controller="leftnavPageController" name="leftnav" type="left-panel">
+    <wm-nav name="leftnavigation" type="pills" layout="stacked">
+        <wm-nav-item name="list_share">
+            <wm-anchor caption="Add Scorecard" name="scorecardButton" iconclass="glyphicon glyphicon-plus" on-click="goToPage-Main" class="active"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="list_latestUpdate">
+            <wm-anchor caption="Dashboard" name="dashboardButton" iconclass="glyphicon glyphicon-dashboard" on-click="goToPage-Dashboard"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="list_inTheNews">
+            <wm-anchor caption="Reports" name="reportsButton" iconclass="glyphicon glyphicon-file" on-click="goToPage-Reports"></wm-anchor>
+        </wm-nav-item>
+        <wm-nav-item name="list_help">
+            <wm-anchor caption="Support" name="supportButton" iconclass="glyphicon glyphicon-envelope" on-click="goToPage-Support"></wm-anchor>
+        </wm-nav-item>
+    </wm-nav>
+</wm-partial>

@@ -1,0 +1,41 @@
+<style id="Reports.css">
+
+</style>
+<script id="Reports.js">
+Application.$controller("ReportsPageController", ["$scope", function ($scope) {
+    "use strict";
+
+    /* perform any action with the variables inside this block(on-page-load) */
+    $scope.onPageVariablesReady = function () {
+        /*
+         * variables can be accessed through '$scope.Variables' property here
+         * e.g. $scope.Variables.staticVariable1.getData()
+         */
+    };
+    
+    /* perform any action with widgets inside this block */
+    $scope.onPageReady = function () {
+        /*
+         * widgets can be accessed through '$scope.Widgets' property here
+         * e.g. $scope.Widgets.byId(), $scope.Widgets.byName()or access widgets by $scope.Widgets.widgetName
+         */
+    };
+
+}]);
+
+</script>
+<script id="Reports.variables.json">
+var _ReportsPage_Variables_ ={};
+</script>
+<script id="Reports.html" type="text/ng-template">
+<wm-page data-ng-controller="ReportsPageController" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-label name="label1" caption="Add Reports..."></wm-label>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
+</script>
