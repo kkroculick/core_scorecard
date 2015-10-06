@@ -10,6 +10,11 @@
 		"operationType": "nativequery",
 		"parameters": null,
 		"returnType": "core_scorecardgetEmpByPFArtnType"
+	}, {
+		"name": "getPlatform",
+		"operationType": "nativequery",
+		"parameters": null,
+		"returnType": "core_scorecardgetPlatformrtnType"
 	}],
 	"serviceURL": "core_scorecard.json"
 }

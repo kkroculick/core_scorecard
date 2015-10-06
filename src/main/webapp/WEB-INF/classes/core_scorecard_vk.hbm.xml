@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.core_scorecard.core_scorecard">
-    <class entity-name="com.core_scorecard.core_scorecard.Employee" table="employee" schema="public">
+    <class entity-name="com.core_scorecard.core_scorecard.Employee" table="employee" name="com.core_scorecard.core_scorecard.Employee" schema="public">
         <id name="id" type="integer">
             <column name="id" length="255" not-null="true" precision="19"/>
             <generator class="identity"/>
         </id>
-        <property name="endToEnd" type="java.lang.Boolean">
-            <column name="end_to_end" length="255" not-null="false" precision="19"/>
-        </property>
         <property name="firstName" type="string">
             <column name="first_name" length="50" not-null="false" precision="19"/>
         </property>
@@ -25,7 +22,19 @@
             <column name="middle_name" length="50" not-null="false" precision="19"/>
         </property>
     </class>
-    <class entity-name="com.core_scorecard.core_scorecard.Scorecard" table="scorecard" schema="public">
+    <class entity-name="com.core_scorecard.core_scorecard.Platform" table="platform" name="com.core_scorecard.core_scorecard.Platform" schema="public">
+        <id name="id" type="integer">
+            <column name="id" length="255" not-null="true" precision="19"/>
+            <generator class="identity"/>
+        </id>
+        <property name="platform" type="string">
+            <column name="platform" length="255" not-null="false" precision="19"/>
+        </property>
+        <property name="owner" type="string">
+            <column name="owner" length="255" not-null="false" precision="19"/>
+        </property>
+    </class>
+    <class entity-name="com.core_scorecard.core_scorecard.Scorecard" table="scorecard" name="com.core_scorecard.core_scorecard.Scorecard" schema="public">
         <id name="id" type="integer">
             <column name="id" length="255" not-null="true" precision="19"/>
             <generator class="identity"/>

@@ -4,15 +4,16 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-tile name="tileGrid">
-                <wm-grid name="gridScorecard" gridfirstrowselect="false" deleterow="true" updaterow="false" insertrow="false" showrecordcount="true" gridcaption="Scorecards" dataset="bind:Variables.Core_scorecardScorecardWebformData.dataSet" readonlygrid="false"
+                <wm-grid name="gridScorecard" gridfirstrowselect="false" deleterow="true" updaterow="false" insertrow="false" showrecordcount="true" gridcaption="Scorecards" dataset="bind:Variables.Core_scorecardScorecardData.dataSet" readonlygrid="false"
                 on-rowclick="gridScorecardRowclick($event, $data)">
-                    <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                     <wm-grid-column binding="projectName" caption="Project Name" type="string" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                     <wm-grid-column binding="projectDescription" caption="Project Description" type="string" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                     <wm-grid-column binding="portfolioArchitect" caption="Portfolio Architect" type="string" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                    <wm-grid-column binding="leadTechnicalArchitect" caption="Lead Technical Architect" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                    <wm-grid-column binding="endToEnd" caption="End To End" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                    <wm-grid-column binding="gatingScorecardSizing" caption="Gating Scorecard Sizing" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="leadTechnicalArchitect" caption="Lead Technical Architect" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="gatingScorecardSizing" caption="Gating Scorecard Sizing" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="smartSpendScore" caption="Smart Spend Score" type="double" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="totalSmartSpend" caption="Total Smart Spend" type="double" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                 </wm-grid>
             </wm-tile>
             <wm-layoutgrid name="layoutgrid21" margintop="1">
@@ -141,7 +142,7 @@
                                         <wm-label caption="Company Platforms Impacted *" name="label8" color="#f50505" paddingright=".5" paddingleft=".5" paddingunit="em"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn56_1" columnwidth="4">
-                                        <wm-textarea name="taCompanyPlatformImpact" height="60" scopedatavalue="scorecard.companyPlatforms"></wm-textarea>
+                                        <wm-select name="selectCompanyPlatformImpact" scopedatavalue="scorecard.companyPlatforms" dataset="bind:Variables.Core_scorecardGetPlatform.dataSet" datafield="platform" displayfield="platform"></wm-select>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow38" paddingleft=".5" paddingbottom="1" paddingtop="1">
@@ -374,11 +375,6 @@
                             <wm-panel-footer name="panel_footer10"></wm-panel-footer>
                             <wm-textarea name="txtComments" height="99" width="100%" placeholder="Comments" scopedatavalue="scorecard.comments"></wm-textarea>
                         </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow48">
-                    <wm-gridcolumn name="gridcolumn105" columnwidth="12">
-                        <wm-textarea show="true" name="txtJson" placeholder=""></wm-textarea>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

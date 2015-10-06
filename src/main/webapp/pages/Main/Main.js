@@ -212,7 +212,7 @@ Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "
         $scope.Widgets.txtTotalPlatforms.datavalue = $data.numberPlatforms;
         $scope.Widgets.txtCostProject.datavalue = $data.projectCost;
         $scope.Widgets.txtImpactSQP.datavalue = $data.sqpImpactCost;
-        $scope.Widgets.taCompanyPlatformImpact.datavalue = $data.companyPlatformsImpacted;
+        $scope.Widgets.selectCompanyPlatformImpact.datavalue = $data.companyPlatformsImpacted;
         $scope.Widgets.txtNumberPlatformBlueprints.datavalue = $data.numberPlatformsBlueprints;
 
         $scope.Widgets.txtPercentageImpact.datavalue = $data.percentagePortfolioArchitecureImpact;
@@ -275,56 +275,56 @@ Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "
 
 
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('id', $scope.scorecard.id);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectName', $scope.scorecard.projectName);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectDescription', $scope.scorecard.projectDesc);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('portfolioArchitect', $scope.scorecard.pfa);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('leadTechnicalArchitect', $scope.scorecard.lta);
+            $scope.Variables.Core_scorecardScorecardData.setInput('id', $scope.scorecard.id);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectName', $scope.scorecard.projectName);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectDescription', $scope.scorecard.projectDesc);
+            $scope.Variables.Core_scorecardScorecardData.setInput('portfolioArchitect', $scope.scorecard.pfa);
+            $scope.Variables.Core_scorecardScorecardData.setInput('leadTechnicalArchitect', $scope.scorecard.lta);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('endToEnd', $scope.scorecard.e2e);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aimApplicationsImpacted', $scope.scorecard.aimImpact);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatforms', $scope.scorecard.numPlatforms);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectCost', $scope.scorecard.projectCost);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('sqpImpactCost', $scope.scorecard.impactSQP);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('companyPlatformsImpacted', $scope.scorecard.companyPlatforms);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatformsBlueprints', $scope.scorecard.numPlatformsBP);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('percentagePortfolioArchitecureImpact', $scope.scorecard.archImpactPercent);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('gatingScorecardSizing', $scope.scorecard.gateSizing);
+            $scope.Variables.Core_scorecardScorecardData.setInput('endToEnd', $scope.scorecard.e2e);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aimApplicationsImpacted', $scope.scorecard.aimImpact);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberPlatforms', $scope.scorecard.numPlatforms);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectCost', $scope.scorecard.projectCost);
+            $scope.Variables.Core_scorecardScorecardData.setInput('sqpImpactCost', $scope.scorecard.impactSQP);
+            $scope.Variables.Core_scorecardScorecardData.setInput('companyPlatformsImpacted', $scope.scorecard.companyPlatforms);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberPlatformsBlueprints', $scope.scorecard.numPlatformsBP);
+            $scope.Variables.Core_scorecardScorecardData.setInput('percentagePortfolioArchitecureImpact', $scope.scorecard.archImpactPercent);
+            $scope.Variables.Core_scorecardScorecardData.setInput('gatingScorecardSizing', $scope.scorecard.gateSizing);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiatives', $scope.scorecard.numStrat);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesBpTd', $scope.scorecard.stratBpTd);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesScore', $scope.scorecard.stratScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesWeight', $scope.scorecard.stratWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiatives', $scope.scorecard.numStrat);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiativesBpTd', $scope.scorecard.stratBpTd);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiativesScore', $scope.scorecard.stratScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiativesWeight', $scope.scorecard.stratWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunities', $scope.scorecard.opps);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesBpTd', $scope.scorecard.oppsBpTd);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesScore', $scope.scorecard.oppsScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesWeight', $scope.scorecard.oppsWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunities', $scope.scorecard.opps);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunitiesBpTd', $scope.scorecard.oppsBpTd);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunitiesScore', $scope.scorecard.oppsScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunitiesWeight', $scope.scorecard.oppsWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiatives', $scope.scorecard.impl);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesScore', $scope.scorecard.implScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesWeight', $scope.scorecard.implWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberImplementedInitiatives', $scope.scorecard.impl);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberImplementedInitiativesScore', $scope.scorecard.implScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberImplementedInitiativesWeight', $scope.scorecard.implWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebt', $scope.scorecard.techDebt);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtScore', $scope.scorecard.techDebtScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtWeight', $scope.scorecard.techDebtWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberComponentTechnicalDebt', $scope.scorecard.techDebt);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberComponentTechnicalDebtScore', $scope.scorecard.techDebtScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberComponentTechnicalDebtWeight', $scope.scorecard.techDebtWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatus', $scope.scorecard.aetInvest);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusScore', $scope.scorecard.aetInvestScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusWeight', $scope.scorecard.aetInvestWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aetInvestmentStatus', $scope.scorecard.aetInvest);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aetInvestmentStatusScore', $scope.scorecard.aetInvestScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aetInvestmentStatusWeight', $scope.scorecard.aetInvestWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectComments', $scope.scorecard.comments);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectComments', $scope.scorecard.comments);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendScore', $scope.scorecard.smartSpendScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendWeight', $scope.scorecard.smartSpendWeight);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('totalSmartSpend', $scope.scorecard.totalSmartSpend);
+            $scope.Variables.Core_scorecardScorecardData.setInput('smartSpendScore', $scope.scorecard.smartSpendScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('smartSpendWeight', $scope.scorecard.smartSpendWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('totalSmartSpend', $scope.scorecard.totalSmartSpend);
 
             //no id? create new record
             if (!$scope.scorecard.id) {
 
-                $scope.Variables.Core_scorecardScorecardWebformData.insertRecord();
+                $scope.Variables.Core_scorecardScorecardData.insertRecord();
             } else {
-                $scope.Variables.Core_scorecardScorecardWebformData.updateRecord();
+                $scope.Variables.Core_scorecardScorecardData.updateRecord();
             }
 
             DialogService.showDialog('alertDialogSuccess');
@@ -382,7 +382,7 @@ Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "
         $scope.Widgets.txtTotalPlatforms.backgroundcolor = selectColor;
         $scope.Widgets.txtCostProject.backgroundcolor = selectColor;
         $scope.Widgets.txtImpactSQP.backgroundcolor = selectColor;
-        $scope.Widgets.taCompanyPlatformImpact.backgroundcolor = selectColor;
+        $scope.Widgets.selectCompanyPlatformImpact.backgroundcolor = selectColor;
         $scope.Widgets.txtNumberPlatformBlueprints.backgroundcolor = selectColor;
         $scope.Widgets.txtPercentageImpact.backgroundcolor = selectColor;
         $scope.Widgets.selectGating.backgroundcolor = selectColor;

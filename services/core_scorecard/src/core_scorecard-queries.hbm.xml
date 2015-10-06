@@ -11,4 +11,9 @@
             select * from employee where title = 'PFA'
         ]]>
     </sql-query>
+    <sql-query name="getPlatform">
+        <![CDATA[
+            select * from platform
+        ]]>
+    </sql-query>
 </hibernate-mapping>

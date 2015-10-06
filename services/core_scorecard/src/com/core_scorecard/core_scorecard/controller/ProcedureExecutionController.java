@@ -33,7 +33,6 @@ public class ProcedureExecutionController {
     private Core_scorecardProcedureExecutorService procedureService;
 
     @RequestMapping(value = "/procedure/execute/wm_custom", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Process request to execute custom Procedure")
     public List<Object> executeWMCustomProcedure(@RequestBody CustomProcedure procedure) {
         List<Object> result = procedureService.executeWMCustomProcedure(procedure);

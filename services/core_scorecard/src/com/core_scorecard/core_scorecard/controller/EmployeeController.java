@@ -46,17 +46,48 @@ public class EmployeeController {
     @Qualifier("core_scorecard.EmployeeService")
     private EmployeeService employeeService;
 
-    /**
-	 * This setter method should only be used by unit tests
-	 * 
-	 * @param service
-	 */
-    protected void setEmployeeService(EmployeeService service) {
-        this.employeeService = service;
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @ApiOperation(value = "Returns the list of Employee instances matching the search criteria.")
+    public Page<Employee> findEmployees(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
+        LOGGER.debug("Rendering Employees list");
+        return employeeService.findAll(queryFilters, pageable);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the list of Employee instances.")
+    public Page<Employee> getEmployees(Pageable pageable) {
+        LOGGER.debug("Rendering Employees list");
+        return employeeService.findAll(pageable);
+    }
+
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the Employee instance associated with the given id.")
+    public Employee getEmployee(@PathVariable("id") Integer id) throws EntityNotFoundException {
+        LOGGER.debug("Getting Employee with id: {}", id);
+        Employee instance = employeeService.findById(id);
+        LOGGER.debug("Employee details with id: {}", instance);
+        return instance;
+    }
+
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
+    @ApiOperation(value = "Deletes the Employee instance associated with the given id.")
+    public boolean deleteEmployee(@PathVariable("id") Integer id) throws EntityNotFoundException {
+        LOGGER.debug("Deleting Employee with id: {}", id);
+        Employee deleted = employeeService.delete(id);
+        return deleted != null;
+    }
+
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
+    @ApiOperation(value = "Updates the Employee instance associated with the given id.")
+    public Employee editEmployee(@PathVariable("id") Integer id, @RequestBody Employee instance) throws EntityNotFoundException {
+        LOGGER.debug("Editing Employee with id: {}", instance.getId());
+        instance.setId(id);
+        instance = employeeService.update(instance);
+        LOGGER.debug("Employee details with id: {}", instance);
+        return instance;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Creates a new Employee instance.")
     public Employee createEmployee(@RequestBody Employee instance) {
         LOGGER.debug("Create Employee with information: {}", instance);
@@ -65,50 +96,13 @@ public class EmployeeController {
         return instance;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Returns the list of Employee instances.")
-    public Page<Employee> getEmployees(Pageable pageable) {
-        LOGGER.debug("Rendering Employees list");
-        return employeeService.findAll(pageable);
-    }
-
-    @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Returns the Employee instance associated with the given id.")
-    public Employee getEmployee(@PathVariable(value = "id") Integer id) throws EntityNotFoundException {
-        LOGGER.debug("Getting Employee with id: {}", id);
-        Employee instance = employeeService.findById(id);
-        LOGGER.debug("Employee details with id: {}", instance);
-        return instance;
-    }
-
-    @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Deletes the Employee instance associated with the given id.")
-    public boolean deleteEmployee(@PathVariable(value = "id") Integer id) throws EntityNotFoundException {
-        LOGGER.debug("Deleting Employee with id: {}", id);
-        Employee deleted = employeeService.delete(id);
-        return deleted != null;
-    }
-
-    @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Updates the Employee instance associated with the given id.")
-    public Employee editEmployee(@PathVariable(value = "id") Integer id, @RequestBody Employee instance) throws EntityNotFoundException {
-        LOGGER.debug("Editing Employee with id: {}", instance.getId());
-        instance.setId(id);
-        instance = employeeService.update(instance);
-        LOGGER.debug("Employee details with id: {}", instance);
-        return instance;
-    }
-
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Returns the list of Employee instances matching the search criteria.")
-    public Page<Employee> findEmployees(Pageable pageable, @RequestBody QueryFilter[] queryFilters) {
-        LOGGER.debug("Rendering Employees list");
-        return employeeService.findAll(queryFilters, pageable);
+    /**
+	 * This setter method should only be used by unit tests
+	 * 
+	 * @param service
+	 */
+    protected void setEmployeeService(EmployeeService service) {
+        this.employeeService = service;
     }
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)

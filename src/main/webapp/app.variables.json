@@ -32,9 +32,35 @@
 		"category": "wm.Variable",
 		"_id": "wm-supportedLocale-wm.Variable1402640443182"
 	},
-	"Core_scorecardScorecardWebformData": {
-		"name": "Core_scorecardScorecardWebformData",
-		"type": "ScorecardWebform",
+	"navigationVariableScorecard": {
+		"name": "navigationVariableScorecard",
+		"owner": "App",
+		"operation": "gotoView",
+		"pageName": "Main",
+		"viewName": "viewScorecard",
+		"dataBinding": {
+			"pageName": "",
+			"viewName": ""
+		},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-navigationVariableScorecard-wm.NavigationVariable-1440293394670"
+	},
+	"navigationVariableReports": {
+		"name": "navigationVariableReports",
+		"owner": "App",
+		"operation": "gotoView",
+		"pageName": "Main",
+		"viewName": "viewReports",
+		"dataBinding": {
+			"pageName": "",
+			"viewName": ""
+		},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-navigationVariableReports-wm.NavigationVariable-1440440557958"
+	},
+	"Core_scorecardEmployeeData": {
+		"name": "Core_scorecardEmployeeData",
+		"type": "Employee",
 		"isList": true,
 		"owner": "App",
 		"dataSet": {
@@ -43,7 +69,274 @@
 		"dataBinding": [
 			{
 				"name": "dataBinding",
-				"type": "scorecard_webform",
+				"type": "employee",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number"
+					},
+					{
+						"name": "firstName",
+						"type": "string"
+					},
+					{
+						"name": "lastName",
+						"type": "string"
+					},
+					{
+						"name": "fullName",
+						"type": "string"
+					},
+					{
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"name": "middleName",
+						"type": "string"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "read",
+		"startUpdate": true,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"category": "wm.LiveVariable",
+		"isDefault": true,
+		"dbSystem": "PostgreSQL",
+		"_id": "wm-Core_scorecardEmployeeData-wm.LiveVariable-1440442163117",
+		"package": "com.core_scorecard.core_scorecard.Employee",
+		"tableName": "employee",
+		"tableType": "TABLE",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "id",
+					"type": "integer",
+					"hibernateType": "integer",
+					"fullyQualifiedType": "integer",
+					"columnName": "id",
+					"isPrimaryKey": true,
+					"notNull": true,
+					"length": 255,
+					"precision": 19,
+					"generator": "identity",
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "firstName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "first_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 50,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "lastName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "last_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 50,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "fullName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "full_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 100,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "title",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "title",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 50,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "middleName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "middle_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 50,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [
+				"id"
+			],
+			"entityName": "Employee",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.Employee",
+			"tableType": "TABLE"
+		},
+		"bindCount": 1,
+		"filterFields": {}
+	},
+	"Core_scorecardGetEmpByLTA": {
+		"name": "Core_scorecardGetEmpByLTA",
+		"type": "core_scorecardgetEmpByLTArtnType",
+		"isList": false,
+		"owner": "App",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "object",
+				"fields": []
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"service": "core_scorecard",
+		"operation": "getEmpByLTA",
+		"operationType": "nativequery",
+		"startUpdate": true,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"serviceType": "DataService",
+		"category": "wm.ServiceVariable",
+		"isDefault": true,
+		"_id": "wm-Core_scorecardGetEmpByLTA-wm.ServiceVariable-1440529643585"
+	},
+	"Core_scorecardGetEmpByPFA": {
+		"name": "Core_scorecardGetEmpByPFA",
+		"type": "core_scorecardgetEmpByPFArtnType",
+		"isList": false,
+		"owner": "App",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "object",
+				"fields": []
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"service": "core_scorecard",
+		"operation": "getEmpByPFA",
+		"operationType": "nativequery",
+		"startUpdate": true,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"serviceType": "DataService",
+		"category": "wm.ServiceVariable",
+		"isDefault": true,
+		"_id": "wm-Core_scorecardGetEmpByPFA-wm.ServiceVariable-1440529657917"
+	},
+	"goToPage-Page": {
+		"name": "goToPage-Page",
+		"owner": "App",
+		"operation": "gotoPage",
+		"pageName": "Page",
+		"dataBinding": {},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-goToPage-Page-wm.NavigationVariable-1440544165608"
+	},
+	"navigationVariableDashboard": {
+		"name": "navigationVariableDashboard",
+		"owner": "App",
+		"operation": "gotoView",
+		"pageName": "Main",
+		"viewName": "viewDashboard",
+		"dataBinding": {
+			"pageName": "",
+			"viewName": ""
+		},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-navigationVariableDashboard-navigationVariableNewScorecard-navigationVariable1-wm.NavigationVariable-1440779929944"
+	},
+	"goToPage-Dashboard": {
+		"name": "goToPage-Dashboard",
+		"owner": "App",
+		"operation": "gotoPage",
+		"pageName": "Dashboard",
+		"dataBinding": {},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-goToPage-Dashboard-wm.NavigationVariable-1441048118187"
+	},
+	"goToPage-Reports": {
+		"name": "goToPage-Reports",
+		"owner": "App",
+		"operation": "gotoPage",
+		"pageName": "Reports",
+		"dataBinding": {},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-goToPage-Reports-wm.NavigationVariable-1441135615905"
+	},
+	"goToPage-Support": {
+		"name": "goToPage-Support",
+		"owner": "App",
+		"operation": "gotoPage",
+		"pageName": "Support",
+		"dataBinding": {},
+		"category": "wm.NavigationVariable",
+		"_id": "wm-goToPage-Support-wm.NavigationVariable-1441135835095"
+	},
+	"Core_scorecardScorecardData": {
+		"name": "Core_scorecardScorecardData",
+		"type": "Scorecard",
+		"isList": true,
+		"owner": "App",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "scorecard",
 				"fields": [
 					{
 						"name": "id",
@@ -208,9 +501,9 @@
 		"category": "wm.LiveVariable",
 		"isDefault": true,
 		"dbSystem": "PostgreSQL",
-		"_id": "wm-Core_scorecardScorecardWebformData-wm.LiveVariable-1440302855659",
-		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
-		"tableName": "scorecard_webform",
+		"_id": "wm-Core_scorecardScorecardData-wm.LiveVariable-1444145082899",
+		"package": "com.core_scorecard.core_scorecard.Scorecard",
+		"tableName": "scorecard",
 		"tableType": "TABLE",
 		"propertiesMap": {
 			"columns": [
@@ -722,185 +1015,16 @@
 			"primaryKeys": [
 				"id"
 			],
-			"entityName": "ScorecardWebform",
-			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"entityName": "Scorecard",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.Scorecard",
 			"tableType": "TABLE"
 		},
 		"bindCount": 1,
 		"filterFields": {}
 	},
-	"navigationVariableScorecard": {
-		"name": "navigationVariableScorecard",
-		"owner": "App",
-		"operation": "gotoView",
-		"pageName": "Main",
-		"viewName": "viewScorecard",
-		"dataBinding": {
-			"pageName": "",
-			"viewName": ""
-		},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-navigationVariableScorecard-wm.NavigationVariable-1440293394670"
-	},
-	"navigationVariableReports": {
-		"name": "navigationVariableReports",
-		"owner": "App",
-		"operation": "gotoView",
-		"pageName": "Main",
-		"viewName": "viewReports",
-		"dataBinding": {
-			"pageName": "",
-			"viewName": ""
-		},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-navigationVariableReports-wm.NavigationVariable-1440440557958"
-	},
-	"Core_scorecardEmployeeData": {
-		"name": "Core_scorecardEmployeeData",
-		"type": "Employee",
-		"isList": true,
-		"owner": "App",
-		"dataSet": {
-			"dataValue": ""
-		},
-		"dataBinding": [
-			{
-				"name": "dataBinding",
-				"type": "object",
-				"fields": []
-			}
-		],
-		"saveInPhonegap": false,
-		"firstRow": 0,
-		"maxResults": 20,
-		"designMaxResults": 10,
-		"operation": "read",
-		"startUpdate": false,
-		"autoUpdate": true,
-		"inFlightBehavior": "executeLast",
-		"transformationRequired": false,
-		"liveSource": "core_scorecard",
-		"ignoreCase": false,
-		"matchMode": "start",
-		"category": "wm.LiveVariable",
-		"isDefault": true,
-		"dbSystem": "PostgreSQL",
-		"_id": "wm-Core_scorecardEmployeeData-wm.LiveVariable-1440442163117",
-		"package": "com.core_scorecard.core_scorecard.Employee",
-		"tableName": "employee",
-		"tableType": "TABLE",
-		"propertiesMap": {
-			"columns": [
-				{
-					"fieldName": "id",
-					"type": "integer",
-					"hibernateType": "integer",
-					"fullyQualifiedType": "integer",
-					"columnName": "id",
-					"isPrimaryKey": true,
-					"notNull": true,
-					"length": 255,
-					"precision": 19,
-					"generator": "identity",
-					"isRelated": false,
-					"defaultValue": null
-				},
-				{
-					"fieldName": "endToEnd",
-					"type": "boolean",
-					"hibernateType": "boolean",
-					"fullyQualifiedType": "boolean",
-					"columnName": "end_to_end",
-					"isPrimaryKey": false,
-					"notNull": false,
-					"length": 255,
-					"precision": 19,
-					"generator": null,
-					"isRelated": false,
-					"defaultValue": null
-				},
-				{
-					"fieldName": "firstName",
-					"type": "string",
-					"hibernateType": "string",
-					"fullyQualifiedType": "string",
-					"columnName": "first_name",
-					"isPrimaryKey": false,
-					"notNull": false,
-					"length": 50,
-					"precision": 19,
-					"generator": null,
-					"isRelated": false,
-					"defaultValue": null
-				},
-				{
-					"fieldName": "lastName",
-					"type": "string",
-					"hibernateType": "string",
-					"fullyQualifiedType": "string",
-					"columnName": "last_name",
-					"isPrimaryKey": false,
-					"notNull": false,
-					"length": 50,
-					"precision": 19,
-					"generator": null,
-					"isRelated": false,
-					"defaultValue": null
-				},
-				{
-					"fieldName": "fullName",
-					"type": "string",
-					"hibernateType": "string",
-					"fullyQualifiedType": "string",
-					"columnName": "full_name",
-					"isPrimaryKey": false,
-					"notNull": false,
-					"length": 100,
-					"precision": 19,
-					"generator": null,
-					"isRelated": false,
-					"defaultValue": null
-				},
-				{
-					"fieldName": "title",
-					"type": "string",
-					"hibernateType": "string",
-					"fullyQualifiedType": "string",
-					"columnName": "title",
-					"isPrimaryKey": false,
-					"notNull": false,
-					"length": 50,
-					"precision": 19,
-					"generator": null,
-					"isRelated": false,
-					"defaultValue": null
-				},
-				{
-					"fieldName": "middleName",
-					"type": "string",
-					"hibernateType": "string",
-					"fullyQualifiedType": "string",
-					"columnName": "middle_name",
-					"isPrimaryKey": false,
-					"notNull": false,
-					"length": 50,
-					"precision": 19,
-					"generator": null,
-					"isRelated": false,
-					"defaultValue": null
-				}
-			],
-			"primaryKeys": [
-				"id"
-			],
-			"entityName": "Employee",
-			"fullyQualifiedName": "com.core_scorecard.core_scorecard.Employee",
-			"tableType": "TABLE"
-		}
-	},
-	"Core_scorecardGetEmpByLTA": {
-		"name": "Core_scorecardGetEmpByLTA",
-		"type": "core_scorecardgetEmpByLTArtnType",
+	"Core_scorecardGetPlatform": {
+		"name": "Core_scorecardGetPlatform",
+		"type": "core_scorecardgetPlatformrtnType",
 		"isList": false,
 		"owner": "App",
 		"dataSet": {
@@ -915,10 +1039,10 @@
 		],
 		"saveInPhonegap": false,
 		"firstRow": 0,
-		"maxResults": 20,
+		"maxResults": 30,
 		"designMaxResults": 10,
 		"service": "core_scorecard",
-		"operation": "getEmpByLTA",
+		"operation": "getPlatform",
 		"operationType": "nativequery",
 		"startUpdate": true,
 		"autoUpdate": true,
@@ -927,84 +1051,6 @@
 		"serviceType": "DataService",
 		"category": "wm.ServiceVariable",
 		"isDefault": true,
-		"_id": "wm-Core_scorecardGetEmpByLTA-wm.ServiceVariable-1440529643585"
-	},
-	"Core_scorecardGetEmpByPFA": {
-		"name": "Core_scorecardGetEmpByPFA",
-		"type": "core_scorecardgetEmpByPFArtnType",
-		"isList": false,
-		"owner": "App",
-		"dataSet": {
-			"dataValue": ""
-		},
-		"dataBinding": [
-			{
-				"name": "dataBinding",
-				"type": "object",
-				"fields": []
-			}
-		],
-		"saveInPhonegap": false,
-		"firstRow": 0,
-		"maxResults": 20,
-		"designMaxResults": 10,
-		"service": "core_scorecard",
-		"operation": "getEmpByPFA",
-		"operationType": "nativequery",
-		"startUpdate": true,
-		"autoUpdate": true,
-		"inFlightBehavior": "executeLast",
-		"transformationRequired": false,
-		"serviceType": "DataService",
-		"category": "wm.ServiceVariable",
-		"isDefault": true,
-		"_id": "wm-Core_scorecardGetEmpByPFA-wm.ServiceVariable-1440529657917"
-	},
-	"goToPage-Page": {
-		"name": "goToPage-Page",
-		"owner": "App",
-		"operation": "gotoPage",
-		"pageName": "Page",
-		"dataBinding": {},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-goToPage-Page-wm.NavigationVariable-1440544165608"
-	},
-	"navigationVariableDashboard": {
-		"name": "navigationVariableDashboard",
-		"owner": "App",
-		"operation": "gotoView",
-		"pageName": "Main",
-		"viewName": "viewDashboard",
-		"dataBinding": {
-			"pageName": "",
-			"viewName": ""
-		},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-navigationVariableDashboard-navigationVariableNewScorecard-navigationVariable1-wm.NavigationVariable-1440779929944"
-	},
-	"goToPage-Dashboard": {
-		"name": "goToPage-Dashboard",
-		"owner": "App",
-		"operation": "gotoPage",
-		"pageName": "Dashboard",
-		"dataBinding": {},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-goToPage-Dashboard-wm.NavigationVariable-1441048118187"
-	},
-	"goToPage-Reports": {
-		"owner": "App",
-		"operation": "gotoPage",
-		"pageName": "Reports",
-		"dataBinding": {},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-goToPage-Reports-wm.NavigationVariable-1441135615905"
-	},
-	"goToPage-Support": {
-		"owner": "App",
-		"operation": "gotoPage",
-		"pageName": "Support",
-		"dataBinding": {},
-		"category": "wm.NavigationVariable",
-		"_id": "wm-goToPage-Support-wm.NavigationVariable-1441135835095"
+		"_id": "wm-Core_scorecardGetPlatform-wm.ServiceVariable-1444152825481"
 	}
 }

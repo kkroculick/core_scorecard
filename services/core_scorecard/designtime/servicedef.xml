@@ -6,17 +6,24 @@
     <operation operationType="nativequery" name="getEmpByPFA">
         <return typeRef="core_scorecardgetEmpByPFArtnType" isList="false"/>
     </operation>
+    <operation operationType="nativequery" name="getPlatform">
+        <return typeRef="core_scorecardgetPlatformrtnType" isList="false"/>
+    </operation>
     <dataobjects>
         <dataobject javaType="com.core_scorecard.core_scorecard.Employee">
             <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
-            <element name="endToEnd" typeRef="java.lang.Boolean" isList="false" allowNull="true"/>
             <element name="firstName" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="lastName" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="fullName" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="title" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="middleName" typeRef="java.lang.String" isList="false" allowNull="true"/>
         </dataobject>
-        <dataobject javaType="com.core_scorecard.core_scorecard.ScorecardWebform">
+        <dataobject javaType="com.core_scorecard.core_scorecard.Platform">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+            <element name="platform" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="owner" typeRef="java.lang.String" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.core_scorecard.core_scorecard.Scorecard">
             <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
             <element name="aetInvestmentStatus" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="aetInvestmentStatusScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
@@ -69,6 +76,11 @@
             <element name="id" typeRef="java.lang.Integer"/>
             <element name="title" typeRef="java.lang.String"/>
             <element name="first_name" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="core_scorecardgetPlatformrtnType">
+            <element name="owner" typeRef="java.lang.String"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="platform" typeRef="java.lang.String"/>
         </dataobject>
     </dataobjects>
 </service>

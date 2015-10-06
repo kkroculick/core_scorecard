@@ -216,7 +216,7 @@ Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "
         $scope.Widgets.txtTotalPlatforms.datavalue = $data.numberPlatforms;
         $scope.Widgets.txtCostProject.datavalue = $data.projectCost;
         $scope.Widgets.txtImpactSQP.datavalue = $data.sqpImpactCost;
-        $scope.Widgets.taCompanyPlatformImpact.datavalue = $data.companyPlatformsImpacted;
+        $scope.Widgets.selectCompanyPlatformImpact.datavalue = $data.companyPlatformsImpacted;
         $scope.Widgets.txtNumberPlatformBlueprints.datavalue = $data.numberPlatformsBlueprints;
 
         $scope.Widgets.txtPercentageImpact.datavalue = $data.percentagePortfolioArchitecureImpact;
@@ -279,56 +279,56 @@ Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "
 
 
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('id', $scope.scorecard.id);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectName', $scope.scorecard.projectName);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectDescription', $scope.scorecard.projectDesc);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('portfolioArchitect', $scope.scorecard.pfa);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('leadTechnicalArchitect', $scope.scorecard.lta);
+            $scope.Variables.Core_scorecardScorecardData.setInput('id', $scope.scorecard.id);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectName', $scope.scorecard.projectName);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectDescription', $scope.scorecard.projectDesc);
+            $scope.Variables.Core_scorecardScorecardData.setInput('portfolioArchitect', $scope.scorecard.pfa);
+            $scope.Variables.Core_scorecardScorecardData.setInput('leadTechnicalArchitect', $scope.scorecard.lta);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('endToEnd', $scope.scorecard.e2e);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aimApplicationsImpacted', $scope.scorecard.aimImpact);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatforms', $scope.scorecard.numPlatforms);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectCost', $scope.scorecard.projectCost);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('sqpImpactCost', $scope.scorecard.impactSQP);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('companyPlatformsImpacted', $scope.scorecard.companyPlatforms);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberPlatformsBlueprints', $scope.scorecard.numPlatformsBP);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('percentagePortfolioArchitecureImpact', $scope.scorecard.archImpactPercent);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('gatingScorecardSizing', $scope.scorecard.gateSizing);
+            $scope.Variables.Core_scorecardScorecardData.setInput('endToEnd', $scope.scorecard.e2e);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aimApplicationsImpacted', $scope.scorecard.aimImpact);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberPlatforms', $scope.scorecard.numPlatforms);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectCost', $scope.scorecard.projectCost);
+            $scope.Variables.Core_scorecardScorecardData.setInput('sqpImpactCost', $scope.scorecard.impactSQP);
+            $scope.Variables.Core_scorecardScorecardData.setInput('companyPlatformsImpacted', $scope.scorecard.companyPlatforms);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberPlatformsBlueprints', $scope.scorecard.numPlatformsBP);
+            $scope.Variables.Core_scorecardScorecardData.setInput('percentagePortfolioArchitecureImpact', $scope.scorecard.archImpactPercent);
+            $scope.Variables.Core_scorecardScorecardData.setInput('gatingScorecardSizing', $scope.scorecard.gateSizing);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiatives', $scope.scorecard.numStrat);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesBpTd', $scope.scorecard.stratBpTd);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesScore', $scope.scorecard.stratScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicInitiativesWeight', $scope.scorecard.stratWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiatives', $scope.scorecard.numStrat);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiativesBpTd', $scope.scorecard.stratBpTd);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiativesScore', $scope.scorecard.stratScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicInitiativesWeight', $scope.scorecard.stratWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunities', $scope.scorecard.opps);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesBpTd', $scope.scorecard.oppsBpTd);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesScore', $scope.scorecard.oppsScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberStrategicOpportunitiesWeight', $scope.scorecard.oppsWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunities', $scope.scorecard.opps);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunitiesBpTd', $scope.scorecard.oppsBpTd);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunitiesScore', $scope.scorecard.oppsScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberStrategicOpportunitiesWeight', $scope.scorecard.oppsWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiatives', $scope.scorecard.impl);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesScore', $scope.scorecard.implScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberImplementedInitiativesWeight', $scope.scorecard.implWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberImplementedInitiatives', $scope.scorecard.impl);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberImplementedInitiativesScore', $scope.scorecard.implScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberImplementedInitiativesWeight', $scope.scorecard.implWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebt', $scope.scorecard.techDebt);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtScore', $scope.scorecard.techDebtScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('numberComponentTechnicalDebtWeight', $scope.scorecard.techDebtWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberComponentTechnicalDebt', $scope.scorecard.techDebt);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberComponentTechnicalDebtScore', $scope.scorecard.techDebtScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('numberComponentTechnicalDebtWeight', $scope.scorecard.techDebtWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatus', $scope.scorecard.aetInvest);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusScore', $scope.scorecard.aetInvestScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('aetInvestmentStatusWeight', $scope.scorecard.aetInvestWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aetInvestmentStatus', $scope.scorecard.aetInvest);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aetInvestmentStatusScore', $scope.scorecard.aetInvestScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('aetInvestmentStatusWeight', $scope.scorecard.aetInvestWeight);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('projectComments', $scope.scorecard.comments);
+            $scope.Variables.Core_scorecardScorecardData.setInput('projectComments', $scope.scorecard.comments);
 
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendScore', $scope.scorecard.smartSpendScore);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('smartSpendWeight', $scope.scorecard.smartSpendWeight);
-            $scope.Variables.Core_scorecardScorecardWebformData.setInput('totalSmartSpend', $scope.scorecard.totalSmartSpend);
+            $scope.Variables.Core_scorecardScorecardData.setInput('smartSpendScore', $scope.scorecard.smartSpendScore);
+            $scope.Variables.Core_scorecardScorecardData.setInput('smartSpendWeight', $scope.scorecard.smartSpendWeight);
+            $scope.Variables.Core_scorecardScorecardData.setInput('totalSmartSpend', $scope.scorecard.totalSmartSpend);
 
             //no id? create new record
             if (!$scope.scorecard.id) {
 
-                $scope.Variables.Core_scorecardScorecardWebformData.insertRecord();
+                $scope.Variables.Core_scorecardScorecardData.insertRecord();
             } else {
-                $scope.Variables.Core_scorecardScorecardWebformData.updateRecord();
+                $scope.Variables.Core_scorecardScorecardData.updateRecord();
             }
 
             DialogService.showDialog('alertDialogSuccess');
@@ -386,7 +386,7 @@ Application.$controller("MainPageController", ["$scope", "$timeout", "$route", "
         $scope.Widgets.txtTotalPlatforms.backgroundcolor = selectColor;
         $scope.Widgets.txtCostProject.backgroundcolor = selectColor;
         $scope.Widgets.txtImpactSQP.backgroundcolor = selectColor;
-        $scope.Widgets.taCompanyPlatformImpact.backgroundcolor = selectColor;
+        $scope.Widgets.selectCompanyPlatformImpact.backgroundcolor = selectColor;
         $scope.Widgets.txtNumberPlatformBlueprints.backgroundcolor = selectColor;
         $scope.Widgets.txtPercentageImpact.backgroundcolor = selectColor;
         $scope.Widgets.selectGating.backgroundcolor = selectColor;
@@ -482,7 +482,7 @@ Application.$controller("gridScorecardsController", ["$scope",
 var _MainPage_Variables_ ={
 	"liveReadScorecard": {
 		"name": "liveReadScorecard",
-		"type": "ScorecardWebform",
+		"type": "Scorecard",
 		"isList": false,
 		"owner": "Page",
 		"dataSet": {
@@ -491,7 +491,7 @@ var _MainPage_Variables_ ={
 		"dataBinding": [
 			{
 				"name": "dataBinding",
-				"type": "scorecard_webform",
+				"type": "scorecard",
 				"fields": [
 					{
 						"name": "id",
@@ -562,15 +562,15 @@ var _MainPage_Variables_ ={
 						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesBpTd",
+						"name": "numberStrategicInitiativesBpTd",
 						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesScore",
+						"name": "numberStrategicInitiativesScore",
 						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesWeight",
+						"name": "numberStrategicInitiativesWeight",
 						"type": "number"
 					},
 					{
@@ -631,6 +631,10 @@ var _MainPage_Variables_ ={
 					},
 					{
 						"name": "totalSmartSpend",
+						"type": "number"
+					},
+					{
+						"name": "employeeId",
 						"type": "number"
 					}
 				]
@@ -652,8 +656,8 @@ var _MainPage_Variables_ ={
 		"filterFields": {},
 		"category": "wm.LiveVariable",
 		"_id": "wm-liveReadScorecard-wm.LiveVariable-1440303167132",
-		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
-		"tableName": "scorecard_webform",
+		"package": "com.core_scorecard.core_scorecard.Scorecard",
+		"tableName": "scorecard",
 		"tableType": "TABLE",
 		"propertiesMap": {
 			"columns": [
@@ -1165,8 +1169,8 @@ var _MainPage_Variables_ ={
 			"primaryKeys": [
 				"id"
 			],
-			"entityName": "ScorecardWebform",
-			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"entityName": "Scorecard",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.Scorecard",
 			"tableType": "TABLE"
 		},
 		"bindCount": 1,
@@ -1185,7 +1189,7 @@ var _MainPage_Variables_ ={
 	},
 	"liveInsertScorecard": {
 		"name": "liveInsertScorecard",
-		"type": "ScorecardWebform",
+		"type": "Scorecard",
 		"isList": false,
 		"owner": "Page",
 		"dataSet": {
@@ -1194,182 +1198,151 @@ var _MainPage_Variables_ ={
 		"dataBinding": [
 			{
 				"name": "dataBinding",
-				"type": "scorecard_webform",
+				"type": "scorecard",
 				"fields": [
 					{
 						"name": "id",
-						"type": "number",
-						"value": "bind:Widgets.txtID.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "aetInvestmentStatus",
-						"type": "string",
-						"value": "bind:Widgets.selectAETAppInvestment.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "aetInvestmentStatusScore",
-						"type": "number",
-						"value": "bind:Widgets.txtAETAppInvestScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "aetInvestmentStatusWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtAETAppInvestWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "aimApplicationsImpacted",
-						"type": "string",
-						"value": "bind:Widgets.taAIMImpacted.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "companyPlatformsImpacted",
-						"type": "string",
-						"value": "bind:Widgets.taCompanyPlatformImpact.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "endToEnd",
-						"type": "string",
-						"value": "bind:Widgets.selectE2E.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "gatingScorecardSizing",
-						"type": "string",
-						"value": "bind:Widgets.selectImpact.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "leadTechnicalArchitect",
-						"type": "string",
-						"value": "bind:Widgets.selectLTA.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "numberComponentTechnicalDebt",
-						"type": "number",
-						"value": "bind:Widgets.txtComponentsTechDebt.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberComponentTechnicalDebtScore",
-						"type": "number",
-						"value": "bind:Widgets.txtComponentsTechDebtScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberComponentTechnicalDebtWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtComponentsTechDebtWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberImplementedInitiatives",
-						"type": "number",
-						"value": "bind:Widgets.txtNumberImplementedSI.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberImplementedInitiativesScore",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStratImplScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberImplementedInitiativesWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStratImplWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberPlatforms",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalPlatforms.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberPlatformsBlueprints",
-						"type": "number",
-						"value": "bind:Widgets.txtNumberPlatformBlueprints.datavalue"
+						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesBpTd",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInitBpTd.datavalue"
+						"name": "numberStrategicInitiativesBpTd",
+						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesScore",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInitScore.datavalue"
+						"name": "numberStrategicInitiativesScore",
+						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInitWght.datavalue"
+						"name": "numberStrategicInitiativesWeight",
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicInitiatives",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInit.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunities",
-						"type": "number",
-						"value": "bind:Widgets.txtNumberStrategicOpps.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunitiesBpTd",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicOppBpTd.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunitiesScore",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicOppScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunitiesWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicOppWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "percentagePortfolioArchitecureImpact",
-						"type": "number",
-						"value": "bind:Widgets.txtPercentageImpact.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "portfolioArchitect",
-						"type": "string",
-						"value": "bind:Widgets.selectPA.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "projectComments",
-						"type": "string",
-						"value": "bind:Widgets.txtComments.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "projectCost",
-						"type": "number",
-						"value": "bind:Widgets.txtCostProject.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "projectDescription",
-						"type": "string",
-						"value": "bind:Widgets.txtProjectDesc.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "projectName",
-						"type": "string",
-						"value": "bind:Widgets.txtProjectName.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "smartSpendScore",
-						"type": "number",
-						"value": "bind:Widgets.txtSmartSpendScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "smartSpendWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtSmartSpendWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "sqpImpactCost",
-						"type": "number",
-						"value": "bind:Widgets.txtImpactSQP.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "totalSmartSpend",
-						"type": "number",
-						"value": "bind:Widgets.txtSmartSpendTotal.datavalue"
+						"type": "number"
+					},
+					{
+						"name": "employeeId",
+						"type": "number"
 					}
 				]
 			}
@@ -1391,8 +1364,8 @@ var _MainPage_Variables_ ={
 		"inputFields": {},
 		"category": "wm.LiveVariable",
 		"_id": "wm-liveInsertScorecard-liveVariable1-wm.LiveVariable-1440306405270",
-		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
-		"tableName": "scorecard_webform",
+		"package": "com.core_scorecard.core_scorecard.Scorecard",
+		"tableName": "scorecard",
 		"tableType": "TABLE",
 		"propertiesMap": {
 			"columns": [
@@ -1904,8 +1877,8 @@ var _MainPage_Variables_ ={
 			"primaryKeys": [
 				"id"
 			],
-			"entityName": "ScorecardWebform",
-			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"entityName": "Scorecard",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.Scorecard",
 			"tableType": "TABLE"
 		},
 		"properties": [
@@ -1923,7 +1896,7 @@ var _MainPage_Variables_ ={
 	},
 	"liveUpdateScorecard": {
 		"name": "liveUpdateScorecard",
-		"type": "ScorecardWebform",
+		"type": "Scorecard",
 		"isList": false,
 		"owner": "Page",
 		"dataSet": {
@@ -1932,182 +1905,151 @@ var _MainPage_Variables_ ={
 		"dataBinding": [
 			{
 				"name": "dataBinding",
-				"type": "scorecard_webform",
+				"type": "scorecard",
 				"fields": [
 					{
 						"name": "id",
-						"type": "number",
-						"value": "bind:Widgets.txtID.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "aetInvestmentStatus",
-						"type": "string",
-						"value": "bind:Widgets.selectAETAppInvestment.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "aetInvestmentStatusScore",
-						"type": "number",
-						"value": "bind:Widgets.txtAETAppInvestScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "aetInvestmentStatusWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtAETAppInvestWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "aimApplicationsImpacted",
-						"type": "string",
-						"value": "bind:Widgets.taAIMImpacted.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "companyPlatformsImpacted",
-						"type": "string",
-						"value": "bind:Widgets.taCompanyPlatformImpact.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "endToEnd",
-						"type": "string",
-						"value": "bind:Widgets.selectE2E.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "gatingScorecardSizing",
-						"type": "string",
-						"value": "bind:Widgets.selectImpact.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "leadTechnicalArchitect",
-						"type": "string",
-						"value": "bind:Widgets.selectLTA.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "numberComponentTechnicalDebt",
-						"type": "number",
-						"value": "bind:Widgets.txtComponentsTechDebt.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberComponentTechnicalDebtScore",
-						"type": "number",
-						"value": "bind:Widgets.txtComponentsTechDebtScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberComponentTechnicalDebtWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtComponentsTechDebtWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberImplementedInitiatives",
-						"type": "number",
-						"value": "bind:Widgets.txtNumberImplementedSI.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberImplementedInitiativesScore",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStratImplScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberImplementedInitiativesWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStratImplWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberPlatforms",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalPlatforms.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberPlatformsBlueprints",
-						"type": "number",
-						"value": "bind:Widgets.txtNumberPlatformBlueprints.datavalue"
+						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesBpTd",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInitBpTd.datavalue"
+						"name": "numberStrategicInitiativesBpTd",
+						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesScore",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInitScore.datavalue"
+						"name": "numberStrategicInitiativesScore",
+						"type": "number"
 					},
 					{
-						"name": "numberStategicInitiativesWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInitWght.datavalue"
+						"name": "numberStrategicInitiativesWeight",
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicInitiatives",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicInit.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunities",
-						"type": "number",
-						"value": "bind:Widgets.txtNumberStrategicOpps.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunitiesBpTd",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicOppBpTd.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunitiesScore",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicOppScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "numberStrategicOpportunitiesWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtTotalNumberStrategicOppWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "percentagePortfolioArchitecureImpact",
-						"type": "number",
-						"value": "bind:Widgets.txtPercentageImpact.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "portfolioArchitect",
-						"type": "string",
-						"value": "bind:Widgets.selectPA.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "projectComments",
-						"type": "string",
-						"value": "bind:Widgets.txtComments.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "projectCost",
-						"type": "number",
-						"value": "bind:Widgets.txtCostProject.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "projectDescription",
-						"type": "string",
-						"value": "bind:Widgets.txtProjectDesc.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "projectName",
-						"type": "string",
-						"value": "bind:Widgets.txtProjectName.datavalue"
+						"type": "string"
 					},
 					{
 						"name": "smartSpendScore",
-						"type": "number",
-						"value": "bind:Widgets.txtSmartSpendScore.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "smartSpendWeight",
-						"type": "number",
-						"value": "bind:Widgets.txtSmartSpendWght.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "sqpImpactCost",
-						"type": "number",
-						"value": "bind:Widgets.txtImpactSQP.datavalue"
+						"type": "number"
 					},
 					{
 						"name": "totalSmartSpend",
-						"type": "number",
-						"value": "bind:Widgets.txtSmartSpendTotal.datavalue"
+						"type": "number"
+					},
+					{
+						"name": "employeeId",
+						"type": "number"
 					}
 				]
 			}
@@ -2129,8 +2071,8 @@ var _MainPage_Variables_ ={
 		"inputFields": {},
 		"category": "wm.LiveVariable",
 		"_id": "wm-liveUpdateScorecard-wm.LiveVariable-1440308623677",
-		"package": "com.core_scorecard.core_scorecard.ScorecardWebform",
-		"tableName": "scorecard_webform",
+		"package": "com.core_scorecard.core_scorecard.Scorecard",
+		"tableName": "scorecard",
 		"tableType": "TABLE",
 		"propertiesMap": {
 			"columns": [
@@ -2642,8 +2584,8 @@ var _MainPage_Variables_ ={
 			"primaryKeys": [
 				"id"
 			],
-			"entityName": "ScorecardWebform",
-			"fullyQualifiedName": "com.core_scorecard.core_scorecard.ScorecardWebform",
+			"entityName": "Scorecard",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.Scorecard",
 			"tableType": "TABLE"
 		},
 		"properties": [
@@ -2669,16 +2611,7 @@ var _MainPage_Variables_ ={
             <wm-view name="view1"></wm-view>
         </wm-left-panel>
         <wm-page-content name="page_content1" columnwidth="10" overflow="auto">
-            <wm-grid show="false" name="gridScorecards" readonlygrid="true" dataset="bind:Variables.Core_scorecardScorecardWebformData.dataSet" on-rowclick="grid2Rowclick($event, $data)" gridcaption="Scorecard" gridfirstrowselect="false">
-                <wm-grid-column type="integer" readonly="true" caption="Id" binding="id" primary-key="true" generator="identity" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="false"></wm-grid-column>
-                <wm-grid-column type="string" readonly="false" caption="Project Description" binding="projectDescription" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="string" readonly="false" caption="Project Name" binding="projectName" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="double" readonly="false" caption="Smart Spend Score" binding="smartSpendScore" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="double" readonly="false" caption="Smart Spend Weight" binding="smartSpendWeight" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="double" readonly="false" caption="Total Smart Spend" binding="totalSmartSpend" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-            </wm-grid>
 
-            <wm-composite name="composite1"></wm-composite>
             <wm-form title="New Scorecard" class="panel-default" name="form1" overflow="visible" layout="One Column" novalidate="false">
                 <wm-layoutgrid name="layoutgrid2">
                     <wm-gridrow name="gridrow42_1">
@@ -2778,7 +2711,7 @@ var _MainPage_Variables_ ={
                             <wm-label caption="Company Platforms Impacted *" name="label11" color="#f50505"></wm-label>
                         </wm-gridcolumn>
                         <wm-gridcolumn name="gridcolumn73" columnwidth="4">
-                            <wm-textarea name="taCompanyPlatformImpact" scopedatavalue="scorecard.companyPlatforms"></wm-textarea>
+                            <wm-select dataset="bind:Variables.Core_scorecardGetPlatform.dataSet" scopedatavalue="scorecard.companyPlatforms" name="selectCompanyPlatformImpact" datafield="platform" displayfield="platform"></wm-select>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow53_1">

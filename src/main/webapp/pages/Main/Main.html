@@ -5,16 +5,7 @@
             <wm-view name="view1"></wm-view>
         </wm-left-panel>
         <wm-page-content name="page_content1" columnwidth="10" overflow="auto">
-            <wm-grid show="false" name="gridScorecards" readonlygrid="true" dataset="bind:Variables.Core_scorecardScorecardWebformData.dataSet" on-rowclick="grid2Rowclick($event, $data)" gridcaption="Scorecard" gridfirstrowselect="false">
-                <wm-grid-column type="integer" readonly="true" caption="Id" binding="id" primary-key="true" generator="identity" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="false"></wm-grid-column>
-                <wm-grid-column type="string" readonly="false" caption="Project Description" binding="projectDescription" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="string" readonly="false" caption="Project Name" binding="projectName" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="double" readonly="false" caption="Smart Spend Score" binding="smartSpendScore" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="double" readonly="false" caption="Smart Spend Weight" binding="smartSpendWeight" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-                <wm-grid-column type="double" readonly="false" caption="Total Smart Spend" binding="totalSmartSpend" col-class="" col-ng-class="" search-placeholder="Search" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
-            </wm-grid>
 
-            <wm-composite name="composite1"></wm-composite>
             <wm-form title="New Scorecard" class="panel-default" name="form1" overflow="visible" layout="One Column" novalidate="false">
                 <wm-layoutgrid name="layoutgrid2">
                     <wm-gridrow name="gridrow42_1">
@@ -114,7 +105,7 @@
                             <wm-label caption="Company Platforms Impacted *" name="label11" color="#f50505"></wm-label>
                         </wm-gridcolumn>
                         <wm-gridcolumn name="gridcolumn73" columnwidth="4">
-                            <wm-textarea name="taCompanyPlatformImpact" scopedatavalue="scorecard.companyPlatforms"></wm-textarea>
+                            <wm-select dataset="bind:Variables.Core_scorecardGetPlatform.dataSet" scopedatavalue="scorecard.companyPlatforms" name="selectCompanyPlatformImpact" datafield="platform" displayfield="platform"></wm-select>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow53_1">

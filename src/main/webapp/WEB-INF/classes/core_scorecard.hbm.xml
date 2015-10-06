@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
+<hibernate-mapping package="com.core_scorecard.core_scorecard">
     <class entity-name="com.core_scorecard.core_scorecard.Employee" table="employee" schema="public">
         <id name="id" type="integer">
             <column name="id" length="255" not-null="true" precision="19"/>
             <generator class="identity"/>
         </id>
-        <property name="endToEnd" type="boolean">
+        <property name="endToEnd" type="java.lang.Boolean">
             <column name="end_to_end" length="255" not-null="false" precision="19"/>
         </property>
         <property name="firstName" type="string">
@@ -25,7 +25,7 @@
             <column name="middle_name" length="50" not-null="false" precision="19"/>
         </property>
     </class>
-    <class entity-name="com.core_scorecard.core_scorecard.ScorecardWebform" table="scorecard_webform" schema="public">
+    <class entity-name="com.core_scorecard.core_scorecard.Scorecard" table="scorecard" schema="public">
         <id name="id" type="integer">
             <column name="id" length="255" not-null="true" precision="19"/>
             <generator class="identity"/>
@@ -33,10 +33,10 @@
         <property name="aetInvestmentStatus" type="string">
             <column name="aet_investment_status" length="20" not-null="false" precision="19"/>
         </property>
-        <property name="aetInvestmentStatusScore" type="double">
+        <property name="aetInvestmentStatusScore" type="java.lang.Double">
             <column name="aet_investment_status_score" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="aetInvestmentStatusWeight" type="double">
+        <property name="aetInvestmentStatusWeight" type="java.lang.Double">
             <column name="aet_investment_status_weight" length="255" not-null="false" precision="17"/>
         </property>
         <property name="aimApplicationsImpacted" type="string">
@@ -54,55 +54,55 @@
         <property name="leadTechnicalArchitect" type="string">
             <column name="lead_technical_architect" length="255" not-null="false" precision="19"/>
         </property>
-        <property name="numberComponentTechnicalDebt" type="double">
+        <property name="numberComponentTechnicalDebt" type="java.lang.Double">
             <column name="number_component_technical_debt" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberComponentTechnicalDebtScore" type="double">
+        <property name="numberComponentTechnicalDebtScore" type="java.lang.Double">
             <column name="number_component_technical_debt_score" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberComponentTechnicalDebtWeight" type="double">
+        <property name="numberComponentTechnicalDebtWeight" type="java.lang.Double">
             <column name="number_component_technical_debt_weight" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberImplementedInitiatives" type="double">
+        <property name="numberImplementedInitiatives" type="java.lang.Double">
             <column name="number_implemented_initiatives" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberImplementedInitiativesScore" type="double">
+        <property name="numberImplementedInitiativesScore" type="java.lang.Double">
             <column name="number_implemented_initiatives_score" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberImplementedInitiativesWeight" type="double">
+        <property name="numberImplementedInitiativesWeight" type="java.lang.Double">
             <column name="number_implemented_initiatives_weight" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberPlatforms" type="double">
+        <property name="numberPlatforms" type="java.lang.Double">
             <column name="number_platforms" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberPlatformsBlueprints" type="double">
+        <property name="numberPlatformsBlueprints" type="java.lang.Double">
             <column name="number_platforms_blueprints" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicInitiativesBpTd" type="double">
+        <property name="numberStrategicInitiativesBpTd" type="java.lang.Double">
             <column name="number_strategic_initiatives_bp_td" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicInitiativesScore" type="double">
+        <property name="numberStrategicInitiativesScore" type="java.lang.Double">
             <column name="number_strategic_initiatives_score" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicInitiativesWeight" type="double">
+        <property name="numberStrategicInitiativesWeight" type="java.lang.Double">
             <column name="number_strategic_initiatives_weight" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicInitiatives" type="double">
+        <property name="numberStrategicInitiatives" type="java.lang.Double">
             <column name="number_strategic_initiatives" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicOpportunities" type="double">
+        <property name="numberStrategicOpportunities" type="java.lang.Double">
             <column name="number_strategic_opportunities" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicOpportunitiesBpTd" type="double">
+        <property name="numberStrategicOpportunitiesBpTd" type="java.lang.Double">
             <column name="number_strategic_opportunities_bp_td" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicOpportunitiesScore" type="double">
+        <property name="numberStrategicOpportunitiesScore" type="java.lang.Double">
             <column name="number_strategic_opportunities_score" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="numberStrategicOpportunitiesWeight" type="double">
+        <property name="numberStrategicOpportunitiesWeight" type="java.lang.Double">
             <column name="number_strategic_opportunities_weight" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="percentagePortfolioArchitecureImpact" type="double">
+        <property name="percentagePortfolioArchitecureImpact" type="java.lang.Double">
             <column name="percentage_portfolio_architecure_impact" length="255" not-null="false" precision="17"/>
         </property>
         <property name="portfolioArchitect" type="string">
@@ -111,7 +111,7 @@
         <property name="projectComments" type="string">
             <column name="project_comments" length="255" not-null="false" precision="19"/>
         </property>
-        <property name="projectCost" type="double">
+        <property name="projectCost" type="java.lang.Double">
             <column name="project_cost" length="255" not-null="false" precision="17"/>
         </property>
         <property name="projectDescription" type="string">
@@ -120,16 +120,16 @@
         <property name="projectName" type="string">
             <column name="project_name" length="255" not-null="false" precision="19"/>
         </property>
-        <property name="smartSpendScore" type="double">
+        <property name="smartSpendScore" type="java.lang.Double">
             <column name="smart_spend_score" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="smartSpendWeight" type="double">
+        <property name="smartSpendWeight" type="java.lang.Double">
             <column name="smart_spend_weight" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="sqpImpactCost" type="double">
+        <property name="sqpImpactCost" type="java.lang.Double">
             <column name="sqp_impact_cost" length="255" not-null="false" precision="17"/>
         </property>
-        <property name="totalSmartSpend" type="double">
+        <property name="totalSmartSpend" type="java.lang.Double">
             <column name="total_smart_spend" length="255" not-null="false" precision="17"/>
         </property>
         <property name="employeeId" type="integer">

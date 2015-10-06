@@ -17,21 +17,11 @@ wm.types = {
 			"internal": false,
 			"service": "core_scorecard",
 			"fields": {
-				"endToEnd": {
-					"include": [],
-					"noChange": [],
-					"exclude": [],
-					"fieldOrder": 1,
-					"fieldSubType": null,
-					"type": "java.lang.Boolean",
-					"isList": false,
-					"required": false
-				},
 				"firstName": {
 					"include": [],
 					"noChange": [],
 					"exclude": [],
-					"fieldOrder": 2,
+					"fieldOrder": 1,
 					"fieldSubType": null,
 					"type": "java.lang.String",
 					"isList": false,
@@ -41,7 +31,7 @@ wm.types = {
 					"include": [],
 					"noChange": [],
 					"exclude": [],
-					"fieldOrder": 4,
+					"fieldOrder": 3,
 					"fieldSubType": null,
 					"type": "java.lang.String",
 					"isList": false,
@@ -61,7 +51,7 @@ wm.types = {
 					"include": [],
 					"noChange": [],
 					"exclude": [],
-					"fieldOrder": 3,
+					"fieldOrder": 2,
 					"fieldSubType": null,
 					"type": "java.lang.String",
 					"isList": false,
@@ -71,7 +61,7 @@ wm.types = {
 					"include": [],
 					"noChange": [],
 					"exclude": [],
-					"fieldOrder": 6,
+					"fieldOrder": 5,
 					"fieldSubType": null,
 					"type": "java.lang.String",
 					"isList": false,
@@ -81,7 +71,7 @@ wm.types = {
 					"include": [],
 					"noChange": [],
 					"exclude": [],
-					"fieldOrder": 5,
+					"fieldOrder": 4,
 					"fieldSubType": null,
 					"type": "java.lang.String",
 					"isList": false,
@@ -89,7 +79,44 @@ wm.types = {
 				}
 			}
 		},
-		"com.core_scorecard.core_scorecard.ScorecardWebform": {
+		"com.core_scorecard.core_scorecard.Platform": {
+			"liveService": false,
+			"internal": false,
+			"service": "core_scorecard",
+			"fields": {
+				"id": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 0,
+					"fieldSubType": null,
+					"type": "java.lang.Integer",
+					"isList": false,
+					"required": true
+				},
+				"owner": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 2,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"platform": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 1,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				}
+			}
+		},
+		"com.core_scorecard.core_scorecard.Scorecard": {
 			"liveService": false,
 			"internal": false,
 			"service": "core_scorecard",
@@ -583,6 +610,43 @@ wm.types = {
 					"noChange": [],
 					"exclude": [],
 					"fieldOrder": 4,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": true
+				}
+			}
+		},
+		"core_scorecardgetPlatformrtnType": {
+			"liveService": false,
+			"internal": false,
+			"service": "core_scorecard",
+			"fields": {
+				"id": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 1,
+					"fieldSubType": null,
+					"type": "java.lang.Integer",
+					"isList": false,
+					"required": true
+				},
+				"owner": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 0,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": true
+				},
+				"platform": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 2,
 					"fieldSubType": null,
 					"type": "java.lang.String",
 					"isList": false,

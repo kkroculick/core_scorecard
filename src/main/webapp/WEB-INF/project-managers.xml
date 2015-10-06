@@ -6,9 +6,11 @@
                 <entry key="core_scorecard">
                     <list>
                         <value>com.core_scorecard.core_scorecard.Employee</value>
-                        <value>com.core_scorecard.core_scorecard.ScorecardWebform</value>
+                        <value>com.core_scorecard.core_scorecard.Platform</value>
+                        <value>com.core_scorecard.core_scorecard.Scorecard</value>
                         <value>core_scorecardgetEmpByLTArtnType</value>
                         <value>core_scorecardgetEmpByPFArtnType</value>
+                        <value>core_scorecardgetPlatformrtnType</value>
                     </list>
                 </entry>
             </map>

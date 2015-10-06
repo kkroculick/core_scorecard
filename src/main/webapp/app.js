@@ -8,17 +8,19 @@ Application.run(function ($rootScope, $timeout) {
          */
     };
 
-	$rootScope.Core_scorecardScorecardWebformDataonSuccess = function(variable, data){
-	 $rootScope.Variables.Core_scorecardScorecardWebformData.update({}, function() {
-            $timeout(function() {
-               //console.log(data);
-                $rootScope.Widgets.gridScorecard.highlightRow(data);
 
-            });
-        });
-	};
-	
-	
-	
+
+    $rootScope.Core_scorecardScorecardDataonSuccess = function(variable, data){
+        
+       /* $rootScope.Variables.Core_scorecardScorecardData.update({}, function() {
+                $timeout(function() {
+                    // console.log(data);
+                        $rootScope.Widgets.gridScorecard.highlightRow(data);
+                });
+        });*/
+        
+    
+    
+    };
 
 });
