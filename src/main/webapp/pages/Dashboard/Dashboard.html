@@ -5,7 +5,7 @@
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-tile name="tileGrid">
                 <wm-grid name="gridScorecard" gridfirstrowselect="false" deleterow="true" updaterow="false" insertrow="false" showrecordcount="true" gridcaption="Scorecards" dataset="bind:Variables.Core_scorecardScorecardData.dataSet" readonlygrid="false"
-                on-rowclick="gridScorecardRowclick($event, $data)">
+                on-rowclick="gridScorecardRowclick($event, $data)" height="400px">
                     <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                     <wm-grid-column binding="projectName" caption="Project Name" type="string" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
                     <wm-grid-column binding="projectDescription" caption="Project Description" type="string" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
@@ -23,7 +23,7 @@
                             <wm-layoutgrid name="layoutgrid9">
                                 <wm-gridrow name="gridrow38_1">
                                     <wm-gridcolumn name="gridcolumn86" columnwidth="4">
-                                        <wm-label caption="Final Score" name="label35_5" color="#f50000" width="330" fontsize="24" fontweight="bold"></wm-label>
+                                        <wm-label caption="Final Score" name="label35_5" width="330" fontsize="24" fontweight="bold"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn87" columnwidth="4"></wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn88" columnwidth="4">

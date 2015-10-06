@@ -12,12 +12,14 @@ Application.run(function ($rootScope, $timeout) {
 
     $rootScope.Core_scorecardScorecardDataonSuccess = function(variable, data){
         
-       /* $rootScope.Variables.Core_scorecardScorecardData.update({}, function() {
+       $rootScope.Variables.Core_scorecardScorecardData.update({}, function() {
                 $timeout(function() {
                     // console.log(data);
+                    if($rootScope.Widgets.gridScorecard){
                         $rootScope.Widgets.gridScorecard.highlightRow(data);
+                    }
                 });
-        });*/
+        });
         
     
     
