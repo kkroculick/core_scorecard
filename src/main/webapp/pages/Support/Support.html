@@ -1,0 +1,27 @@
+<wm-page data-ng-controller="SupportPageController" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-label name="label1" caption="Support page disabled."></wm-label>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view3">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialog1">
+            <wm-dialogheader caption="Help" iconclass="glyphicon glyphicon-edit" name="dialogheader1"></wm-dialogheader>
+            <wm-dialogcontent name="dialogcontent1">
+                <wm-form class="app-dialog-form" name="form1">
+                    <wm-composite name="composite1">
+                        <wm-label class="col-md-3" caption="Help documents are still be written." name="label2" width="262"></wm-label>
+                    </wm-composite>
+                </wm-form>
+            </wm-dialogcontent>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="button2"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+</wm-page>

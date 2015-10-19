@@ -1,0 +1,338 @@
+<wm-page data-ng-controller="MainPageController" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-livegrid name="ScorecardLivegrid1" service="core_scorecard@Scorecard">
+                <wm-grid deleterow="false" updaterow="false" insertrow="false" gridfirstrowselect="true" readonlygrid="true" name="gridScorecard" dataset="bind:Variables.Core_scorecardScorecardData.dataSet" showrecordcount="true" height="300px" radioselect="false"
+                multiselect="false">
+                    <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="createDt" caption="Create Dt" type="timestamp" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" datepattern="yyyy-MM-ddTHH:mm:ss" formatpattern="toDate" is-related-pk="false"
+                    pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="projectName" caption="Project Name" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="projectDescription" caption="Project Description" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="portfolioArchitect" caption="Portfolio Architect" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="leadTechnicalArchitect" caption="Lead Technical Architect" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="smartSpendScore" caption="Smart Spend Score" type="double" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="totalSmartSpend" caption="Total Smart Spend" type="double" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="none" caption="Edit" type="custom" widget-type="button" width="48px" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true">
+                        <wm-button caption="{{row.getProperty('none')}}" show="true" class="btn-sm btn-default" iconname="glyphicon glyphicon-pencil" on-click="editCurrentRow()" data-ng-class=""></wm-button>
+                    </wm-grid-column>
+                    <wm-grid-column binding="none" caption="Delete" type="custom" widget-type="button" width="60px" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true">
+                        <wm-button caption="{{row.getProperty('none')}}" show="true" class="btn-sm btn-default" iconname="glyphicon glyphicon-trash" on-click="deleteRow()" data-ng-class=""></wm-button>
+                    </wm-grid-column>
+                    <wm-grid-action key="none" label="New Scorecard" show="true" class="btn-primary" icon="new" action="addCurrentNewRow()" type="button"></wm-grid-action>
+                </wm-grid>
+                <wm-liveform novalidate="false" title="Details" name="liveformScorecard" dataset="bind:Variables.Core_scorecardScorecardData.dataSet" formtype="inline">
+                    <wm-layoutgrid name="layoutgrid1">
+                        <wm-gridrow name="gridrow47">
+                            <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                <wm-form-field display-name="Id" show="true" primary-key="true" generator="identity" key="id" type="integer" maxvalue="NaN" is-related="false" readonly="true" required="true" placeholder="0" minvalue="NaN" multiple="false"
+                                regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow48">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn39" fontweight="bold">
+                                <wm-label name="label2_1" caption="Ownership" fontsize="24" readonlygrid="true"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow49">
+                            <wm-gridcolumn name="gridcolumn2" columnwidth="12">
+                                <wm-form-field display-name="Project Name" show="true" primary-key="false" generator="null" key="projectName" type="string" maxvalue="255" is-related="false" readonly="false" required="true" placeholder="Enter value" multiple="false"
+                                regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow50">
+                            <wm-gridcolumn name="gridcolumn3" columnwidth="12">
+                                <wm-form-field display-name="Project Description" show="true" primary-key="false" generator="null" key="projectDescription" type="string" maxvalue="255" is-related="false" readonly="false" required="true" placeholder="Enter value"
+                                multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow51">
+                            <wm-gridcolumn name="gridcolumn4" columnwidth="12">
+                                <wm-form-field display-name="Portfolio Architect" show="true" primary-key="false" generator="null" key="portfolioArchitect" type="string" maxvalue="255" is-related="false" readonly="false" required="true" widget-type="Select"
+                                placeholder="Enter value" dataset="bind:Variables.Core_scorecardGetEmpByPFA.dataSet" datafield="full_name" displayfield="full_name" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow52">
+                            <wm-gridcolumn name="gridcolumn6" columnwidth="12">
+                                <wm-form-field display-name="Lead Technical Architect" show="true" primary-key="false" generator="null" key="leadTechnicalArchitect" type="string" maxvalue="255" is-related="false" readonly="false" required="true" widget-type="Select"
+                                placeholder="Enter value" dataset="bind:Variables.Core_scorecardGetEmpByLTA.dataSet" datafield="full_name" displayfield="full_name" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow53">
+                            <wm-gridcolumn name="gridcolumn7" columnwidth="12">
+                                <wm-form-field display-name="End To End" show="true" primary-key="false" generator="null" key="endToEnd" type="string" maxvalue="10" is-related="false" readonly="false" required="true" widget-type="Select" placeholder="Enter value"
+                                dataset="Yes,No" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow54">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn40">
+                                <wm-label caption="Project Impact &amp; Scope" fontsize="24" name="label3"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow55">
+                            <wm-gridcolumn name="gridcolumn8" columnwidth="12">
+                                <wm-form-field display-name="Aim Applications Impacted" show="true" primary-key="false" generator="null" key="aimApplicationsImpacted" type="string" maxvalue="255" is-related="false" readonly="false" required="true" widget-type="Textarea"
+                                placeholder="Enter value" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow56">
+                            <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                <wm-form-field display-name="Number Platforms" show="true" primary-key="false" generator="null" key="numberPlatforms" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true" widget-type="Text" placeholder="Enter value"
+                                minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow57">
+                            <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                <wm-form-field display-name="Project Cost $" show="true" primary-key="false" generator="null" key="projectCost" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true" widget-type="Text" placeholder="Enter value"
+                                minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow58">
+                            <wm-gridcolumn name="gridcolumn2" columnwidth="12">
+                                <wm-form-field display-name="SQP Impact Cost $" show="true" primary-key="false" generator="null" key="sqpImpactCost" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true" widget-type="Text" placeholder="Enter value"
+                                minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow59">
+                            <wm-gridcolumn name="gridcolumn3" columnwidth="12">
+                                <wm-form-field display-name="Company Platforms Impacted" show="true" primary-key="false" generator="null" key="companyPlatformsImpacted" type="string" maxvalue="255" is-related="false" readonly="false" required="true" widget-type="Textarea"
+                                placeholder="Enter value" dataset="bind:Variables.Core_scorecardGetPlatform.dataSet" datafield="platform" displayfield="platform" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow60">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn46_2">
+                                <wm-button class="btn-primary" caption="Lookup Company Platform" type="button" name="bntLookupPlatform" on-click="dialogPlatforms.show" disabled="true"></wm-button>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow61">
+                            <wm-gridcolumn name="gridcolumn4" columnwidth="12">
+                                <wm-form-field display-name="Number Platforms With Blueprints" show="true" primary-key="false" generator="null" key="numberPlatformsBlueprints" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true"
+                                placeholder="Enter value" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow62">
+                            <wm-gridcolumn name="gridcolumn5" columnwidth="12">
+                                <wm-form-field display-name="Portfolio Architecture Impacted By Percent %" show="true" primary-key="false" generator="null" key="percentagePortfolioArchitecureImpact" type="double" maxvalue="100" is-related="false" readonly="false"
+                                required="true" widget-type="Text" placeholder="Enter a whole number e.g. 60 for 60%" minvalue="0" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow63">
+                            <wm-gridcolumn name="gridcolumn6" columnwidth="12">
+                                <wm-form-field display-name="Gating Scorecard Sizing" show="true" primary-key="false" generator="null" key="gatingScorecardSizing" type="string" maxvalue="255" is-related="false" readonly="false" required="true" widget-type="Select"
+                                placeholder="Enter value" dataset="Light,Medium,Heavy" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow64">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn41">
+                                <wm-label caption="Strategies" fontsize="24" name="label4"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow65">
+                            <wm-gridcolumn name="gridcolumn7" columnwidth="12">
+                                <wm-form-field display-name="Number Of Strategic Initiatives" show="true" primary-key="false" generator="null" key="numberStrategicInitiatives" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true"
+                                widget-type="Text" placeholder="Enter value" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow66">
+                            <wm-gridcolumn name="gridcolumn8" columnwidth="12">
+                                <wm-form-field display-name="Strategies - Net after Blueprint and Technical Debt" show="true" primary-key="false" generator="null" key="numberStrategicInitiativesBpTd" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="0" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow67">
+                            <wm-gridcolumn name="gridcolumn9" columnwidth="12">
+                                <wm-form-field display-name="Number Of Strategic Initiatives Score" show="true" primary-key="false" generator="null" key="numberStrategicInitiativesScore" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false"
+                                placeholder="0" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow68">
+                            <wm-gridcolumn name="gridcolumn10" columnwidth="12">
+                                <wm-form-field display-name="Number Of Strategic Initiatives Weight" show="true" primary-key="false" generator="null" key="numberStrategicInitiativesWeight" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false"
+                                placeholder="5" minvalue="NaN" multiple="false" regexp=".*" default-value="5"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow69">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn42">
+                                <wm-label caption="Opportunities" fontsize="24" name="label5"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow70">
+                            <wm-gridcolumn name="gridcolumn11" columnwidth="12">
+                                <wm-form-field display-name="Number Of Strategic Opportunities" show="true" primary-key="false" generator="null" key="numberStrategicOpportunities" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true"
+                                widget-type="Text" placeholder="Enter value" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow71">
+                            <wm-gridcolumn name="gridcolumn12" columnwidth="12">
+                                <wm-form-field display-name="Oppotunities - Net after Blueprint and Technical Debt" show="true" primary-key="false" generator="null" key="numberStrategicOpportunitiesBpTd" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="0" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow72">
+                            <wm-gridcolumn name="gridcolumn13" columnwidth="12">
+                                <wm-form-field display-name="Number Of Strategic Opportunities Score" show="true" primary-key="false" generator="null" key="numberStrategicOpportunitiesScore" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="0" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow73">
+                            <wm-gridcolumn name="gridcolumn14" columnwidth="12">
+                                <wm-form-field display-name="Number Of Strategic Opportunities Weight" show="true" primary-key="false" generator="null" key="numberStrategicOpportunitiesWeight" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="90" minvalue="NaN" multiple="false" regexp=".*" default-value="90"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow74">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn43">
+                                <wm-label caption="Initiatives" fontsize="24" name="label6"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow75">
+                            <wm-gridcolumn name="gridcolumn15" columnwidth="12">
+                                <wm-form-field display-name="Number Of Implemented Initiatives" show="true" primary-key="false" generator="null" key="numberImplementedInitiatives" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true"
+                                widget-type="Text" placeholder="Enter value" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow76">
+                            <wm-gridcolumn name="gridcolumn16" columnwidth="12">
+                                <wm-form-field display-name="Number Of Implemented Initiatives Score" show="true" primary-key="false" generator="null" key="numberImplementedInitiativesScore" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="0" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow77">
+                            <wm-gridcolumn name="gridcolumn17" columnwidth="12">
+                                <wm-form-field display-name="Number Of Implemented Initiatives Weight" show="true" primary-key="false" generator="null" key="numberImplementedInitiativesWeight" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="90" minvalue="NaN" multiple="false" regexp=".*" default-value="90"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow78">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn46_1">
+                                <wm-label caption="Tech Debt" fontsize="24" name="label11"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow79">
+                            <wm-gridcolumn name="gridcolumn18" columnwidth="12">
+                                <wm-form-field display-name="Number Component Technical Debt" show="true" primary-key="false" generator="null" key="numberComponentTechnicalDebt" type="double" maxvalue="NaN" is-related="false" readonly="false" required="true"
+                                widget-type="Text" placeholder="Enter value" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow80">
+                            <wm-gridcolumn name="gridcolumn19" columnwidth="12">
+                                <wm-form-field display-name="Number Of Component Technical Debt Score" show="true" primary-key="false" generator="null" key="numberComponentTechnicalDebtScore" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="0" minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow81">
+                            <wm-gridcolumn name="gridcolumn20" columnwidth="12">
+                                <wm-form-field display-name="Number Of Component Technical Debt Weight" show="true" primary-key="false" generator="null" key="numberComponentTechnicalDebtWeight" type="double" maxvalue="NaN" is-related="false" readonly="true"
+                                required="false" placeholder="90" minvalue="NaN" multiple="false" regexp=".*" default-value="90"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow82">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn45">
+                                <wm-label caption="AET Investment Status" fontsize="24" name="label9"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow83">
+                            <wm-gridcolumn name="gridcolumn21" columnwidth="12">
+                                <wm-form-field display-name="AET Investment Status" show="true" primary-key="false" generator="null" key="aetInvestmentStatus" type="string" maxvalue="20" is-related="false" readonly="false" required="true" widget-type="Select"
+                                placeholder="Enter value" dataset="Invest, R&amp;D, Pre-Invest, Maintain, Disinvest, Exit" multiple="false" regexp=".*" default-value="Invest"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow84">
+                            <wm-gridcolumn name="gridcolumn22" columnwidth="12">
+                                <wm-form-field display-name="AET Investment Status Score" show="true" primary-key="false" generator="null" key="aetInvestmentStatusScore" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false" placeholder="0"
+                                minvalue="NaN" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow85">
+                            <wm-gridcolumn name="gridcolumn23" columnwidth="12">
+                                <wm-form-field display-name="AET Investment Status Weight" show="true" primary-key="false" generator="null" key="aetInvestmentStatusWeight" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false" placeholder="5"
+                                minvalue="NaN" multiple="false" regexp=".*" default-value="5"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow86">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn47">
+                                <wm-label caption="Comments" fontsize="24" name="label12"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow87">
+                            <wm-gridcolumn name="gridcolumn24" columnwidth="12">
+                                <wm-form-field display-name="Project Comments" show="true" primary-key="false" generator="null" key="projectComments" type="string" maxvalue="255" is-related="false" readonly="false" required="false" widget-type="Textarea"
+                                placeholder="Enter comments" multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow88">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn46">
+                                <wm-label caption="Score" fontsize="24" name="label10"></wm-label>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow89">
+                            <wm-gridcolumn name="gridcolumn25" columnwidth="12">
+                                <wm-form-field display-name="Smart Spend Weight" show="true" primary-key="false" generator="null" key="smartSpendWeight" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false" placeholder="0" minvalue="NaN"
+                                multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow90">
+                            <wm-gridcolumn name="gridcolumn26" columnwidth="12">
+                                <wm-form-field display-name="Smart Spend Score" show="true" primary-key="false" generator="null" key="smartSpendScore" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false" placeholder="0" minvalue="NaN"
+                                multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow91">
+                            <wm-gridcolumn name="gridcolumn27" columnwidth="12">
+                                <wm-form-field display-name="Total Smart Spend $" show="true" primary-key="false" generator="null" key="totalSmartSpend" type="double" maxvalue="NaN" is-related="false" readonly="true" required="false" placeholder="0" minvalue="NaN"
+                                multiple="false" regexp=".*"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow92">
+                            <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                <wm-form-field display-name="Create Dt" show="true" primary-key="false" generator="null" key="createDt" type="timestamp" is-related="false" readonly="true" required="false" placeholder="Current date time" datepattern="yyyy-MM-ddTHH:mm:ss"
+                                multiple="false" regexp=".*" default-value="bind:Date();"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-action key="none" display-name="Calculate" show="true" iconclass="glyphicon glyphicon-ok-circle" action="calculate()" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="glyphicon glyphicon-remove-circle" action="cancelCurrentRow()" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="glyphicon glyphicon-save" type="Submit" update-mode="true"></wm-form-action>
+                    <wm-form-action key="delete" display-name="Delete" show="true" class="form-delete btn-secondary" iconclass="glyphicon glyphicon-remove" action="delete()" type="button" update-mode="false"></wm-form-action>
+                    <wm-form-action key="edit" display-name="Edit" show="true" class="form-update btn-secondary" iconclass="glyphicon glyphicon-pencil" action="editFormRow()" type="button" update-mode="false"></wm-form-action>
+                    <wm-form-action key="new" display-name="New" show="true" class="form-new btn-success" iconclass="glyphicon glyphicon-plus" action="new()" type="button" update-mode="false"></wm-form-action>
+                </wm-liveform>
+            </wm-livegrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewPlatforms" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialogPlatforms" hint="This list contains the strategic platforms">
+            <wm-dialogheader caption="Platforms" iconclass="glyphicon glyphicon-edit" name="dialogheader2_1"></wm-dialogheader>
+            <wm-dialogcontent name="dialogcontent2_1">
+                <wm-grid readonlygrid="true" name="gridPlatform" dataset="bind:Variables.Core_scorecardGetPlatform.dataSet" radioselect="false" multiselect="true" gridcaption="Select Platforms...">
+                    <wm-grid-column binding="platform" caption="Platform" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                    <wm-grid-column binding="owner" caption="Owner" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                </wm-grid>
+            </wm-dialogcontent>
+            <wm-dialogactions name="dialogactions2_1">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button5_1"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="btnDlgPlatformSave" on-click="btnDlgPlatformSaveClick($event, $scope)"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewHelp" show="false">
+        <wm-dialog dialogtype="design-dialog" modal="true" name="dialog2">
+            <wm-dialogheader caption="Help" iconclass="glyphicon glyphicon-edit" name="dialogheader2"></wm-dialogheader>
+            <wm-dialogcontent name="dialogcontent2">
+                <wm-form class="app-dialog-form" name="form1">
+                    <wm-composite name="composite1">
+                        <wm-label class="col-md-3" caption="Help still being written." name="label10_1"></wm-label>
+                    </wm-composite>
+                </wm-form>
+            </wm-dialogcontent>
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4"></wm-button>
+                <wm-button class="btn-primary" caption="Save" name="button5"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+</wm-page>

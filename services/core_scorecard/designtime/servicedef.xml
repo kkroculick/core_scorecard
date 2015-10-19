@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="core_scorecard" CRUDService="true" type="DataService" springFile="core_scorecard.spring.xml">
+    <operation operationType="nativequery" name="getEmpByLTA">
+        <return typeRef="core_scorecardgetEmpByLTArtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="getEmpByPFA">
+        <return typeRef="core_scorecardgetEmpByPFArtnType" isList="false"/>
+    </operation>
+    <operation operationType="nativequery" name="getPlatform">
+        <return typeRef="core_scorecardgetPlatformrtnType" isList="false"/>
+    </operation>
+    <dataobjects>
+        <dataobject javaType="com.core_scorecard.core_scorecard.Employee">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+            <element name="firstName" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="lastName" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="fullName" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="title" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="middleName" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.core_scorecard.core_scorecard.Platform">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+            <element name="platform" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="owner" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.core_scorecard.core_scorecard.Scorecard">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
+            <element name="aetInvestmentStatus" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="aetInvestmentStatusScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="aetInvestmentStatusWeight" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="aimApplicationsImpacted" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="companyPlatformsImpacted" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="endToEnd" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="gatingScorecardSizing" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="leadTechnicalArchitect" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="numberComponentTechnicalDebt" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberComponentTechnicalDebtScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberComponentTechnicalDebtWeight" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberImplementedInitiatives" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberImplementedInitiativesScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberImplementedInitiativesWeight" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberPlatforms" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberPlatformsBlueprints" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicInitiativesBpTd" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicInitiativesScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicInitiativesWeight" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicInitiatives" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicOpportunities" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicOpportunitiesBpTd" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicOpportunitiesScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="numberStrategicOpportunitiesWeight" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="percentagePortfolioArchitecureImpact" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="portfolioArchitect" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="projectComments" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="projectCost" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="projectDescription" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="projectName" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="smartSpendScore" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="smartSpendWeight" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="sqpImpactCost" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="totalSmartSpend" typeRef="java.lang.Double" isList="false" allowNull="true"/>
+            <element name="employeeId" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="core_scorecardgetEmpByLTArtnType">
+            <element name="full_name" typeRef="java.lang.String"/>
+            <element name="last_name" typeRef="java.lang.String"/>
+            <element name="create_dt" typeRef="java.sql.Timestamp"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="title" typeRef="java.lang.String"/>
+            <element name="middle_name" typeRef="java.lang.String"/>
+            <element name="first_name" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="core_scorecardgetEmpByPFArtnType">
+            <element name="full_name" typeRef="java.lang.String"/>
+            <element name="last_name" typeRef="java.lang.String"/>
+            <element name="create_dt" typeRef="java.sql.Timestamp"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="title" typeRef="java.lang.String"/>
+            <element name="middle_name" typeRef="java.lang.String"/>
+            <element name="first_name" typeRef="java.lang.String"/>
+        </dataobject>
+        <dataobject javaType="core_scorecardgetPlatformrtnType">
+            <element name="owner" typeRef="java.lang.String"/>
+            <element name="create_dt" typeRef="java.sql.Timestamp"/>
+            <element name="id" typeRef="java.lang.Integer"/>
+            <element name="platform" typeRef="java.lang.String"/>
+        </dataobject>
+    </dataobjects>
+</service>

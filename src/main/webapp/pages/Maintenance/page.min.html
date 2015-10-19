@@ -1,0 +1,182 @@
+<style id="Maintenance.css">
+
+</style>
+<script id="Maintenance.js">
+Application.$controller("MaintenancePageController", ["$scope", function ($scope) {
+    "use strict";
+
+    /* perform any action with the variables inside this block(on-page-load) */
+    $scope.onPageVariablesReady = function () {
+        /*
+         * variables can be accessed through '$scope.Variables' property here
+         * e.g. $scope.Variables.staticVariable1.getData()
+         */
+    };
+    
+    /* perform any action with widgets inside this block */
+    $scope.onPageReady = function () {
+        /*
+         * widgets can be accessed through '$scope.Widgets' property here
+         * e.g. $scope.Widgets.byId(), $scope.Widgets.byName()or access widgets by $scope.Widgets.widgetName
+         */
+    };
+
+}]);
+
+
+Application.$controller("EmployeeGrid1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("EmployeeLiveform1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("PlatformGrid2Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("PlatformLiveform2Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+</script>
+<script id="Maintenance.variables.json">
+var _MaintenancePage_Variables_ ={}
+</script>
+<script id="Maintenance.html" type="text/ng-template">
+<wm-page data-ng-controller="MaintenancePageController" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-tabs name="Users">
+                <wm-tabpane name="tabpane1">
+                    <wm-tabheader name="tabheader1" heading="Architects"></wm-tabheader>
+                    <wm-tabcontent name="tabcontent1">
+                        <wm-livegrid name="EmployeeLivegrid1" service="core_scorecard@Employee">
+                            <wm-grid deleterow="true" updaterow="true" insertrow="true" gridfirstrowselect="true" readonlygrid="false" name="EmployeeGrid1" dataset="bind:Variables.Core_scorecardEmployeeData.dataSet">
+                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="createDt" caption="Create Dt" type="timestamp" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" datepattern="dd-MMM-yyyy HH:mm:ss" formatpattern="toDate"
+                                is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="firstName" caption="First Name" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="middleName" caption="Middle Name" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="lastName" caption="Last Name" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="fullName" caption="Full Name" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="title" caption="Title" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" label="New" show="true" class="btn-primary" icon="new" action="addNewRow()" type="button"></wm-grid-action>
+                            </wm-grid>
+                            <wm-liveform novalidate="false" title="Details" name="EmployeeLiveform1" dataset="bind:Variables.Core_scorecardEmployeeData.dataSet" formtype="inline">
+                                <wm-layoutgrid name="layoutgrid1">
+                                    <wm-gridrow name="gridrow8">
+                                        <wm-gridcolumn name="gridcolumn1" columnwidth="12">
+                                            <wm-form-field display-name="Id" show="true" primary-key="true" generator="identity" key="id" type="integer" maxvalue="NaN" is-related="false" readonly="true" required="true" placeholder="Enter value" minvalue="NaN"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow9">
+                                        <wm-gridcolumn name="gridcolumn2" columnwidth="12">
+                                            <wm-form-field display-name="First Name" show="true" primary-key="false" generator="null" key="firstName" type="string" maxvalue="50" is-related="false" readonly="false" required="false" placeholder="Enter value"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow10">
+                                        <wm-gridcolumn name="gridcolumn3" columnwidth="12">
+                                            <wm-form-field display-name="Last Name" show="true" primary-key="false" generator="null" key="lastName" type="string" maxvalue="50" is-related="false" readonly="false" required="false" placeholder="Enter value"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow11">
+                                        <wm-gridcolumn name="gridcolumn4" columnwidth="12">
+                                            <wm-form-field display-name="Middle Name" show="true" primary-key="false" generator="null" key="middleName" type="string" maxvalue="50" is-related="false" readonly="false" required="false" placeholder="Enter value"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow12">
+                                        <wm-gridcolumn name="gridcolumn5" columnwidth="12">
+                                            <wm-form-field display-name="Full Name" show="true" primary-key="false" generator="null" key="fullName" type="string" maxvalue="100" is-related="false" readonly="false" required="false" placeholder="Enter value"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow13">
+                                        <wm-gridcolumn name="gridcolumn6" columnwidth="12">
+                                            <wm-form-field display-name="Title" show="true" primary-key="false" generator="null" key="title" type="string" maxvalue="50" is-related="false" readonly="false" required="false" placeholder="Enter value" multiple="false"
+                                            regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow14">
+                                        <wm-gridcolumn name="gridcolumn7" columnwidth="12">
+                                            <wm-form-field display-name="Create Dt" show="true" primary-key="false" generator="null" key="createDt" type="timestamp" is-related="false" readonly="false" required="false" placeholder="Select date time" multiple="false"
+                                            regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="glyphicon glyphicon-remove-circle" action="cancel()" type="button" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="glyphicon glyphicon-save" type="Submit" update-mode="true"></wm-form-action>
+                            </wm-liveform>
+                        </wm-livegrid>
+                    </wm-tabcontent>
+                </wm-tabpane>
+                <wm-tabpane name="tabpane2">
+                    <wm-tabheader name="tabheader2" heading="Platforms"></wm-tabheader>
+                    <wm-tabcontent name="tabcontent2">
+                        <wm-livegrid name="PlatformLivegrid2" service="core_scorecard@Platform">
+                            <wm-grid deleterow="true" updaterow="true" insertrow="true" gridfirstrowselect="true" readonlygrid="false" name="PlatformGrid2" dataset="bind:Variables.Core_scorecardPlatformData.dataSet">
+                                <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="createDt" caption="Create Dt" type="timestamp" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" datepattern="dd-MMM-yyyy HH:mm:ss" formatpattern="toDate"
+                                is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="platform" caption="Platform" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-column binding="owner" caption="Owner" type="string" readonly="false" col-class="" col-ng-class="" search-placeholder="Search" is-related-pk="false" pcdisplay="true" mobiledisplay="true"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" label="New" show="true" class="btn-primary" icon="new" action="addNewRow()" type="button"></wm-grid-action>
+                            </wm-grid>
+                            <wm-liveform novalidate="false" title="Details" name="PlatformLiveform2" dataset="bind:Variables.Core_scorecardPlatformData.dataSet" formtype="inline">
+                                <wm-layoutgrid name="layoutgrid2">
+                                    <wm-gridrow name="gridrow19">
+                                        <wm-gridcolumn name="gridcolumn8" columnwidth="12">
+                                            <wm-form-field display-name="Id" show="true" primary-key="true" generator="identity" key="id" type="integer" maxvalue="NaN" is-related="false" readonly="true" required="true" placeholder="Enter value" minvalue="NaN"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow20">
+                                        <wm-gridcolumn name="gridcolumn9" columnwidth="12">
+                                            <wm-form-field display-name="Platform" show="true" primary-key="false" generator="null" key="platform" type="string" maxvalue="255" is-related="false" readonly="false" required="false" placeholder="Enter value"
+                                            multiple="false" regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow21">
+                                        <wm-gridcolumn name="gridcolumn10" columnwidth="12">
+                                            <wm-form-field display-name="Owner" show="true" primary-key="false" generator="null" key="owner" type="string" maxvalue="255" is-related="false" readonly="false" required="false" placeholder="Enter value" multiple="false"
+                                            regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow22">
+                                        <wm-gridcolumn name="gridcolumn11" columnwidth="12">
+                                            <wm-form-field display-name="Create Dt" show="true" primary-key="false" generator="null" key="createDt" type="timestamp" is-related="false" readonly="false" required="false" placeholder="Select date time" multiple="false"
+                                            regexp=".*"></wm-form-field>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="glyphicon glyphicon-remove-circle" action="cancel()" type="button" update-mode="true"></wm-form-action>
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="glyphicon glyphicon-save" type="Submit" update-mode="true"></wm-form-action>
+                            </wm-liveform>
+                        </wm-livegrid>
+                    </wm-tabcontent>
+                </wm-tabpane>
+            </wm-tabs>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>
+</script>
