@@ -17,6 +17,12 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
          */
     };
 
+
+    $scope.liveformScorecardBeforeservicecall = function($event, $operation, $data) {
+        //replace
+
+    };
+
 }]);
 
 
@@ -33,19 +39,25 @@ Application.$controller("gridScorecardController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.editCurrentRow = function() {
-            $scope.Widgets.bntLookupPlatform.disabled = false;
+        $scope.editGridRow = function() {
+            $scope.Widgets.bntLookupPlatform.show = true;
+            $scope.Widgets.btnLookupAIM.show = true;
             $scope.editRow();
         };
 
 
-        $scope.addCurrentNewRow = function() {
-            $scope.Widgets.bntLookupPlatform.disabled = false;
+
+
+        $scope.addGridNewRow = function() {
+            $scope.Widgets.bntLookupPlatform.show = true;
+            $scope.Widgets.btnLookupAIM.show = true;
             $scope.addNewRow();
         };
 
     }
 ]);
+
+
 
 Application.$controller("liveformScorecardController", ["$scope",
     function($scope) {
@@ -64,8 +76,15 @@ Application.$controller("liveformScorecardController", ["$scope",
 
             var aimApplicationsImpacted = $scope.Widgets.aimApplicationsImpacted.datavalue
             var numberPlatforms = $scope.Widgets.numberPlatforms.datavalue
-            var projectCost = $scope.Widgets.projectCost.datavalue
-            var sqpImpactCost = $scope.Widgets.sqpImpactCost.datavalue;
+
+            var projectCostChar = $scope.Widgets.projectCost.datavalue;
+            var projectCost = projectCostChar.replace(/,/g, '');
+            $scope.Widgets.projectCost.datavalue = projectCost;
+
+            var sqpImpactCostChar = $scope.Widgets.sqpImpactCost.datavalue;
+            var sqpImpactCost = sqpImpactCostChar.replace(/,/g, '');
+            $scope.Widgets.sqpImpactCost.datavalue = sqpImpactCost;
+
             var companyPlatformsImpacted = $scope.Widgets.companyPlatformsImpacted.datavalue;
             var numberPlatformsBlueprints = $scope.Widgets.numberPlatformsBlueprints.datavalue;
             var percentagePortfolioArchitecureImpact = $scope.Widgets.percentagePortfolioArchitecureImpact.datavalue;
@@ -162,12 +181,14 @@ Application.$controller("liveformScorecardController", ["$scope",
             $scope.Widgets.numberStrategicOpportunitiesScore.datavalue = scoreStrategicOpps.toFixed(2);
             $scope.Widgets.numberImplementedInitiativesScore.datavalue = scoreImplementedSI.toFixed(2);
             $scope.Widgets.numberComponentTechnicalDebtScore.datavalue = scoreCompTechDebt.toFixed(2);
+            $scope.Widgets.aetInvestmentStatusScore.datavalue = scoreAppInvest
 
             $scope.Widgets.smartSpendScore.datavalue = totalSmartScore.toFixed(2);
             $scope.Widgets.smartSpendWeight.datavalue = totalSmartWeight;
             $scope.Widgets.totalSmartSpend.datavalue = totalSmartSpendCost.toFixed(2);
 
             $scope.Widgets.createDt.datavalue = new Date().getTime();
+
 
         };
 
@@ -176,14 +197,35 @@ Application.$controller("liveformScorecardController", ["$scope",
 
 
         $scope.cancelCurrentRow = function() {
-            $scope.Widgets.bntLookupPlatform.disabled = true;
+            $scope.Widgets.bntLookupPlatform.show = false;
+            $scope.Widgets.btnLookupAIM.show = false;
             $scope.cancel();
+
         };
 
         //form edit overrride
 
-        $scope.editFormRow = function() {
-            $scope.Widgets.bntLookupPlatform.disabled = false;
+
+        $scope.saveCurrentRow = function() {
+
+            $scope.save();
+
+            $scope.Widgets.bntLookupPlatform.show = false;
+            $scope.Widgets.btnLookupAIM.show = false;
+        };
+
+
+        $scope.newCurrentRow = function() {
+
+            $scope.Widgets.bntLookupPlatform.show = true;
+            $scope.Widgets.btnLookupAIM.show = true;
+            $scope.new();
+        };
+
+
+        $scope.editCurrentRow = function() {
+            $scope.Widgets.bntLookupPlatform.show = true;
+            $scope.Widgets.btnLookupAIM.show = true;
             $scope.edit();
         };
 
@@ -208,7 +250,7 @@ Application.$controller("dialogPlatformsController", ["$scope", "DialogService",
                 $scope.Widgets.companyPlatformsImpacted.datavalue = items.platform;
 
             } else {
-                console.log("here")
+                //console.log("here")
                 for (var i = 0; i < items.length; i++) {
                     if (i === 0) {
                         formitems.push(items[i].platform);
@@ -239,7 +281,55 @@ Application.$controller("gridPlatformController", ["$scope",
     }
 ]);
 
-Application.$controller("dialog2Controller", ["$scope",
+Application.$controller("dialogHelpController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogAIMController", ["$scope", "DialogService",
+    function($scope, DialogService) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.buttonAIMSaveClick = function($event, $isolateScope) {
+
+            var items = $scope.Widgets.gridAIM.selecteditem;
+            var formitems = [];
+
+            if (items.applicationName) {
+                $scope.Widgets.aimApplicationsImpacted.datavalue = items.applicationId + " - " + items.applicationName;
+
+            } else {
+                //console.log("here")
+                for (var i = 0; i < items.length; i++) {
+                    if (i === 0) {
+                        formitems.push(items[i].applicationId + " - " + items[i].applicationName);
+
+                    } else {
+                        formitems.push("\n" + items[i].applicationId + " - " + items[i].applicationName);
+                    }
+                }
+
+                $scope.Widgets.aimApplicationsImpacted.datavalue = formitems.toString();
+            }
+
+            DialogService.close('dialogAIM');
+
+        };
+
+    }
+]);
+
+Application.$controller("gridAIMController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogHelpController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

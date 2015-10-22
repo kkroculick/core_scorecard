@@ -52,6 +52,14 @@ public class Core_scorecardQueryExecutorServiceImpl implements Core_scorecardQue
         Map<String, Object> params = new HashMap<String, Object>();
         return queryExecutor.executeNamedQuery("getPlatform", params, pageable);
 	}
+	@Transactional(value = "core_scorecardTransactionManager")
+	@Override
+	public Page<Object> executeGetApplication(Pageable pageable, java.lang.String aim)
+	throws QueryParameterMismatchException{
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("aim", aim);
+        return queryExecutor.executeNamedQuery("getApplication", params, pageable);
+	}
 
 	@Transactional(value = "core_scorecardTransactionManager")
 	@Override

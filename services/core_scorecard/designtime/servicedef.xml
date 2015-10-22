@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="core_scorecard" CRUDService="true" type="DataService" springFile="core_scorecard.spring.xml">
+    <operation operationType="nativequery" name="getApplication">
+        <parameter name="aim" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="core_scorecardgetApplicationrtnType" isList="false"/>
+    </operation>
     <operation operationType="nativequery" name="getEmpByLTA">
         <return typeRef="core_scorecardgetEmpByLTArtnType" isList="false"/>
     </operation>
@@ -10,6 +14,26 @@
         <return typeRef="core_scorecardgetPlatformrtnType" isList="false"/>
     </operation>
     <dataobjects>
+        <dataobject javaType="com.core_scorecard.core_scorecard.VAimOwner">
+            <element name="id" typeRef="com.core_scorecard.core_scorecard.VAimOwnerId" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.core_scorecard.core_scorecard.VAimOwnerId">
+            <element name="applicationName" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationId" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationDirector" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationIntegrator" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationPfa" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationVpLevel1" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationVpLevel1CostCenter" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationVpLevel2" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="applicationSvp" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="productionSupportDirector" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="productionSupportVp" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="owningBusinessDirector" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="owningBusinessVp" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="lineOfBusinessLvl1" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="lineOfBusinessLvl2" typeRef="java.lang.String" isList="false" allowNull="true"/>
+        </dataobject>
         <dataobject javaType="com.core_scorecard.core_scorecard.Employee">
             <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
             <element name="firstName" typeRef="java.lang.String" isList="false" allowNull="true"/>
@@ -17,13 +41,13 @@
             <element name="fullName" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="title" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="middleName" typeRef="java.lang.String" isList="false" allowNull="true"/>
-            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="false"/>
         </dataobject>
         <dataobject javaType="com.core_scorecard.core_scorecard.Platform">
             <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
             <element name="platform" typeRef="java.lang.String" isList="false" allowNull="true"/>
             <element name="owner" typeRef="java.lang.String" isList="false" allowNull="true"/>
-            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="false"/>
         </dataobject>
         <dataobject javaType="com.core_scorecard.core_scorecard.Scorecard">
             <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false"/>
@@ -62,7 +86,11 @@
             <element name="sqpImpactCost" typeRef="java.lang.Double" isList="false" allowNull="true"/>
             <element name="totalSmartSpend" typeRef="java.lang.Double" isList="false" allowNull="true"/>
             <element name="employeeId" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
-            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="createDt" typeRef="java.util.Date" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="core_scorecardgetApplicationrtnType">
+            <element name="application_name" typeRef="java.lang.String"/>
+            <element name="application_id" typeRef="java.lang.String"/>
         </dataobject>
         <dataobject javaType="core_scorecardgetEmpByLTArtnType">
             <element name="full_name" typeRef="java.lang.String"/>

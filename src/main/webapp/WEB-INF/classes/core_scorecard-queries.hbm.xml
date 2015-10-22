@@ -16,4 +16,9 @@
             select * from platform
         ]]>
     </sql-query>
+    <sql-query name="getApplication">
+        <![CDATA[
+            select application_name, application_id from v_aim_owner where application_name like '%' || :aim ||'%' or  application_id like '%' || :aim||'%'
+        ]]>
+    </sql-query>
 </hibernate-mapping>

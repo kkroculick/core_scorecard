@@ -62,6 +62,15 @@ public class QueryExecutionController {
         return result;
     }
 
+    @RequestMapping(value = "/queries/getApplication", method = RequestMethod.GET)
+    @ApiOperation(value = "Process request to execute queries")
+    public Page<Object> executeGetApplication(@RequestParam(value = "aim", required = false) java.lang.String aim, Pageable pageable) throws QueryParameterMismatchException {
+        LOGGER.debug("Executing named query getApplication");
+        Page<Object> result = queryService.executeGetApplication(pageable, aim);
+        LOGGER.debug("got the result of named query {}", result);
+        return result;
+    }
+
     @RequestMapping(value = "/queries/wm_custom", method = RequestMethod.POST)
     @ApiOperation(value = "Process request to execute customer queries")
     public Page<Object> executeWMCustomQuery(@RequestBody CustomQuery query, Pageable pageable) {

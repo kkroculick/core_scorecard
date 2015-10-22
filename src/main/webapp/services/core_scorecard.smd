@@ -1,6 +1,14 @@
 {
 	"serviceType": "JSON-RPC",
 	"methods": [{
+		"name": "getApplication",
+		"operationType": "nativequery",
+		"parameters": [{
+			"name": "aim",
+			"type": "java.lang.String"
+		}],
+		"returnType": "core_scorecardgetApplicationrtnType"
+	}, {
 		"name": "getEmpByLTA",
 		"operationType": "nativequery",
 		"parameters": null,

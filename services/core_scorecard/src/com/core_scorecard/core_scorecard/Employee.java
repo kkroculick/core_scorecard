@@ -6,7 +6,6 @@ package com.core_scorecard.core_scorecard;
 
 
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -121,7 +120,7 @@ private Date createDt;
 
     @Temporal(TemporalType.TIMESTAMP)
 
-    @Column(name="create_dt", length=35)
+    @Column(name="create_dt", nullable=false, length=35)
     public Date getCreateDt() {
         return this.createDt;
     }

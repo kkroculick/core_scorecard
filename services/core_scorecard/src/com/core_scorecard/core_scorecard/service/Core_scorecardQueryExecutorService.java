@@ -17,6 +17,7 @@ public interface Core_scorecardQueryExecutorService {
     Page<Object> executeGetEmpByLTA(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeGetEmpByPFA(Pageable pageable) throws QueryParameterMismatchException;
     Page<Object> executeGetPlatform(Pageable pageable) throws QueryParameterMismatchException;
+    Page<Object> executeGetApplication(Pageable pageable, java.lang.String aim) throws QueryParameterMismatchException;
 
 	
 	Page<Object> executeWMCustomQuerySelect(CustomQuery query, Pageable pageable) ;

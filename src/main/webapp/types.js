@@ -25,7 +25,7 @@ wm.types = {
 					"fieldSubType": null,
 					"type": "java.util.Date",
 					"isList": false,
-					"required": false
+					"required": true
 				},
 				"firstName": {
 					"include": [],
@@ -102,7 +102,7 @@ wm.types = {
 					"fieldSubType": null,
 					"type": "java.util.Date",
 					"isList": false,
-					"required": false
+					"required": true
 				},
 				"id": {
 					"include": [],
@@ -199,7 +199,7 @@ wm.types = {
 					"fieldSubType": null,
 					"type": "java.util.Date",
 					"isList": false,
-					"required": false
+					"required": true
 				},
 				"employeeId": {
 					"include": [],
@@ -510,6 +510,207 @@ wm.types = {
 					"type": "java.lang.Double",
 					"isList": false,
 					"required": false
+				}
+			}
+		},
+		"com.core_scorecard.core_scorecard.VAimOwner": {
+			"liveService": false,
+			"internal": false,
+			"service": "core_scorecard",
+			"fields": {
+				"id": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 0,
+					"fieldSubType": null,
+					"type": "com.core_scorecard.core_scorecard.VAimOwnerId",
+					"isList": false,
+					"required": true
+				}
+			}
+		},
+		"com.core_scorecard.core_scorecard.VAimOwnerId": {
+			"liveService": false,
+			"internal": false,
+			"service": "core_scorecard",
+			"fields": {
+				"applicationDirector": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 2,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationId": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 1,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationIntegrator": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 3,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationName": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 0,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationPfa": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 4,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationSvp": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 8,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationVpLevel1": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 5,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationVpLevel1CostCenter": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 6,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"applicationVpLevel2": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 7,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"lineOfBusinessLvl1": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 13,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"lineOfBusinessLvl2": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 14,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"owningBusinessDirector": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 11,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"owningBusinessVp": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 12,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"productionSupportDirector": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 9,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				},
+				"productionSupportVp": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 10,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": false
+				}
+			}
+		},
+		"core_scorecardgetApplicationrtnType": {
+			"liveService": false,
+			"internal": false,
+			"service": "core_scorecard",
+			"fields": {
+				"application_id": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 1,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": true
+				},
+				"application_name": {
+					"include": [],
+					"noChange": [],
+					"exclude": [],
+					"fieldOrder": 0,
+					"fieldSubType": null,
+					"type": "java.lang.String",
+					"isList": false,
+					"required": true
 				}
 			}
 		},

@@ -188,7 +188,7 @@
 					"fullyQualifiedType": "timestamp",
 					"columnName": "create_dt",
 					"isPrimaryKey": false,
-					"notNull": false,
+					"notNull": true,
 					"length": 35,
 					"precision": 19,
 					"generator": null,
@@ -307,7 +307,7 @@
 					"fullyQualifiedType": "timestamp",
 					"columnName": "create_dt",
 					"isPrimaryKey": false,
-					"notNull": false,
+					"notNull": true,
 					"length": 35,
 					"precision": 19,
 					"generator": null,
@@ -1021,7 +1021,7 @@
 					"fullyQualifiedType": "timestamp",
 					"columnName": "create_dt",
 					"isPrimaryKey": false,
-					"notNull": false,
+					"notNull": true,
 					"length": 35,
 					"precision": 19,
 					"generator": null,
@@ -1142,6 +1142,7 @@
 		"_id": "wm-goToPage-Reports-wm.NavigationVariable-1444882059158"
 	},
 	"goToPage-Support": {
+		"name": "goToPage-Support",
 		"owner": "App",
 		"operation": "gotoPage",
 		"pageName": "Support",
@@ -1150,11 +1151,356 @@
 		"_id": "wm-goToPage-Support-wm.NavigationVariable-1445010887246"
 	},
 	"goToPage-Maintenance": {
+		"name": "goToPage-Maintenance",
 		"owner": "App",
 		"operation": "gotoPage",
 		"pageName": "Maintenance",
 		"dataBinding": {},
 		"category": "wm.NavigationVariable",
 		"_id": "wm-goToPage-Maintenance-wm.NavigationVariable-1445012908291"
+	},
+	"Core_scorecardVAimOwnerData": {
+		"name": "Core_scorecardVAimOwnerData",
+		"type": "VAimOwner",
+		"isList": true,
+		"owner": "App",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "v_aim_owner",
+				"fields": [
+					{
+						"name": "applicationName",
+						"type": "string"
+					},
+					{
+						"name": "applicationId",
+						"type": "string"
+					},
+					{
+						"name": "applicationDirector",
+						"type": "string"
+					},
+					{
+						"name": "applicationIntegrator",
+						"type": "string"
+					},
+					{
+						"name": "applicationPfa",
+						"type": "string"
+					},
+					{
+						"name": "applicationVpLevel1",
+						"type": "string"
+					},
+					{
+						"name": "applicationVpLevel1CostCenter",
+						"type": "string"
+					},
+					{
+						"name": "applicationVpLevel2",
+						"type": "string"
+					},
+					{
+						"name": "applicationSvp",
+						"type": "string"
+					},
+					{
+						"name": "productionSupportDirector",
+						"type": "string"
+					},
+					{
+						"name": "productionSupportVp",
+						"type": "string"
+					},
+					{
+						"name": "owningBusinessDirector",
+						"type": "string"
+					},
+					{
+						"name": "owningBusinessVp",
+						"type": "string"
+					},
+					{
+						"name": "lineOfBusinessLvl1",
+						"type": "string"
+					},
+					{
+						"name": "lineOfBusinessLvl2",
+						"type": "string"
+					}
+				]
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"operation": "read",
+		"startUpdate": true,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"liveSource": "core_scorecard",
+		"ignoreCase": false,
+		"matchMode": "start",
+		"category": "wm.LiveVariable",
+		"isDefault": true,
+		"dbSystem": "PostgreSQL",
+		"_id": "wm-Core_scorecardVAimOwnerData-wm.LiveVariable-1445374867452",
+		"package": "com.core_scorecard.core_scorecard.VAimOwner",
+		"tableName": "v_aim_owner",
+		"tableType": "VIEW",
+		"propertiesMap": {
+			"columns": [
+				{
+					"fieldName": "applicationName",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_name",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationId",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_id",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationDirector",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_director",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationIntegrator",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_integrator",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationPfa",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_pfa",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationVpLevel1",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_vp_level1",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationVpLevel1CostCenter",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_vp_level1_cost_center",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationVpLevel2",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_vp_level2",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "applicationSvp",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "application_svp",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "productionSupportDirector",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "production_support_director",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "productionSupportVp",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "production_support_vp",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "owningBusinessDirector",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "owning_business_director",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "owningBusinessVp",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "owning_business_vp",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "lineOfBusinessLvl1",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "line_of_business_lvl1",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				},
+				{
+					"fieldName": "lineOfBusinessLvl2",
+					"type": "string",
+					"hibernateType": "string",
+					"fullyQualifiedType": "string",
+					"columnName": "line_of_business_lvl2",
+					"isPrimaryKey": false,
+					"notNull": false,
+					"length": 255,
+					"precision": 19,
+					"generator": null,
+					"isRelated": false,
+					"defaultValue": null
+				}
+			],
+			"primaryKeys": [],
+			"entityName": "VAimOwner",
+			"fullyQualifiedName": "com.core_scorecard.core_scorecard.VAimOwner",
+			"tableType": "VIEW"
+		},
+		"filterFields": {}
+	},
+	"Core_scorecardGetApplication": {
+		"type": "string",
+		"isList": false,
+		"owner": "App",
+		"dataSet": {
+			"dataValue": ""
+		},
+		"dataBinding": [
+			{
+				"name": "dataBinding",
+				"type": "object",
+				"fields": []
+			}
+		],
+		"saveInPhonegap": false,
+		"firstRow": 0,
+		"maxResults": 20,
+		"designMaxResults": 10,
+		"service": "core_scorecard",
+		"operation": "getApplication",
+		"startUpdate": false,
+		"autoUpdate": true,
+		"inFlightBehavior": "executeLast",
+		"transformationRequired": false,
+		"serviceType": "DataService",
+		"category": "wm.ServiceVariable",
+		"isDefault": true,
+		"_id": "wm-Core_scorecardGetApplication-wm.ServiceVariable-1445381937575"
 	}
 }

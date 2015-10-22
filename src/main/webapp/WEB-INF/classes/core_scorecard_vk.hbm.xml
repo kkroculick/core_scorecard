@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.core_scorecard.core_scorecard">
+    <class entity-name="com.core_scorecard.core_scorecard.VAimOwner" table="v_aim_owner" name="com.core_scorecard.core_scorecard.VAimOwner" schema="public">
+        <composite-id name="id" class="VAimOwnerId">
+            <key-property name="applicationName" type="string">
+                <column name="application_name" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationId" type="string">
+                <column name="application_id" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationDirector" type="string">
+                <column name="application_director" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationIntegrator" type="string">
+                <column name="application_integrator" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationPfa" type="string">
+                <column name="application_pfa" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationVpLevel1" type="string">
+                <column name="application_vp_level1" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationVpLevel1CostCenter" type="string">
+                <column name="application_vp_level1_cost_center" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationVpLevel2" type="string">
+                <column name="application_vp_level2" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="applicationSvp" type="string">
+                <column name="application_svp" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="productionSupportDirector" type="string">
+                <column name="production_support_director" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="productionSupportVp" type="string">
+                <column name="production_support_vp" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="owningBusinessDirector" type="string">
+                <column name="owning_business_director" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="owningBusinessVp" type="string">
+                <column name="owning_business_vp" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="lineOfBusinessLvl1" type="string">
+                <column name="line_of_business_lvl1" length="255" not-null="false" precision="19"/>
+            </key-property>
+            <key-property name="lineOfBusinessLvl2" type="string">
+                <column name="line_of_business_lvl2" length="255" not-null="false" precision="19"/>
+            </key-property>
+        </composite-id>
+    </class>
     <class entity-name="com.core_scorecard.core_scorecard.Employee" table="employee" name="com.core_scorecard.core_scorecard.Employee" schema="public">
         <id name="id" type="integer">
             <column name="id" length="255" not-null="true" precision="19"/>
@@ -22,7 +71,7 @@
             <column name="middle_name" length="50" not-null="false" precision="19"/>
         </property>
         <property name="createDt" type="timestamp">
-            <column name="create_dt" length="35" not-null="false" precision="19"/>
+            <column name="create_dt" length="35" not-null="true" precision="19"/>
         </property>
     </class>
     <class entity-name="com.core_scorecard.core_scorecard.Platform" table="platform" name="com.core_scorecard.core_scorecard.Platform" schema="public">
@@ -37,7 +86,7 @@
             <column name="owner" length="255" not-null="false" precision="19"/>
         </property>
         <property name="createDt" type="timestamp">
-            <column name="create_dt" length="35" not-null="false" precision="19"/>
+            <column name="create_dt" length="35" not-null="true" precision="19"/>
         </property>
     </class>
     <class entity-name="com.core_scorecard.core_scorecard.Scorecard" table="scorecard" name="com.core_scorecard.core_scorecard.Scorecard" schema="public">
@@ -151,7 +200,7 @@
             <column name="employee_id" length="255" not-null="false" precision="19"/>
         </property>
         <property name="createDt" type="timestamp">
-            <column name="create_dt" length="35" not-null="false" precision="19"/>
+            <column name="create_dt" length="35" not-null="true" precision="19"/>
         </property>
     </class>
 </hibernate-mapping>
